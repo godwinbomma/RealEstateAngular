@@ -1,0 +1,50 @@
+<div class="page-wrapper chiller-theme">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <app-header headerMainTitle="Manage Banks">
+        </app-header>
+
+        <div class="container-fluid contentpage_wrapper">
+            <div class="pagecontent_wrapper">
+                <div class="manage-banks-add">
+                    <h4>Add New Bank</h4>
+                    <div class="flx_div">
+                        <div class="flx_section">
+                            <label class="peak-form-label">Bank Name</label>
+                            <input class="ipt bb" type="text" name="" placeholder="Bank Name" value="Global Network Financial Holdings">
+                        </div>
+                        <div class="flx_section">
+                            <label class="peak-form-label">Interest Rate</label>
+                            <input class="ipt" type="text" name="" placeholder="Interest Rate" value="11.5%">
+                        </div>
+                        <div class="flx_section">
+                            <label class="peak-form-label">Effective From</label>
+                            <dp-date-picker placeholder="08-28-2020" theme="dp-material" [config]="datePickerConfig" required="true"></dp-date-picker>
+                        </div>
+                        <div class="flx_section">
+                            <label class="peak-form-label">Notes</label>
+                            <input class="ipt bb" type="text" name="" placeholder="Enter Notes">
+                        </div>
+
+                    </div>
+                    <div class="btn_flex">
+                        <button routerLink="/superadmin/manage-bank" class="btn_Confirm">CREATE</button>
+                        <button class="btn_Cancel">CANCEL</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </main>
+</div>

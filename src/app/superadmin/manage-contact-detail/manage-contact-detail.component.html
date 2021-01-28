@@ -1,0 +1,319 @@
+
+
+
+<div class="page-wrapper chiller-theme">
+  <a id="show-sidebar" class="btn btn-sm btn-dark">
+      <i class="fas fa-bars"></i>
+  </a>
+  <app-sidebar></app-sidebar>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+      <app-header headerMainTitle="Manage Contact">
+      </app-header>
+      <div class="container-fluid contentpage_wrapper">
+          <div class="pagecontent_wrapper">
+              <form (ngSubmit)=ContactForm.form.valid&&addContact() #ContactForm="ngForm">
+                  <div class="manage-contacts-detail">
+                      <h4>Add Contact</h4>
+                      <div class="flx_div">
+                        <div class="flx_section">
+                          <label class="peak-form-label">Contact Type<span>*</span></label>
+                          <div class="select_div w-250" style="margin-left: 0px">
+                            <select style="width: 100%;" id="typeid" [(ngModel)]="Contacts.userTypeId" name="userTypeId" #userTypeId="ngModel" [ngClass]="{ 'is-invalid': ContactForm.submitted && userTypeId.invalid }" required>                                                         
+                              <option value="4">Client</option>
+                              <option value="5">Broker/Agent</option>
+                              <option value="6">Synergy Broker/Executive</option>
+                              <option value="7">Synergy Agent</option>
+                              <option value="8">Escrow Officer</option>
+                            </select>
+                            <span style="top: 10px !important;padding-right: 0px;"><i class="fa fa-angle-down"></i></span>
+                          </div>
+                        </div>
+                        <ng-container
+                        *ngIf="Contacts.userTypeId==7;">
+                        <div class="flx_section">
+                          <label class="peak-form-label">Synergy Mapping</label>
+                          <div class="select_div small">
+                            <select (change)="synergyisrequired()" [(ngModel)]="Contacts.issynergyrequire" name="issynergyrequire" #issynergyrequire="ngModel">
+                              <option value="1">Yes</option>
+                              <option value="0">No</option>
+                            </select>
+                            <span style="right: 1px;
+                            left: 227px;"><i class="fa fa-angle-down"></i></span>
+                          </div>
+                        </div>
+    
+                        <div class="flx_section">
+                          <label class="peak-form-label">Select Synergy Client</label>
+                          <ng-container *ngIf="issynergy ; else relPropertyClosedate">
+                            <div id="multiselect_custom">
+                              <mat-form-field appearance="fill">
+                                <mat-select [(ngModel)]="Contacts.synergyId" #synergyId="ngModel" name="synergyId">
+    
+                                      <input type="text"  (keyup)="onSearchUsers($event)" tabindex="2" class="peak-box-g" (keydown)="$event.stopPropagation()">
+                                      <mat-option *ngFor="let client of AssignExchangeDropdownList" value="{{client.userId}}">
+                                          {{client.fullName}} 
+                                      </mat-option>
+                                  </mat-select>
+                              </mat-form-field>
+    
+    
+    
+                              <button type="button" class="btn select-btn" data-toggle="modal" data-target="#bank_profile">
+                                  <img src="../../../../assets/images/superadmin/escrow-icon.png">
+                              </button>
+                             
+    
+                          </div>
+                        
+                        </ng-container>
+                        <ng-template #relPropertyClosedate>
+                          <div class="select_div">
+                            <select  >
+                              <option disabled [ngValue] ="0">Select Synergy</option>
+                            </select>
+               
+                            <span style="right: 1px;
+                            left: 227px;"><i class="fa fa-angle-down"></i></span>
+                          </div>
+                        </ng-template>
+                          
+                         
+                        </div>
+                        </ng-container>
+                        <div class="flx_section">
+                          <label class="peak-form-label">First Name<span>*</span></label>
+                          <input class="ipt" type="text" [(ngModel)]="Contacts.firstName" #firstName="ngModel" name="firstName" placeholder="First Name" [ngClass]="{ 'is-invalid': ContactForm.submitted && firstName.invalid }" required>
+                          <div *ngIf="ContactForm.submitted && firstName.invalid" class="invalid-feedback">
+                            <div *ngIf="firstName.errors.required">First Name is required</div>
+                        </div>                                            
+                        </div>
+                        <div class="flx_section">
+                          <label class="peak-form-label">Last Name<span>*</span></label>
+                          <input class="ipt" type="text" [(ngModel)]="Contacts.lastName" #lastName="ngModel" name ="lastName" [ngClass]="{ 'is-invalid': ContactForm.submitted && lastName.invalid }" required placeholder="Last Name">
+                          <div *ngIf="ContactForm.submitted && lastName.invalid" class="invalid-feedback">
+                            <div *ngIf="lastName.errors.required">Last Name is required</div>
+                          </div>                            
+                        </div>
+                        <div class="flx_section">
+                          <label class="peak-form-label">Company Name</label>
+                          <input class="ipt" type="text" [(ngModel)]="Contacts.companyName" #companyName="ngModel" name ="companyName" placeholder="Last Name">
+                                                 
+                        </div>
+                        <div class="flx_section">
+                          <label class="peak-form-label">Phone Number<span>*</span></label>
+                          <input class="ipt" type="text" [readonly]="state=='Edit'" [(ngModel)]="Contacts.mobileNumber" #mobileNumber="ngModel" name="mobileNumber" [ngClass]="{ 'is-invalid': ContactForm.submitted && mobileNumber.invalid }" required placeholder="PhoneNumber" mask= '(000) 000-0000'>
+                          <div *ngIf="ContactForm.submitted && mobileNumber.invalid" class="invalid-feedback">
+                            <div *ngIf="mobileNumber.errors.required">Phone Number is required</div>
+                          </div> 
+                        </div>
+  
+                        <div class="flx_section">
+                          <label class="peak-form-label">Fax</label>
+                          <input class="ipt" type="text" [(ngModel)]="Contacts.faxNumber" #faxNumber="ngModel" name="faxNumber" placeholder="Fax" mask= '(000) 000-0000'>
+                        </div>
+                        <div class="flx_section">
+                          <label class="peak-form-label">Email Address<span>*</span></label>
+                          <input class="ipt" type="email"  [readonly]="state=='Edit'" [(ngModel)]="Contacts.emailAddress" #emailAddress="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="emailAddress" [ngClass]="{ 'is-invalid': ContactForm.submitted && emailAddress.invalid }" required  placeholder="Email Address">
+                          <div *ngIf="ContactForm.submitted && emailAddress.invalid" class="invalid-feedback">
+                            <div *ngIf="emailAddress.errors.required">Email Address is required</div>
+                          </div> 
+                          <div  *ngIf="emailAddress.errors && emailAddress.errors.pattern" class="invalid-feedback">
+                            Email is invalid
+                        </div>
+                        </div>
+                        <ng-container
+                        *ngIf="state=='Edit'; else value">
+                        <div class="flx_section">
+                          <label class="peak-form-label">Password</label>
+                          <input class="ipt" type="password" #passwordToggle [(ngModel)]="Contacts.password" #password="ngModel"  name="password" [ngClass]="{ 'is-invalid': ContactForm.submitted && password.invalid }" required >
+                          <a class="hide-icon-g" style="position: absolute;
+                          right: 155px;
+                          top: 203px;" (click)="toggleClick()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"  viewBox="0 0 20 20" fill="none">
+                      <path d="M19.8729 9.611C19.6942 9.36658 15.4371 3.62638 9.9999 3.62638C4.56274 3.62638 0.305391 9.36658 0.126914 9.61076C-0.0423048 9.84264 -0.0423048 10.1571 0.126914 10.389C0.305391 10.6334 4.56274 16.3736 9.9999 16.3736C15.4371 16.3736 19.6942 10.6334 19.8729 10.3892C20.0423 10.1574 20.0423 9.84264 19.8729 9.611ZM9.9999 15.055C5.99486 15.055 2.52606 11.2451 1.49922 9.99955C2.52473 8.75295 5.98626 4.94505 9.9999 4.94505C14.0048 4.94505 17.4733 8.75428 18.5006 10.0005C17.4751 11.247 14.0135 15.055 9.9999 15.055Z" fill="#ACB2B5"/>
+                      <path d="M9.99988 6.04396C7.81855 6.04396 6.04382 7.81869 6.04382 10C6.04382 12.1814 7.81855 13.9561 9.99988 13.9561C12.1812 13.9561 13.9559 12.1814 13.9559 10C13.9559 7.81869 12.1812 6.04396 9.99988 6.04396ZM9.99988 12.6374C8.54558 12.6374 7.36254 11.4543 7.36254 10C7.36254 8.54576 8.54562 7.36267 9.99988 7.36267C11.4541 7.36267 12.6372 8.54576 12.6372 10C12.6372 11.4543 11.4542 12.6374 9.99988 12.6374Z" fill="#ACB2B5"/>
+                      </svg>
+                        </a>
+                        </div>
+                    </ng-container>
+                    <ng-template #value>
+                      <div class="flx_section">
+                        <label  class="peak-form-label">Authentication Method</label>
+                        <div class="select_div w-250">
+                          <select [(ngModel)]="Contacts.TwofactorConfig "  #TwofactorConfig ="ngModel"  name="TwofactorConfig " >
+                                      
+                            <option value="0">No Authentication</option>
+                            <option value="1">Both</option>
+                            <option value="2">Mobile</option>
+                            <option value="3">Email</option>
+                          </select>
+                          <span style="top: 8px !important;padding-right: 10px;"><i class="fa fa-angle-down"></i></span>
+                        </div>
+                        
+                     
+                      </div>
+                      <div class="flx_div">
+                        <div class="flx_section">
+                          <label class="peak-form-label">Address<span>*</span></label>
+                          <input  class="ipt" placeholder="Address" [(ngModel)]="Contacts.mailingAddress" #mailingAddress="ngModel"  name="mailingAddress" [ngClass]="{ 'is-invalid': ContactForm.submitted && mailingAddress.invalid }" required>
+                          <div *ngIf="ContactForm.submitted && mailingAddress.invalid" class="invalid-feedback">
+                            <div *ngIf="mailingAddress.errors.required">Address is required</div>
+                          </div> 
+                        </div>
+                        <div class="flx_section" style="width: 250px;">
+                          <!-- <div class="flx_section"> -->
+                          <label class="peak-form-label">City<span class="c-red">*</span></label>
+                          <div>
+                                  <input style="width:100%;" type="text"  class="ipt" placeholder="Enter city" tabindex="4" [(ngModel)]="Contacts.city" name="city" class="peak-box-g"
+                                  #city="ngModel" >
+
+                          </div>
+    
+                      </div>
+                            
+                        <div class="flx_section" style="width: 250px;" >
+                          <label class="peak-form-label">State<span class="c-red">*</span></label>
+                          <div id="multiselect_custom"style="width:100%;" >
+                              <mat-form-field appearance="fill">
+                                  <mat-select tabindex="5"   [(ngModel)]="Contacts.state" name="state"
+                                      #state="ngModel"
+                                      required [ngModelOptions]="{standalone: true}">
+                                      <mat-option *ngFor="let stateslist of Statedata" value="{{stateslist.stateId}}">
+                                          {{stateslist.stateName}}
+                                      </mat-option>
+                                  </mat-select>
+                              </mat-form-field>
+                          </div>
+                        </div>
+                          
+                        <div class="flx_section" style="width: 250px;">
+                          <label class="peak-form-label">Zip
+                              <span class="c-red">*</span>
+                          </label>
+                          <input style="width:100%;" type="text"  class="ipt" mask="000000" tabindex="6" placeholder="Enter Zip code"   [(ngModel)]="Contacts.zip" name="zip" class="peak-box-g"
+                          #zip="ngModel"  
+                          required>
+
+                      </div>
+                          
+                      </div>
+
+                    </ng-template>
+                    <ng-container
+                    *ngIf="Contacts.userTypeId==6;">
+                  
+                    <div class="flx_div" style="justify-content: space-between;margin-bottom: 10px; border: 1px solid #CCD9E1;box-sizing: border-box;border-radius: 5px;background: #FAFDFF;padding: 15px;">
+                      <div class="flx_section" style="min-height: unset;margin-bottom: 0px;">
+                        <label class="peak-form-label">Revenue Month</label>
+                        <label class="switch">
+                          <input type="checkbox" [(ngModel)]="Contacts.revenueMonth" [ngModelOptions]="{standalone: true}"/>
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="flx_section" style="min-height: unset;margin-bottom: 0px;">
+                        <label class="peak-form-label">Revenue Year</label>
+                        <label class="switch">
+                          <input type="checkbox" [(ngModel)]="Contacts.revenueYear" [ngModelOptions]="{standalone: true}"/>
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="flx_section" style="min-height: unset;margin-bottom: 0px;">
+                        <label class="peak-form-label">Files Month</label>
+                        <label class="switch">
+                          <input type="checkbox" [(ngModel)]="Contacts.filesMonth"  [ngModelOptions]="{standalone: true}"/>
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="flx_section" style="min-height: unset;margin-bottom: 0px;">
+                        <label class="peak-form-label">Files Year</label>
+                        <label class="switch">
+                          <input type="checkbox" [(ngModel)]="Contacts.filesYear" [ngModelOptions]="{standalone: true}"/>
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="flx_section" style="min-height: unset;margin-bottom: 0px;">
+                        <label class="peak-form-label">Add Exchange</label>
+                        <label class="switch">
+                          <input type="checkbox" [(ngModel)]="Contacts.synergyExchange" [ngModelOptions]="{standalone: true}"/>
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="flx_section" style="min-height: unset;margin-bottom: 0px;">
+                        <label class="peak-form-label">Accounts</label>
+                        <label class="switch">
+                          <input type="checkbox" [(ngModel)]="Contacts.synergyAccounts" [ngModelOptions]="{standalone: true}" />
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                      <div class="flx_section" style="min-height: unset;margin-bottom: 0px;">
+                        <label class="peak-form-label">Monthly Account</label>
+                        <label class="switch">
+                          <input type="checkbox" [(ngModel)]="Contacts.monthlyAccount"  [ngModelOptions]="{standalone: true}"/>
+                          <span class="slider round"></span>
+                        </label>
+                      </div>
+                    </div>
+                    </ng-container> 
+                          <div class="flex_notes">
+                           
+                            <div class="flx_section" style="width: 100%;">
+                              <label class="peak-form-label">Notes</label>
+                              <textarea placeholder="Enter Contact Note" [(ngModel)]="Contacts.notes" #notes="ngModel" name="notes"></textarea>
+                            </div>
+                          </div>
+                        
+                      </div>
+                     
+                      <div class="flex_added">
+           
+                            
+                              <div  class="integreatedBlock   padding-15" *ngFor="let item of ContactsCF,index as i">
+                                <div class="row no-margin-row nmr-mb">
+                                    <div class="relinquished-details-list">                                                                      
+                                     
+                                              <label class="peak-form-label">{{item.labelName}}</label>
+                                             
+                                            <div *ngIf="item.valueType=='Text'" class="flexWt-100">
+                                                
+                                                <ng-container >
+                                                    <input type="item.valueType" placeholder="{{item.toolTip}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}">
+                                                </ng-container>
+                                                                                                                                                   
+                                            </div>
+                                        
+                                        
+                                            <div *ngIf="item.valueType=='Interger '"  class="flexWt-100">
+                                                <ng-container >
+                                                    <input type="number" placeholder="{{item.toolTip}}" [(ngModel)]="item.value">
+                                                </ng-container>
+                                                                                                                                                 
+                                            </div>
+                                      
+                                        
+                                            <div *ngIf="item.valueType=='Date '"  [config]="datePickerConfig">
+                                                <ng-container>
+                                                    <dp-date-picker theme="dp-material" placeholder="{{item.toolTip}}" [(ngModel)]="item.value">
+                                                    </dp-date-picker>
+                                                    
+                                                </ng-container>
+                                                                                                                                               
+                                            </div>
+
+                                    </div>
+                                    
+                                </div>
+                             
+                          </div>
+                      </div>
+                      
+                      <div class="btn_flex">
+                          <button class="btn_Confirm" style="width: 160px;margin-top: 0px;">{{label}}</button>
+                          <button class="btn_Cancel" [routerLink]="['/superadmin/manage-contact']">CANCEL</button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </main>
+</div>

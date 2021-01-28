@@ -1,0 +1,170 @@
+<div class="page-wrapper chiller-theme">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <app-header headerMainTitle="Manage Exchanges">
+        </app-header>
+
+        <div class="container-fluid contentpage_wrapper">
+            <div class="pagecontent_wrapper">
+                <div class="white_wrapper">
+                    <div class="mel-top">
+                        <h2 class="peak-form-head">Exchanges List</h2>
+                        <div class="mel-left-auto">
+                            <input type="text" placeholder="Search..." value="" />
+                            <button data-toggle="modal" data-target="#bank_profile-col" class="btn Customize"><img src="../../../../assets/images/superadmin/customize-btn-icon.png"/> Customize Column</button>
+                        </div>
+                    </div>
+                    <div class="apxtable_grid_table">
+                        <div class="table-responsive apx-responsive table-responsive-realest">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Exch No
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Assigned to
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Open Date
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Close Date
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">45-Days Deadline
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span></th>
+
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">180-Days Deadline
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Notes
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Task
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let leadlist of leadData | orderBy: order:reverse| paginate: { itemsPerPage: 1, currentPage: p } ">
+
+                                        <td routerLink="/superadmin/manage-exchanges" class="me-routing">{{leadlist.leadid}}</td>
+                                        <td>{{leadlist.leadowner}}</td>
+                                        <td>{{leadlist.leademail}}</td>
+                                        <td>{{leadlist.leadphone}}</td>
+                                        <td>{{leadlist.leadunits}}</td>
+                                        <td>{{leadlist.leadStatus}}</td>
+                                        <td>{{leadlist.leadSnotes}}</td>
+                                        <td>{{leadlist.leadtask}}</td>
+                                        <td>
+                                            <div class=" apx-actions ">
+                                                <a class="pencilleadlist"> <span class="pencil ">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                  <path d="M15.4961 3.597L12.4025 0.503406C12.0779 0.178781 11.6462 0 11.1872 0C10.7281 0 10.2965 0.178781 9.97184 0.503406L9.5299 0.945344C9.34684 1.12837 9.34684 1.42519 9.5299 1.60825L10.3033 2.38166L8.64537 4.03959C7.925 3.77562 7.15225 3.70863 6.39112 3.84663C5.52144 4.00434 4.73141 4.41803 4.10641 5.04303L3.56372 5.58575C3.38066 5.76881 3.38069 6.06559 3.56372 6.24866L5.55247 8.23741L1.81694 11.9729C0.866249 12.9236 0.24028 14.1258 0.00665525 15.4498C-0.0199385 15.6004 0.0286553 15.7546 0.136812 15.8627C0.225468 15.9514 0.345061 16 0.468249 16C0.495343 16 0.522593 15.9977 0.549718 15.9928C1.87366 15.7592 3.07597 15.1333 4.02662 14.1826L7.76212 10.4471L9.75087 12.4358C9.8424 12.5274 9.96237 12.5731 10.0823 12.5731C10.2022 12.5731 10.3222 12.5273 10.4137 12.4358L10.9565 11.8931C11.5815 11.2681 11.9952 10.4781 12.1529 9.60841C12.2909 8.84734 12.2239 8.07456 11.9599 7.35416L13.6178 5.69625L14.3912 6.46966C14.4828 6.56119 14.6027 6.60697 14.7227 6.60697C14.8426 6.60697 14.9626 6.56119 15.0541 6.46966L15.4961 6.02772C15.8207 5.70306 15.9995 5.27147 15.9995 4.81234C15.9995 4.35328 15.8207 3.92162 15.4961 3.597ZM3.36372 13.5197C2.72566 14.1577 1.95528 14.6249 1.10609 14.8934C1.37459 14.0442 1.84181 13.2739 2.47984 12.6358L6.21534 8.90031L7.09922 9.78419L3.36372 13.5197ZM10.2936 11.2302L10.0823 11.4415L4.55806 5.91722L4.76931 5.70594C5.74175 4.73353 7.22603 4.44869 8.48722 4.985L11.0146 7.51234C11.5508 8.7735 11.266 10.2578 10.2936 11.2302ZM11.4082 6.58009L9.4194 4.59134L10.9662 3.0445L12.955 5.03328L11.4082 6.58009ZM14.8332 5.36478L14.7227 5.47525L10.5243 1.27678L10.6347 1.16631C10.9394 0.861687 11.435 0.861687 11.7396 1.16631L14.8332 4.25991C15.1378 4.56453 15.1378 5.06016 14.8332 5.36478Z" fill="#959B9D"/>
+                                                  </svg>
+                                              </span></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="apxtable_pagination_wrapper">
+                  
+                    <div class="apxtable_pagination">
+                        <!-- <ul>
+                            <li class="prev">Prev</li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li>...</li>
+                            <li><a href="#">16</a></li>
+                            <li><a href="#">17</a></li>
+                            <li><a href="#">18</a></li>
+                            <li class="next">Next</li>
+                        </ul> -->
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="bank_profile-col" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog del-modal modal-dialog-centered" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <div class="bpc-header">
+                            <h3>Column Customization</h3>
+                            <div class="bpc-end">
+                                <span>Reset to default</span>
+                                <button class="btn apply-btn">APPLY</button>
+                            </div>
+                        </div>
+
+                        <div class="total-columns">
+                            <div class="columns-part">
+                                <p>Available Columns</p>
+                                <ul>
+                                    <li>Exchange Number</li>
+                                    <li>Customer Name</li>
+                                    <li>Open Date</li>
+                                    <li>Close Date</li>
+                                    <li>180-Day Deadline</li>
+                                    <li>Broker/Agent Name</li>
+                                    <li>Identified</li>
+                                    <li>Relinquished Debt</li>
+                                    <li>Current Account Balance</li>
+                                </ul>
+                            </div>
+                            <div class="mid-arrow-cp">
+                                <span>
+                                    <img src="../../../../assets/images/superadmin/single-left.png">
+                                    <img src="../../../../assets/images/superadmin/single-right.png">
+                                  </span>
+                                <span>
+                                    <img src="../../../../assets/images/superadmin/multiple-left.png">
+                                    <img src="../../../../assets/images/superadmin/multiple-right.png">
+                                  </span>
+                            </div>
+                            <div class="columns-part">
+                                <p>Selected Columns</p>
+                                <ul>
+                                    <li>Exchange Number</li>
+                                    <li>Open Date</li>
+                                    <li>Close Date</li>
+                                    <li>45-Day Deadline</li>
+                                    <li>180-Day Deadline</li>
+                                    <li>Notes</li>
+                                    <li>Task</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

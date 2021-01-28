@@ -1,0 +1,189 @@
+<div class="page-wrapper chiller-theme employee-wrapper">
+  <a id="show-sidebar" class="btn btn-sm btn-dark">
+      <i class="fas fa-bars"></i>
+  </a>
+  <app-sidebar></app-sidebar>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+      <app-header >
+      </app-header>
+
+      <div class="container-fluid contentpage_wrapper">
+        <div class="pagecontent_wrapper">
+          <div class="white_wrapper pro-wt-g">
+            <form>
+              <div class="manage-profile-hd-g">
+                <h2 class="profile-hd-g">Profile Picture</h2>
+                <div class="profi-inner-g">
+                  <img [src]='imageurl' class="prof-dp-g">
+                  <input style="display: none"
+                         type="file" accept="image/*" (change)="onChange(fileInput.files[0])"
+                         #fileInput>
+                  <div class="profi-btn-g">
+                    <button (click)="RemoveProfile()" class="remove-pt-btn-g">Remove Photo</button>
+                    <button (click)="fileInput.click()" class="upload-pt-btn-g">Upload Picture</button>
+                  </div>
+                </div>
+                <div class="profile-detail-g">
+                  <h2 class="profile-hd-g">basic details</h2>
+                  <label class="peak-form-label">Broker</label>
+                  <p>{{BrokerName}}</p>
+                  <div class="row">
+                    
+                    <div class=" col-md-6 col-lg-6 col-xs-12 col-sm-12  pro-fille-inner-g">
+                      <div class="row">
+                        <div class="col-md-12 col-lg-3 col-xs-12 col-sm-12 profile-left-g">
+                          <label class="peak-form-label" >First Name</label>
+                        </div>
+                        <div class="col-md-12 col-lg-9 col-xs-12 col-sm-12 profile-rght-g">
+                          <ng-container
+                                                                        *ngIf="isEdit; else firstName">
+                                                                        <p>{{Profile.firstName}}</p>
+                                                                       
+                                                                    </ng-container>
+                                                                    <ng-template #firstName >
+                                                                    
+                                                                      <input type="text" [(ngModel)]="Profile.firstName" #firstName="ngModel" name="first" class="peak-box-g prof-box-g" placeholder="First Name">
+                                                                    </ng-template>
+                         
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 pro-fille-inner-g">
+                      <div class="row">
+                        <div class="col-md-12 col-lg-3 col-xs-12 col-sm-12 profile-left-g">
+                          <label class="peak-form-label">Last Name</label>
+                        </div>
+                        <div class="col-md-12 col-lg-9 col-xs-12 col-sm-12 profile-rght-g">
+                          <ng-container
+                          *ngIf="isEdit; else lastName">
+                          <p>{{Profile.lastName}}</p>
+                         
+                      </ng-container>
+                      <ng-template #lastName >
+                        
+                        <input type="text" [(ngModel)]="Profile.lastName" #lastName="ngModel" name="last" class="peak-box-g prof-box-g" placeholder="Last Name">
+                      </ng-template>
+
+                        
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12  pro-fille-inner-g">
+                      <div class="row">
+                        <div class="col-md-12 col-lg-3 col-xs-12 col-sm-12 profile-left-g">
+                          <label class="peak-form-label">Email Address</label>
+                        </div>
+                        <div class="col-md-12 col-lg-9 col-xs-12 col-sm-12 profile-rght-g">
+                          <div class="emai-prof-g">
+                            <ng-container
+                          *ngIf="isEdit; else emailAddress">
+                          <p>{{Profile.emailAddress}}</p>
+                        
+                      </ng-container>
+                      <ng-template #emailAddress >
+                      
+                        <input type="text" [(ngModel)]="Profile.emailAddress" #email="ngModel" name="emailAddress" class="peak-box-g prof-box-g" placeholder="Email">
+                      </ng-template>
+                            
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12  pro-fille-inner-g">
+                      <div class="row">
+                        <div class="col-md-12 col-lg-3 col-xs-12 col-sm-12 profile-left-g">
+                          <label class="peak-form-label">Phone Number</label>
+                        </div>
+                        <div class="col-md-12 col-lg-9 col-xs-12 col-sm-12 profile-rght-g">
+                          <ng-container
+                          *ngIf="isEdit; else mobileNo">
+                          <p>{{Profile.mobileNo}}</p>
+
+                        
+                      </ng-container>
+                      <ng-template #mobileNo >
+                        <input type="text" [(ngModel)]="Profile.mobileNo" #phone="ngModel" name="mobileNo" mask= '(000) 000-0000' class="peak-box-g prof-box-g" placeholder="Phone Number">
+                      </ng-template>
+                         
+                        </div>
+                      </div>
+                    </div>         
+                    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12  pro-fille-inner-g">
+                      <div class="row">
+                        <div class="col-md-12 col-lg-3 col-xs-12 col-sm-12 profile-left-g">
+                          <label class="peak-form-label">password</label>
+                        </div>
+                        <div class="col-md-12 col-lg-9 col-xs-12 col-sm-12 profile-rght-g">
+                          <ng-container
+                          *ngIf="isEdit; else password">
+                          <p>*********</p>
+                          
+                      </ng-container>
+                      <ng-template #password >
+                        <input type="password" #passwordToggle [(ngModel)]="Profile.password" name="password" #password="ngModel" class="peak-box-g prof-box-g" placeholder="password">
+                        <a class="hide-icon-g1" (click)="toggleClick()">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M19.8729 9.611C19.6942 9.36658 15.4371 3.62638 9.9999 3.62638C4.56274 3.62638 0.305391 9.36658 0.126914 9.61076C-0.0423048 9.84264 -0.0423048 10.1571 0.126914 10.389C0.305391 10.6334 4.56274 16.3736 9.9999 16.3736C15.4371 16.3736 19.6942 10.6334 19.8729 10.3892C20.0423 10.1574 20.0423 9.84264 19.8729 9.611ZM9.9999 15.055C5.99486 15.055 2.52606 11.2451 1.49922 9.99955C2.52473 8.75295 5.98626 4.94505 9.9999 4.94505C14.0048 4.94505 17.4733 8.75428 18.5006 10.0005C17.4751 11.247 14.0135 15.055 9.9999 15.055Z" fill="#ACB2B5"/>
+                    <path d="M9.99988 6.04396C7.81855 6.04396 6.04382 7.81869 6.04382 10C6.04382 12.1814 7.81855 13.9561 9.99988 13.9561C12.1812 13.9561 13.9559 12.1814 13.9559 10C13.9559 7.81869 12.1812 6.04396 9.99988 6.04396ZM9.99988 12.6374C8.54558 12.6374 7.36254 11.4543 7.36254 10C7.36254 8.54576 8.54562 7.36267 9.99988 7.36267C11.4541 7.36267 12.6372 8.54576 12.6372 10C12.6372 11.4543 11.4542 12.6374 9.99988 12.6374Z" fill="#ACB2B5"/>
+                    </svg>
+                      </a>
+                      </ng-template>
+                          
+                        </div>
+                      </div>
+                    </div>
+                     <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12  pro-fille-inner-g">
+                      <div class="row">
+                        <div class="col-md-12 col-lg-3 col-xs-12 col-sm-12 profile-left-g">
+                          <label class="peak-form-label">Confirm password</label>
+                        </div>
+                        <div class="col-md-12 col-lg-9 col-xs-12 col-sm-12 profile-rght-g">
+                          <ng-container
+                          *ngIf="isEdit; else confirmpassword">
+                          <p>*********</p>
+                          
+                      </ng-container>
+                      <ng-template #confirmpassword >
+                        <input type="password" #passwordToggle1 [(ngModel)]="Profile.confirmpassword" name="confirmpassword" #password="ngModel" class="peak-box-g prof-box-g" placeholder="password">
+                        <a class="hide-icon-g1" (click)="toggleClick1()">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M19.8729 9.611C19.6942 9.36658 15.4371 3.62638 9.9999 3.62638C4.56274 3.62638 0.305391 9.36658 0.126914 9.61076C-0.0423048 9.84264 -0.0423048 10.1571 0.126914 10.389C0.305391 10.6334 4.56274 16.3736 9.9999 16.3736C15.4371 16.3736 19.6942 10.6334 19.8729 10.3892C20.0423 10.1574 20.0423 9.84264 19.8729 9.611ZM9.9999 15.055C5.99486 15.055 2.52606 11.2451 1.49922 9.99955C2.52473 8.75295 5.98626 4.94505 9.9999 4.94505C14.0048 4.94505 17.4733 8.75428 18.5006 10.0005C17.4751 11.247 14.0135 15.055 9.9999 15.055Z" fill="#ACB2B5"/>
+                    <path d="M9.99988 6.04396C7.81855 6.04396 6.04382 7.81869 6.04382 10C6.04382 12.1814 7.81855 13.9561 9.99988 13.9561C12.1812 13.9561 13.9559 12.1814 13.9559 10C13.9559 7.81869 12.1812 6.04396 9.99988 6.04396ZM9.99988 12.6374C8.54558 12.6374 7.36254 11.4543 7.36254 10C7.36254 8.54576 8.54562 7.36267 9.99988 7.36267C11.4541 7.36267 12.6372 8.54576 12.6372 10C12.6372 11.4543 11.4542 12.6374 9.99988 12.6374Z" fill="#ACB2B5"/>
+                    </svg>
+                      </a>
+                      </ng-template>
+                         
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="bot-btn-sec-g">
+                    <ng-container *ngIf="isEdit; else btn">
+                      <button class="save-btn-g"  (click)="isEditOrCancelRep()" >Edit</button>
+                      <button class="cancel-btn" [routerLink]="['/synergy/dashboard']">Cancel</button>
+                  </ng-container>
+                  <ng-template #btn>
+                    <button class="save-btn-g"
+                    (click)="Updateprofile()">Update</button>
+                    <button class="save-btn-g"
+                        (click)="isEditOrCancelRep()">Cancel</button>
+                  
+                  </ng-template>
+                   
+                   
+                  </div>
+                </div>
+              </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+
+  
+  

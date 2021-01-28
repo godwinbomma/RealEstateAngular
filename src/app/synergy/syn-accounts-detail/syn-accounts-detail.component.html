@@ -1,0 +1,126 @@
+<div class="page-wrapper chiller-theme employee-wrapper">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <app-header >
+        </app-header>
+
+        <div class="container-fluid contentpage_wrapper">
+            <div class="pagecontent_wrapper">
+
+                <div class="syn-acc-det-hd">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 syn-acc-lft">
+                            <div class="syn-acc-det-inner">
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 syn-dete-l">
+                                        <label class="head-label-g">Exchange Number</label>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 syn-dete-r">
+                                        <p class="head-dett-g">{{Userdetails.exchangenumber}}</p>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 syn-dete-l">
+                                        <label class="head-label-g">Relinquished Address</label>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 syn-dete-r">
+                                        <p class="head-dett-g">{{Userdetails.relinquishedProperty}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 syn-acc-rgt">
+                            <div class="syn-acc-det-inner">
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 syn-dete-l">
+                                        <label class="head-label-g">Replacement Address</label>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 syn-dete-r">
+                                        <p class="head-dett-g">{{Userdetails.replacementProperty}}</p>
+                                    
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 syn-dete-l">
+                                        <label class="head-label-g">Fees</label>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 syn-dete-r">
+                                        <p class="head-dett-g">{{Userdetails.feeDetails}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="syn-acc-tab-sec-g">
+                    <div class="synergy-tab-hd-g">
+                        <h2>Accounts</h2>
+                        <div class="tb-rt-btn">
+                            <button class="add-cust-btn-g" (click)="exportAsXLSX()">Download CSV</button>
+                        </div>
+                    </div>
+
+                    <div class="syn-table-secc-g">
+                        <h2>FEE DETAILS</h2>
+                        <div class="table-responsive syn-accounts-tabsec-g">
+                            <table class="syn-accounts-table-g">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Item</th>
+                                        <th>Amount</th>
+                                        <th>Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let leadlist of accountdetails | orderBy: order:reverse| paginate: { itemsPerPage: 5, currentPage: p } ">
+                            
+                                        <td >{{leadlist.date|date}}</td>
+                                        <td>{{leadlist.description}}</td>
+                                        <td>{{leadlist.incomingAmount|currency}}</td>
+                                        <td>{{leadlist.balance|currency}}</td>
+
+                                    </tr>
+                                    <tr _ngcontent-tny-c119="" class="last-total-row"><td _ngcontent-tny-c119="" class="br-rr"></td><td _ngcontent-tny-c119="" class="text-center">---Current Balance---</td><td _ngcontent-tny-c119="">
+                                        
+                                    </td><td _ngcontent-tny-c119="" class="bl-rr">{{totalbalance|currency}}</td></tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="apxtable_pagination_wrapper">
+                        <div class="apxtable_pagelist">
+                            
+                        </div>
+                        <div class="apxtable_pagination">
+                            <!-- <ul>
+                      <li class="prev">Prev</li>
+                      <li class="active"><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li>...</li>
+                      <li><a href="#">16</a></li>
+                      <li><a href="#">17</a></li>
+                      <li><a href="#">18</a></li>
+                      <li class="next">Next</li>
+                  </ul> -->
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="emo-footer">
+                    <p class="mail-sec"> help@peakexchange.com </p>
+                    <p class="ph-sec"><b>|</b>+1-541-754-3010</p>
+                    <span>Copyright © 2020 Peak 1031 Exchange</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>

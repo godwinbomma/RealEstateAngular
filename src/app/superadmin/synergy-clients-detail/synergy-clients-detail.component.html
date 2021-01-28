@@ -1,0 +1,150 @@
+<div class="page-wrapper chiller-theme">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <app-header headerMainTitle="Add Synergy Clients">
+        </app-header>
+
+        <div class="container-fluid contentpage_wrapper">
+            <div class="pagecontent_wrapper">
+                <div class="manage-employees-detail">
+                    <label class="peak-form-label">Select Synergy Client</label>
+
+                    <ng-select [items]="categories" bindLabel="name" placeholder="Select Category" appendTo="body" [multiple]="multiboolean" [(ngModel)]="selected">
+                    </ng-select>
+
+                    <!-- <label class="peak-form-label">Selected Employee</label> -->
+
+                    <h4>Set Permission</h4>
+                    <div class="flx_div">
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt multi-check" id="per104">
+                            <label for="per104" class="custom_lbl">
+                    <span></span> Permission 100
+                </label>
+                            <div class="sub-check">
+                                <div class="child-sec form-group">
+                                    <input type="checkbox" class="custom_ipt child-check" id="per106">
+                                    <label for="per106" class="custom_lbl"></label>
+                                    <span></span>child
+                                </div>
+
+                                <div class="child-sec form-group">
+                                    <input type="checkbox" class="custom_ipt child-check" id="per107">
+                                    <label for="per107" class="custom_lbl"></label>
+                                    <span>child</span>
+                                </div>
+
+                                <div class="child-sec form-group">
+                                    <input type="checkbox" class="custom_ipt child-check" id="per108">
+                                    <label for="per108" class="custom_lbl"></label>
+                                    <span>child</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt" id="per1">
+                            <label for="per1" class="custom_lbl">
+                        <span></span> Permission 1
+                    </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt" id="per2">
+                            <label for="per2" class="custom_lbl">
+                        <span></span> Permission 2
+                    </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt" id="per3">
+                            <label for="per3" class="custom_lbl">
+                        <span></span> Permission 3
+                    </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt" id="per4">
+                            <label for="per4" class="custom_lbl">
+                        <span></span> Permission 4
+                    </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt" id="per5">
+                            <label for="per5" class="custom_lbl">
+                        <span></span> Permission 5
+                    </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt" id="per6">
+                            <label for="per6" class="custom_lbl">
+                        <span></span> Permission 6
+                    </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt" id="per7">
+                            <label for="per7" class="custom_lbl">
+                        <span></span> Permission 7
+                    </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt" id="per8">
+                            <label for="per8" class="custom_lbl">
+                        <span></span> Permission 8
+                    </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt" id="per9" checked>
+                            <label for="per9" class="custom_lbl">
+                        <span></span> Permission 9
+                    </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt" id="per10">
+                            <label for="per10" class="custom_lbl">
+                        <span></span> Permission 10
+                    </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt" id="per11">
+                            <label for="per11" class="custom_lbl">
+                        <span></span> Permission 11
+                    </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt" id="per12" checked>
+                            <label for="per12" class="custom_lbl">
+                        <span></span> Permission 12
+                    </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt" id="per13" checked>
+                            <label for="per13" class="custom_lbl">
+                        <span></span> Permission 13
+                    </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt" id="per14">
+                            <label for="per14" class="custom_lbl">
+                        <span></span> Permission 14
+                    </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" class="custom_ipt" id="per15">
+                            <label for="per15" class="custom_lbl">
+                        <span></span> Permission 15
+                    </label>
+                        </div>
+                    </div>
+                    <div class="btn_flex">
+                        <button routerLink="/superadmin/manage-employee" class="btn_Confirm">UPDATE</button>
+                        <button class="btn_Cancel">CANCEL</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+</div>

@@ -1,0 +1,224 @@
+<div class="page-wrapper chiller-theme">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <app-header headerMainTitle="TEMPLATE FIELD">
+        </app-header>
+        <div class="container-fluid contentpage_wrapper">
+            <div class="pagecontent_wrapper">
+                <div class="tab-bk-g">
+                    <!-- Tab section -->
+                    <ul class="nav nav-pills" id="approval-tabs-g" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="contact-fields-tab" data-toggle="pill" href="#contact-fields" role="tab" aria-controls="pills-home" aria-selected="true">Contact Field</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="exchange-fields-tab" data-toggle="pill" href="#exchange-fields" role="tab" aria-controls="pills-profile" aria-selected="false">Exchange Field</a>
+                        </li>
+                        <li class="static-right-side">
+                            <div class="cst-left-g">
+                                <input type="text" placeholder="Search..." [(ngModel)]="searchText" (input)="onSearch(searchText)"/>
+                            </div>
+
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="approv-pills-tabContent">
+                        <!-- Approval list tab -->
+                        <div class="tab-pane fade show active" id="contact-fields" role="tabpanel" aria-labelledby="contact-fields-tab">
+
+
+                            <div class="apxtable_grid_table">
+                                <div class="table-responsive apx-responsive table-responsive-realest">
+                                    <table id="approval-list-table" class="table peak-table cust-field-table-g cftg-templ-field">
+                                        <thead>
+                                            <tr>
+                                                <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Contact
+                                                    <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                    <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                </th>
+                                                <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Code
+                                                    <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                    <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                </th>
+
+                                                <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Actions
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let leadlist of ContactList | orderBy: order:reverse| paginate: { itemsPerPage: 15, currentPage: p } ">
+
+                                                <td >{{leadlist.tCustomFieldName}}</td>
+                                                <td id="myInput">{{leadlist.uniqueCode}}</td>
+                                                <td>
+                                                    <button (click)="copyMessage(leadlist.uniqueCode)" class="btn Copy" >
+                                                  <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none">
+                                                    <g clip-path="url(#clip0)">
+                                                    <path d="M7.75001 0H1.75001C1.19749 0 0.75 0.447492 0.75 1.00001V8.00002H1.75001V1.00001H7.75001V0Z" fill="#015289"/>
+                                                    <path d="M9.25002 2H3.75001C3.19752 2 2.75 2.44749 2.75 3.00001V10C2.75 10.5525 3.19749 11 3.75001 11H9.25002C9.80251 11 10.25 10.5525 10.25 10V3.00001C10.25 2.44752 9.80251 2 9.25002 2ZM9.25002 10H3.75001V3.00001H9.25002V10Z" fill="#015289"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0">
+                                                    <rect width="11" height="11" fill="white"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                    </svg>
+                                                  Copy</button>
+                                                </td>
+                                            </tr>
+
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="apxtable_pagination_wrapper">
+                                <div class="apxtable_pagelist">
+                                   
+                                </div>
+                                <div class="apxtable_pagination">
+                                    <!-- <ul>
+                              <li class="prev">Prev</li>
+                              <li class="active"><a href="#">1</a></li>
+                              <li><a href="#">2</a></li>
+                              <li><a href="#">3</a></li>
+                              <li>...</li>
+                              <li><a href="#">16</a></li>
+                              <li><a href="#">17</a></li>
+                              <li><a href="#">18</a></li>
+                              <li class="next">Next</li>
+                          </ul> -->
+                                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--  end Approval list tab -->
+
+                        <!-- Rejected list tab -->
+                        <div class="tab-pane fade" id="exchange-fields" role="tabpanel" aria-labelledby="rejected-list-tab">
+
+                            <div class="apxtable_grid_table">
+                                <div class="table-responsive apx-responsive table-responsive-realest">
+                                    <table id="approval-list-table" class="table peak-table cust-field-table-g cftg-templ-field">
+                                        <thead>
+                                            <tr>
+                                                <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Exchange
+                                                    <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                    <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                </th>
+                                                <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Code
+                                                    <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                    <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                </th>
+
+                                                <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Actions
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let leadlist of ExchangeList | orderBy: order:reverse| paginate: { itemsPerPage: 10, currentPage: p } ">
+
+                                                <td>{{leadlist.tCustomFieldName}}</td>
+                                                <td>{{leadlist.uniqueCode}}</td>
+                                                <td>
+                                                    <button (click)="copyMessage(leadlist.uniqueCode)" class="btn Copy">
+                                              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none">
+                                                <g clip-path="url(#clip0)">
+                                                <path d="M7.75001 0H1.75001C1.19749 0 0.75 0.447492 0.75 1.00001V8.00002H1.75001V1.00001H7.75001V0Z" fill="#015289"/>
+                                                <path d="M9.25002 2H3.75001C3.19752 2 2.75 2.44749 2.75 3.00001V10C2.75 10.5525 3.19749 11 3.75001 11H9.25002C9.80251 11 10.25 10.5525 10.25 10V3.00001C10.25 2.44752 9.80251 2 9.25002 2ZM9.25002 10H3.75001V3.00001H9.25002V10Z" fill="#015289"/>
+                                                </g>
+                                                <defs>
+                                                <clipPath id="clip0">
+                                                <rect width="11" height="11" fill="white"/>
+                                                </clipPath>
+                                                </defs>
+                                                </svg>
+                                              Copy</button>
+                                                </td>
+                                            </tr>
+
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="apxtable_pagination_wrapper">
+                                
+                                <div class="apxtable_pagination">
+                                    <!-- <ul>
+                            <li class="prev">Prev</li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li>...</li>
+                            <li><a href="#">16</a></li>
+                            <li><a href="#">17</a></li>
+                            <li><a href="#">18</a></li>
+                            <li class="next">Next</li>
+                        </ul> -->
+                                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end rejected  list tab -->
+                    </div>
+
+                    <!-- End Tab secction -->
+                </div>
+                <div class="emo-footer">
+                    <p class="mail-sec"> help@peakexchange.com </p>
+                    <p class="ph-sec">+1-541-754-3010</p>
+                    <span>Copyright © 2020 Peak 1031 Exchange</span>
+                </div>
+            </div>
+
+        </div>
+        <!--add contact field Modal -->
+        <div class="modal fade" id="add-templete-field" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header add-cnt-hedr-g">
+                        <h5 class="modal-title-g">Add TEMPLATE Field</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-inner-g">
+                            <div class="row">
+
+                                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-2 md-peak-inn">
+                                    <label class="peak-form-label">Type<span class="c-red">*</span></label>
+                                    <select class="peak-box-g">
+                      <option value="1">Contact</option>
+                  </select>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-2 md-peak-inn">
+                                    <label class="modal-form-label">Name</label>
+                                    <input type="text" class="peak-box-g" value="" placeholder="Contact Name">
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="modal-footer b-0 text-center">
+                            <button type="button" class="md-save-btn">ADD</button>
+                            <button type="button" class="md-cancel-btn" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+</div>

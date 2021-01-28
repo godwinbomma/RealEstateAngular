@@ -1,0 +1,204 @@
+<div class="page-wrapper chiller-theme employee-wrapper">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <app-header >
+        </app-header>
+        <div class="container-fluid contentpage_wrapper">
+          <div class="pagecontent_wrapper">
+              <div class="tab-bk-g">
+                  <!-- Tab section -->
+                  <ul class="nav nav-pills" id="approval-tabs-g" role="tablist">
+                      <li class="nav-item">
+                          <a class="nav-link active" id="approval-list-tab" data-toggle="pill" href="#approval-list"
+                              role="tab" aria-controls="pills-home" aria-selected="true">Approval List</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" id="rejected-list-tab" data-toggle="pill" href="#rejected-list" role="tab"
+                              aria-controls="pills-profile" aria-selected="false">Rejected List</a>
+                      </li>
+                  </ul>
+                  <div class="tab-content" id="approv-pills-tabContent">
+                      <!-- Approval list tab -->
+                      <div class="tab-pane fade show active" id="approval-list" role="tabpanel"
+                          aria-labelledby="approval-list-tab">
+                          <div class="apxtable_grid_table manage-employee-tb">
+                              <div class="table-responsive apx-responsive table-responsive-realest">
+                                  <table class="table peak-table" id="approval-list-table">
+                                      <thead>
+                                          <tr>
+                                              <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Exchange #
+                                                  <span [hidden]="reverse" class="table-sort-g"><img
+                                                          src="../../../assets/images/sort.png"></span>
+                                                  <span [hidden]="!reverse" class="table-sort-g"><img
+                                                          src="../../../assets/images/sort.png"></span>
+                                              </th>
+                                              <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Customer
+                                                  Name
+                                                  <span [hidden]="reverse" class="table-sort-g"><img
+                                                          src="../../../assets/images/sort.png"></span>
+                                                  <span [hidden]="!reverse" class="table-sort-g"><img
+                                                          src="../../../assets/images/sort.png"></span>
+                                              </th>
+                                              <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                                                  Relinquished Address
+                                                  <span [hidden]="reverse" class="table-sort-g"><img
+                                                          src="../../../assets/images/sort.png"></span>
+                                                  <span [hidden]="!reverse" class="table-sort-g"><img
+                                                          src="../../../assets/images/sort.png"></span>
+                                              </th>
+                                              <th>Actions</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr
+                                              *ngFor="let lead of ExchangeApproveList | orderBy: order:reverse| paginate: { itemsPerPage: 5, currentPage: p } ">
+      
+                                              <td><a  class="exchange-num-g">{{lead.exchangeNumber}}</a></td>
+                                              <td>{{lead.customerName}}</td>
+                                              <td>{{lead.propertyAddress}}</td>
+                                              <td>
+                                                  <button [routerLink]="['/employee/emp-manage-approval',lead.exchangeId,lead.propertyId]" class="accept-btn">
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12"
+                                                          viewBox="0 0 16 12" fill="none">
+                                                          <path
+                                                              d="M0 6.51044L5.4791 12L16 1.4895L14.4896 -6.10352e-05L5.4791 8.99993L1.48953 5.01039L0 6.51044Z"
+                                                              fill="white" />
+                                                      </svg>
+                                                      Accept
+                                                  </button>
+                                                 
+                                              </td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+      
+                          </div>
+      
+                          <div class="apxtable_pagination_wrapper mt-0">
+                              <div class="apxtable_pagelist">
+                                  
+                              </div>
+                              <div class="apxtable_pagination">
+                                  <!-- <ul>
+                                    <li class="prev">Prev</li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li>...</li>
+                                    <li><a href="#">16</a></li>
+                                    <li><a href="#">17</a></li>
+                                    <li><a href="#">18</a></li>
+                                    <li class="next">Next</li>
+                                </ul> -->
+                                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      
+                              </div>
+                          </div>
+                      </div>
+                      <!--  end Approval list tab -->
+      
+                      <!-- Rejected list tab -->
+                      <div class="tab-pane fade" id="rejected-list" role="tabpanel" aria-labelledby="rejected-list-tab">
+                          <div class="apxtable_grid_table manage-employee-tb">
+                              <div class="table-responsive apx-responsive table-responsive-realest">
+                                  <table class="table peak-table action-disable-g" id="approval-list-table">
+                                      <thead>
+                                          <tr>
+                                              <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Exchange #
+                                                  <span [hidden]="reverse" class="table-sort-g"><img
+                                                          src="../../../assets/images/sort.png"></span>
+                                                  <span [hidden]="!reverse" class="table-sort-g"><img
+                                                          src="../../../assets/images/sort.png"></span>
+                                              </th>
+                                              <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Customer
+                                                  Name
+                                                  <span [hidden]="reverse" class="table-sort-g"><img
+                                                          src="../../../assets/images/sort.png"></span>
+                                                  <span [hidden]="!reverse" class="table-sort-g"><img
+                                                          src="../../../assets/images/sort.png"></span>
+                                              </th>
+                                              <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                                                  Relinquished Address
+                                                  <span [hidden]="reverse" class="table-sort-g"><img
+                                                          src="../../../assets/images/sort.png"></span>
+                                                  <span [hidden]="!reverse" class="table-sort-g"><img
+                                                          src="../../../assets/images/sort.png"></span>
+                                              </th>
+      
+                                              <th>Actions</th>
+      
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr
+                                              *ngFor="let lead of ExchangeRejectList | orderBy: order:reverse| paginate: { itemsPerPage: 5, currentPage: p } ">
+                                              <td><a  class="exchange-num-g">{{lead.exchangeNumber}}</a></td>
+                                              <td>{{lead.customerName}}</td>
+                                              <td>{{lead.propertyAddress}}</td>
+                                              <td>
+                                                  <button routerLink="/employee/emp-manage-approval" class="accept-btn">
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12"
+                                                          viewBox="0 0 16 12" fill="none">
+                                                          <path
+                                                              d="M0 6.51044L5.4791 12L16 1.4895L14.4896 -6.10352e-05L5.4791 8.99993L1.48953 5.01039L0 6.51044Z"
+                                                              fill="white" />
+                                                      </svg>
+                                                      Accept
+                                                  </button>
+                                                  <button class="reject-btn" data-toggle="modal" data-target="#delete_dialog" (click)="OpenModal(lead.exchangeId)"><img
+                                                          src="../../../../assets/images/superadmin/close_btn.png"></button>
+                                              </td>
+                                          </tr>
+      
+      
+                                      </tbody>
+      
+                                  </table>
+                              </div>
+      
+                          </div>
+      
+                          <div class="apxtable_pagination_wrapper mt-0">
+                              <div class="apxtable_pagelist">
+                                  
+                              </div>
+                              <div class="apxtable_pagination">
+                                 
+                                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      
+                              </div>
+                          </div>
+                      </div>
+                      <!-- end rejected  list tab -->
+                  </div>
+                  <!-- End Tab secction -->
+              </div>
+          </div>
+      </div>
+        <!-- Delete Popup -->
+        <div class="modal fade" id="delete_dialog" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog del-modal modal-dialog-centered yes-no-popup" role="document">
+              <div class="modal-content">
+      
+                  <div class="modal-body">
+                      <h2>Are you sure? You want to reject permenantly?</h2>
+                      <div class="btn_flex">
+                          <button class="btn_Confirm" (click)="RejectExchange()" data-dismiss="modal">Yes</button>
+                          <button data-dismiss="modal" class="btn_Cancel">No</button>
+                      </div>
+                  </div>
+      
+              </div>
+          </div>
+      </div>
+      <!-- Delete Popup -->
+  
+  
+    </main>
+</div>
+

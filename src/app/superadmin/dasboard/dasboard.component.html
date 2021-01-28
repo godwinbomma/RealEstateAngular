@@ -1,0 +1,306 @@
+<div class="page-wrapper chiller-theme">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <div class="peak_dashboard_bg_header">
+            <app-header headerMainTitle="Dashboard">
+            </app-header>
+        </div>
+
+
+        <div class="container-fluid contentpage_wrapper peak_dasboard_bg_fluid">
+            <div class="pagecontent_wrapper">
+                <div class="wrapper_contentDasboard">
+                    <div class="dasboard_flex_list">
+                        <div class="details_block">
+                            <div class="body_content first-child">
+                                <table class="table borderless">
+                                    <thead class="first-child">
+                                        <tr>
+                                            <th  colspan="3" class="span_h2"> <img src="../../../assets/images/superadmin/bank.png" alt=""><span>Bank Balances</span></th>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg_hdr">Bank</th>
+                                            <th class="bg_hdr">Current Balance</th>
+                                            <th class="bg_hdr">Interest Rate</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Pacific Premier</td>
+                                            <td>$10,000,000.00</td>
+                                            <td>1.25%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sea Coast</td>
+                                            <td>$25,000,000.00</td>
+                                            <td>1.00%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>First Choice Axos</td>
+                                            <td>$15,000,000.00</td>
+                                            <td>1.02%</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="bg_hdr">Total</td>
+                                            <td class="bg_hdr">$50,000,000.00</td>
+                                            <td class="bg_hdr"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="body_content second-child widthColspan2">
+                                <table class="table borderless">
+                                    <thead class="second-child">
+                                        <tr>
+                                            <th colspan="3" class="span_h2"> <img src="../../../assets/images/superadmin/growth.png" alt=""><span>Revenue Month to Date</span></th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Fees Earned MTD</td>
+                                            <td>$35,000.00</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Interest Earned MTD</td>
+                                            <td>$150,000.00</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Interest Payable MTD</td>
+                                            <td>-$20,000.00</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class="bg_hdr">Net Revenue</td>
+                                            <td class="bg_hdr">$50,000,000.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="body_content third-child widthColspan2">
+                                <table class="table borderless">
+                                    <thead class="third-child">
+                                        <tr>
+                                            <th  colspan="3" class="span_h2"> <img src="../../../assets/images/superadmin/folder.png" alt=""><span>Files Current Month</span></th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>New Files Month to Date</td>
+                                            <td>{{Filecurrentmonth.newFiles}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Funded Files Month to Date</td>
+                                            <td>{{Filecurrentmonth.fundedFiles}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Cancelled Files Month to Date</td>
+                                            <td>{{Filecurrentmonth.canceledFiles}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="details_block">
+
+                            <div class="body_content fourth-child widthColspan2">
+                                <table class="table borderless">
+                                    <thead class="fourth-child">
+                                        <tr>
+                                            <th colspan="3" class="span_h2"> <img src="../../../assets/images/superadmin/pipeline.png" alt=""><span>Pipeline After Debt</span></th>
+                                        </tr>
+
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Current Pipeline</td>
+                                            <td>$180,000,000.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pipeline After Debt</td>
+                                            <td>-$80,000,000.00</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Approximate Debt Total</td>
+                                            <td>$100,000,000.00</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="body_content fifth-child widthColspan2">
+                                <table class="table borderless">
+                                    <thead class="fifth-child">
+                                        <tr>
+                                            <th colspan="3" class="span_h2"> <img src="../../../assets/images/superadmin/growth.png" alt=""><span>Revenue Year to Date</span></th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Fees Earned YTD</td>
+                                            <td>$35,000.00</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Interest Earned YTD</td>
+                                            <td>$150,000.00</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Interest Payable YTD</td>
+                                            <td>-$20,000.00</td>
+
+                                        </tr>
+
+
+                                        <tr>
+                                            <td class="bg_hdr">Net Revenue</td>
+                                            <td class="bg_hdr">$775,000.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="body_content sixth-child widthColspan2">
+                                <table class="table borderless">
+                                    <thead class="sixth-child">
+                                        <tr>
+                                            <th colspan="3" class="span_h2"> <img src="../../../assets/images/superadmin/folder.png" alt=""><span>Files Current Year</span></th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>New Files Year to Date</td>
+                                            <td>{{Filecurrentyear.newFiles}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Funded Files Year to Date</td>
+                                            <td>{{Filecurrentyear.fundedFiles}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Cancelled Year to Date</td>
+                                            <td>{{Filecurrentyear.canceledFiles}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <div class="details_block">
+
+                            <div class="body_content seventh-child widthColspan2">
+                                <table class="table borderless">
+                                    <thead class="seventh-child">
+                                        <tr>
+                                            <th colspan="3" class="span_h2"> <img src="../../../assets/images/superadmin/benefits.png" alt=""><span>Funds Leavingt</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Funds Past 180 Days</td>
+                                            <td>{{Fundsleaving.fundsPast180days}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Funds Between 150 -180 Days</td>
+                                            <td>{{Fundsleaving.fundsbetween150days180days}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="body_content eight-child widthColspan2">
+                                <table class="table borderless">
+                                    <thead class="eight-child">
+                                        <tr>
+                                            <th colspan="3" class="span_h2"> <img src="../../../assets/images/superadmin/user.png" alt=""><span>Synergy Client Revenue Month to Date</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody >
+                                        <tr *ngFor="let leadlist of SynergyMonthRevenue[0]">
+                                            <td>Revenue from {{leadlist.synergyName}}</td>
+                                            <td>{{leadlist.amount}}</td>
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="body_content ningth-child widthColspan2">
+                                <table class="table borderless">
+                                    <thead class="ningth-child">
+                                        <tr>
+                                            <th colspan="3" class="span_h2"> <img src="../../../assets/images/superadmin/user.png" alt=""><span>Synergy Client Revenue Year to Date</span></th>
+                                        </tr>
+                                    </thead>
+                                   
+                                        <tbody >
+                                            <tr *ngFor="let leadlist of SynergyYearRevenue[0]">
+                                                <td>Revenue from {{leadlist.synergyName}}</td>
+                                                <td>{{leadlist.amount}}</td>
+                                            </tr>
+                                           
+                                        </tbody>
+                                       
+                                    
+                                </table>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="notificationList_scroll">
+                <h3 class="header-title">
+                    Alert Notification
+                </h3>
+                <div  *ngFor="let leadlist of Notificationlist" class="scrollable_alert">
+                    <ul>
+                        <li><strong>{{leadlist.notificationMessage}}</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+</div>

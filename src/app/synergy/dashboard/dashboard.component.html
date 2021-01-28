@@ -1,0 +1,571 @@
+<div class="page-wrapper chiller-theme employee-wrapper">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <app-header >
+        </app-header>
+
+        <div class="container-fluid contentpage_wrapper">
+            <div class="pagecontent_wrapper">
+
+                <div class="synergy-dash-inner">
+                    <div class="row">
+                        <ng-container
+                        *ngIf="Usertypeid==7;">                        
+                        <div class="col-lg-12 dash-brd-tab">
+                            <div class="synergy-tab-hd-g">
+                                <h2>OPEN EXCHANGE LIST</h2>
+                                <div class="tb-rt-btn">
+                                    <ng-container
+                                    *ngIf="SynergyExchange==true ;">
+                                    <button routerLink="/synergy/syn-contacts-detail" class="add-cust-btn-g">Add new customer/client</button>
+                                    </ng-container>
+                                    <button class="add-setng-btn-g"><svg xmlns="http://www.w3.org/2000/svg" width="41" height="41" viewBox="0 0 41 41" fill="none">
+                                    <path d="M41 20.5C41 31.822 31.822 41 20.5 41C9.17802 41 0 31.822 0 20.5C0 9.17802 9.17802 0 20.5 0C31.822 0 41 9.17802 41 20.5Z" fill="url(#paint0_linear)"/>
+                                    <path d="M21.5163 25.9563C21.5163 26.5468 21.0374 27.0261 20.4465 27.0261C19.8556 27.0261 19.3767 26.5468 19.3767 25.9563C19.3767 25.3654 19.8556 24.8862 20.4465 24.8862C21.0374 24.8862 21.5163 25.3654 21.5163 25.9563Z" fill="white"/>
+                                    <path d="M21.7009 22.4638C21.7009 22.1698 21.8676 21.9086 22.1257 21.7985C23.6556 21.145 24.6437 19.6485 24.6431 17.9854C24.6431 17.9688 24.6428 17.9525 24.6422 17.9362C24.6156 15.6747 22.7675 13.8426 20.4997 13.8426C18.2153 13.8426 16.3569 15.7013 16.3569 17.9857C16.3569 18.6488 16.8946 19.1868 17.5581 19.1868C18.2215 19.1868 18.7592 18.6488 18.7592 17.9857C18.7592 17.0257 19.54 16.2449 20.4997 16.2449C21.4594 16.2449 22.2401 17.026 22.2401 17.9857C22.2401 17.9963 22.2401 18.0069 22.2405 18.0179C22.2283 18.7042 21.8157 19.3182 21.1822 19.5888C20.038 20.0774 19.2985 21.206 19.2985 22.4638V22.5326C19.2985 23.1961 19.8362 23.7338 20.4997 23.7338C21.1628 23.7338 21.7009 23.1961 21.7009 22.5326V22.4638Z" fill="white"/>
+                                    <path d="M30.9843 16.6243H30.4456C30.3571 16.6243 30.2764 16.5668 30.2395 16.4776L30.2314 16.4582C30.1945 16.3688 30.2107 16.2706 30.2733 16.208L30.6543 15.827C31.9568 14.5245 31.9568 12.4049 30.6543 11.1024L29.8976 10.3457C28.5951 9.0432 26.4755 9.0432 25.173 10.3457L24.792 10.7267C24.7298 10.7893 24.6315 10.8059 24.5418 10.7686L24.5221 10.7602C24.4332 10.7236 24.376 10.6429 24.376 10.5547V10.0157C24.376 8.1736 22.877 6.67495 21.0349 6.67495H19.9651C18.123 6.67495 16.6244 8.1736 16.6244 10.0157V10.5547C16.6244 10.6429 16.5671 10.7236 16.478 10.7605L16.4658 10.7655L16.9281 11.8741L16.4586 10.7686C16.3688 10.8059 16.2706 10.7893 16.2083 10.727L15.8273 10.346C14.5248 9.0432 12.4052 9.0432 11.1027 10.346L10.346 11.1024C9.04352 12.4049 9.04352 14.5245 10.346 15.827L10.727 16.208C10.7896 16.2706 10.8059 16.3688 10.768 16.4601L10.7605 16.478C10.7239 16.5668 10.6432 16.6243 10.5547 16.6243H10.0157C8.17361 16.6243 6.67496 18.123 6.67496 19.9651V21.0349C6.67496 22.877 8.17361 24.376 10.0157 24.376H10.5547C10.6432 24.376 10.7239 24.4332 10.7608 24.5224L10.769 24.5421C10.8059 24.6315 10.7896 24.7298 10.727 24.7923L10.346 25.1733C9.04352 26.4758 9.04352 28.5954 10.346 29.8979L11.1027 30.6543C12.4052 31.9568 14.5245 31.9568 15.8273 30.6543L16.208 30.2733C16.2706 30.211 16.3688 30.1945 16.4539 30.2298L16.4783 30.2398C16.5671 30.2767 16.6244 30.3574 16.6244 30.4456V30.9846C16.6244 32.8267 18.1233 34.3254 19.9654 34.3254H21.0352C22.8773 34.3254 24.376 32.8267 24.376 30.9846V30.4456C24.376 30.3574 24.4332 30.2767 24.5224 30.2398L24.5421 30.2317C24.6315 30.1945 24.7298 30.211 24.7923 30.2736L25.1733 30.6543C26.4758 31.9571 28.5954 31.9571 29.8979 30.6543C30.3668 30.1854 30.3668 29.4246 29.8979 28.9557C29.4287 28.4865 28.6683 28.4865 28.1991 28.9557C27.8331 29.3214 27.2378 29.3214 26.8718 28.9557L26.4909 28.5748C25.7382 27.8221 24.6115 27.6016 23.6162 28.0151L23.6052 28.0195C22.6139 28.429 21.9736 29.3812 21.9736 30.446V30.9846C21.9736 31.5023 21.5526 31.9233 21.0352 31.9233H19.9654C19.4477 31.9233 19.0267 31.5023 19.0267 30.9846V30.446C19.0267 29.3812 18.3864 28.429 17.3954 28.0198L17.3798 28.0133C16.3891 27.6016 15.2624 27.8221 14.5095 28.5748L14.1285 28.9557C13.7625 29.3217 13.1672 29.3217 12.8012 28.9557L12.0449 28.1994C11.6789 27.8334 11.6789 27.2381 12.0449 26.8722L12.4259 26.4912C13.1785 25.7382 13.399 24.6118 12.988 23.6227L12.9811 23.6055C12.5716 22.6143 11.6195 21.9739 10.5547 21.9739H10.0157C9.49834 21.9739 9.0773 21.5529 9.0773 21.0352V19.9654C9.0773 19.448 9.49834 19.027 10.0157 19.027H10.5547C11.6192 19.027 12.5716 18.3864 12.9808 17.3957L12.9874 17.3801C13.399 16.3891 13.1785 15.2624 12.4259 14.5095L12.0446 14.1288C11.6789 13.7628 11.6789 13.1675 12.0446 12.8016L12.8012 12.0449C13.1672 11.6792 13.7625 11.6792 14.1285 12.0449L14.5095 12.4262C15.2621 13.1788 16.3888 13.399 17.3779 12.9883L17.3951 12.9811C18.3864 12.572 19.0267 11.6195 19.0267 10.555V10.016C19.0267 9.49864 19.4477 9.0776 19.9651 9.0776H21.0349C21.5526 9.0776 21.9736 9.49864 21.9736 10.016V10.555C21.9736 11.6195 22.6139 12.572 23.6105 12.9833L23.6206 12.9877C24.6112 13.399 25.7379 13.1788 26.4909 12.4262L26.8718 12.0449C27.2378 11.6792 27.8331 11.6792 28.1991 12.0449L28.9554 12.8016C29.3214 13.1675 29.3214 13.7628 28.9554 14.1288L28.5744 14.5098C27.8218 15.2624 27.6013 16.3891 28.0123 17.3782L28.0192 17.3954C28.4287 18.3867 29.3812 19.027 30.4456 19.027H30.9843C31.502 19.027 31.923 19.448 31.923 19.9654V21.0352C31.923 21.5529 31.502 21.9739 30.9843 21.9739H30.4456C29.3809 21.9739 28.4287 22.6143 28.0195 23.6052L28.013 23.6209C27.6013 24.6118 27.8218 25.7382 28.5744 26.4912C29.0437 26.9604 29.8041 26.9604 30.2733 26.4912C30.7422 26.0223 30.7425 25.2615 30.2733 24.7926C30.2107 24.7301 30.1945 24.6318 30.2323 24.5402L30.2398 24.5224C30.2764 24.4335 30.3574 24.376 30.4456 24.376H30.9843C32.8264 24.376 34.3254 22.8773 34.3254 21.0352V19.9654C34.3251 18.123 32.8264 16.6243 30.9843 16.6243Z" fill="white"/>
+                                    <defs>
+                                    <linearGradient id="paint0_linear" x1="0" y1="20.5" x2="41" y2="20.5" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#00F1FF"/>
+                                    <stop offset="0.231" stop-color="#00D8FF"/>
+                                    <stop offset="0.5138" stop-color="#00C0FF"/>
+                                    <stop offset="0.7773" stop-color="#00B2FF"/>
+                                    <stop offset="1" stop-color="#00ADFF"/>
+                                    </linearGradient>
+                                    </defs>
+                                    </svg></button>
+                                </div>
+                            </div>
+
+
+                            <div class="emp-white-wrap-g">
+                                <div class="apxtable_grid_table">
+
+                                    <div class="table-responsive apx-responsive table-responsive-realest">
+                                        <table class="table open-exc-table-g">
+                                            <thead>
+                                                <tr>
+                                                    <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Exchange #
+                                                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                    </th>
+                                                    <th [class.active]="order === 'userid'" (click)="setOrder('userid')">RELINQUISHED PROPERTY ADDRESS
+                                                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                    </th>
+                                                    <th [class.active]="order === 'userid'" (click)="setOrder('userid')">45-DaY Deadline
+                                                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                    </th>
+                                                    <th [class.active]="order === 'userid'" (click)="setOrder('userid')">180-Day Deadline
+                                                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                    </th>
+                                                    <th [class.active]="order === 'userid'" (click)="setOrder('userid')">BALANCE
+                                                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span></th>
+        
+                                                    <th [class.active]="order === 'userid'" (click)="setOrder('userid')">OPEN DATE
+                                                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                    </th>
+        
+                                                    <th [class.active]="order === 'userid'" (click)="setOrder('userid')">CLOSE DATE
+                                                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                    </th>
+                                                    <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Status
+                                                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                    </th>
+                                                    
+        
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr  *ngFor="let exchange of ExchangeList | orderBy: order:reverse| paginate: { itemsPerPage: 10, currentPage: p } ">
+                                                    <td *ngIf='exchange.status==="Approved"; else leadWithoutLink' [routerLink]="['/synergy/syn-exchange',exchange.exchangeId,exchange.propertyId,exchange.status]">
+                                                        <a href="javascript:void(0);" class="exchange-num-g">{{exchange.exchangeNumber}}</a></td>
+                                                        <ng-template #leadWithoutLink>
+                                                            <td>{{exchange.exchangeNumber}}</td>
+                                                        </ng-template>
+                                                    <td>{{exchange.propertyAddress}}</td>
+                                                    <td>{{exchange.dateOf45|date}}</td>
+                                                    <td>{{exchange.dateOf180|date}}</td>
+                                                    <td>{{exchange.balance ? exchange.balance: 0|currency}}</td>
+                                                    <td>{{exchange.openDate|date}}</td>
+                                                    <td>{{exchange.closeDate|date}}</td>
+                                                    <td>{{exchange.status}}</td>
+                                                   
+        
+                                                </tr>
+        
+        
+                                            </tbody>
+        
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="apxtable_pagination_wrapper">
+                               
+                                <div class="apxtable_pagination">
+                                    <!-- <ul>
+                              <li class="prev">Prev</li>
+                              <li class="active"><a href="#">1</a></li>
+                              <li><a href="#">2</a></li>
+                              <li><a href="#">3</a></li>
+                              <li>...</li>
+                              <li><a href="#">16</a></li>
+                              <li><a href="#">17</a></li>
+                              <li><a href="#">18</a></li>
+                              <li class="next">Next</li>
+                          </ul> -->
+                                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                                </div>
+                            </div>
+                        </div>
+                        </ng-container>
+                        <ng-container *ngIf=" Usertypeid!=7;">
+                        <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 dash-inner-lft mb-2">
+                            <div class="row">
+                                <ng-container
+                                *ngIf="RevenueMonth==true;">
+                                <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 dash-tb-cnt-g">
+                                    <div class="body_content w-100">
+                                        <table class="table borderless">
+                                            <thead class="second-child">
+                                                <tr>
+                                                    <th colspan="3" class="span_h2"> <img src="../../../assets/images/superadmin/growth.png" alt=""><span>Revenue Month to Date</span></th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Fees Earned MTD</td>
+                                                    <td>$35,000.00</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>Interest Earned MTD</td>
+                                                    <td>$150,000.00</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>Interest Payable MTD</td>
+                                                    <td>-$20,000.00</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="bg_bk-g">Net Revenue</td>
+                                                    <td class="bg_bk-g">$50,000,000.00</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                </ng-container>
+                                <ng-container
+                                *ngIf="FilesMonth==true;">
+                                <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 dash-tb-cnt-g">
+                                    <div class="body_content third-child widthColspan2 w-100">
+                                        <table class="table borderless">
+                                            <thead class="third-child">
+                                                <tr>
+                                                    <th colspan="3" class="span_h2"> <img src="../../../assets/images/superadmin/folder.png" alt=""><span>Files Current Year</span></th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>New Files Year to Date</td>
+                                                    <td>{{SynFilecurrentyear.newFiles}}</td>
+        
+                                                </tr>
+                                                <tr>
+                                                    <td>Funded Files Year to Date</td>
+                                                    <td>{{SynFilecurrentyear.fundedFiles}}</td>
+        
+                                                </tr>
+                                                <tr>
+                                                    <td>Cancelled Year to Date</td>
+                                                    <td>{{SynFilecurrentyear.canceledFiles}}</td>
+                                                </tr>
+        
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                </ng-container>
+                                <ng-container
+                                *ngIf="RevenueYear==true;">
+                                <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 dash-tb-cnt-g">
+                                    <div class="body_content fifth-child widthColspan2 w-100">
+                                        <table class="table borderless">
+                                            <thead class="fifth-child">
+                                                <tr>
+                                                    <th colspan="3" class="span_h2"> <img src="../../../assets/images/superadmin/growth.png" alt=""><span>Revenue Year to Date</span></th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Fees Earned YTD</td>
+                                                    <td>$35,000.00</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>Interest Earned YTD</td>
+                                                    <td>$150,000.00</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>Interest Payable YTD</td>
+                                                    <td>-$20,000.00</td>
+
+                                                </tr>
+
+
+                                                <tr>
+                                                    <td class="bg_bk-g">Net Revenue</td>
+                                                    <td class="bg_bk-g">$775,000.00</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </ng-container>
+                            <ng-container
+                            *ngIf="FilesMonth==true;">
+                                <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 dash-tb-cnt-g">
+                                    <div class="body_content sixth-child widthColspan2 w-100">
+                                        <table class="table borderless syn-tb-gg">
+                                            <thead class="sixth-child">
+                                                <tr>
+                                                    <th colspan="3" class="span_h2"> <img src="../../../assets/images/superadmin/folder.png" alt=""><span>Files Current Month</span></th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>New Files Year to Date</td>
+                                                    <td>{{SynFilecurrentyear.newFiles}}</td>
+        
+                                                </tr>
+                                                <tr>
+                                                    <td>Funded Files Year to Date</td>
+                                                    <td>{{SynFilecurrentyear.fundedFiles}}</td>
+        
+                                                </tr>
+                                                <tr>
+                                                    <td>Cancelled Year to Date</td>
+                                                    <td>{{SynFilecurrentyear.canceledFiles}}</td>
+                                                </tr>
+        
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </ng-container>
+                                <div class="col-lg-12 dash-brd-tab">
+                                    <div class="synergy-tab-hd-g">
+                                        <h2>OPEN EXCHANGE LIST</h2>
+                                        <div class="tb-rt-btn">
+                                            <ng-container
+                                            *ngIf="SynergyExchange==true ;">
+                                            <button routerLink="/synergy/syn-contacts-detail" class="add-cust-btn-g">Add new customer/client</button>
+                                            </ng-container>
+                                            <button class="add-setng-btn-g"><svg xmlns="http://www.w3.org/2000/svg" width="41" height="41" viewBox="0 0 41 41" fill="none">
+                                            <path d="M41 20.5C41 31.822 31.822 41 20.5 41C9.17802 41 0 31.822 0 20.5C0 9.17802 9.17802 0 20.5 0C31.822 0 41 9.17802 41 20.5Z" fill="url(#paint0_linear)"/>
+                                            <path d="M21.5163 25.9563C21.5163 26.5468 21.0374 27.0261 20.4465 27.0261C19.8556 27.0261 19.3767 26.5468 19.3767 25.9563C19.3767 25.3654 19.8556 24.8862 20.4465 24.8862C21.0374 24.8862 21.5163 25.3654 21.5163 25.9563Z" fill="white"/>
+                                            <path d="M21.7009 22.4638C21.7009 22.1698 21.8676 21.9086 22.1257 21.7985C23.6556 21.145 24.6437 19.6485 24.6431 17.9854C24.6431 17.9688 24.6428 17.9525 24.6422 17.9362C24.6156 15.6747 22.7675 13.8426 20.4997 13.8426C18.2153 13.8426 16.3569 15.7013 16.3569 17.9857C16.3569 18.6488 16.8946 19.1868 17.5581 19.1868C18.2215 19.1868 18.7592 18.6488 18.7592 17.9857C18.7592 17.0257 19.54 16.2449 20.4997 16.2449C21.4594 16.2449 22.2401 17.026 22.2401 17.9857C22.2401 17.9963 22.2401 18.0069 22.2405 18.0179C22.2283 18.7042 21.8157 19.3182 21.1822 19.5888C20.038 20.0774 19.2985 21.206 19.2985 22.4638V22.5326C19.2985 23.1961 19.8362 23.7338 20.4997 23.7338C21.1628 23.7338 21.7009 23.1961 21.7009 22.5326V22.4638Z" fill="white"/>
+                                            <path d="M30.9843 16.6243H30.4456C30.3571 16.6243 30.2764 16.5668 30.2395 16.4776L30.2314 16.4582C30.1945 16.3688 30.2107 16.2706 30.2733 16.208L30.6543 15.827C31.9568 14.5245 31.9568 12.4049 30.6543 11.1024L29.8976 10.3457C28.5951 9.0432 26.4755 9.0432 25.173 10.3457L24.792 10.7267C24.7298 10.7893 24.6315 10.8059 24.5418 10.7686L24.5221 10.7602C24.4332 10.7236 24.376 10.6429 24.376 10.5547V10.0157C24.376 8.1736 22.877 6.67495 21.0349 6.67495H19.9651C18.123 6.67495 16.6244 8.1736 16.6244 10.0157V10.5547C16.6244 10.6429 16.5671 10.7236 16.478 10.7605L16.4658 10.7655L16.9281 11.8741L16.4586 10.7686C16.3688 10.8059 16.2706 10.7893 16.2083 10.727L15.8273 10.346C14.5248 9.0432 12.4052 9.0432 11.1027 10.346L10.346 11.1024C9.04352 12.4049 9.04352 14.5245 10.346 15.827L10.727 16.208C10.7896 16.2706 10.8059 16.3688 10.768 16.4601L10.7605 16.478C10.7239 16.5668 10.6432 16.6243 10.5547 16.6243H10.0157C8.17361 16.6243 6.67496 18.123 6.67496 19.9651V21.0349C6.67496 22.877 8.17361 24.376 10.0157 24.376H10.5547C10.6432 24.376 10.7239 24.4332 10.7608 24.5224L10.769 24.5421C10.8059 24.6315 10.7896 24.7298 10.727 24.7923L10.346 25.1733C9.04352 26.4758 9.04352 28.5954 10.346 29.8979L11.1027 30.6543C12.4052 31.9568 14.5245 31.9568 15.8273 30.6543L16.208 30.2733C16.2706 30.211 16.3688 30.1945 16.4539 30.2298L16.4783 30.2398C16.5671 30.2767 16.6244 30.3574 16.6244 30.4456V30.9846C16.6244 32.8267 18.1233 34.3254 19.9654 34.3254H21.0352C22.8773 34.3254 24.376 32.8267 24.376 30.9846V30.4456C24.376 30.3574 24.4332 30.2767 24.5224 30.2398L24.5421 30.2317C24.6315 30.1945 24.7298 30.211 24.7923 30.2736L25.1733 30.6543C26.4758 31.9571 28.5954 31.9571 29.8979 30.6543C30.3668 30.1854 30.3668 29.4246 29.8979 28.9557C29.4287 28.4865 28.6683 28.4865 28.1991 28.9557C27.8331 29.3214 27.2378 29.3214 26.8718 28.9557L26.4909 28.5748C25.7382 27.8221 24.6115 27.6016 23.6162 28.0151L23.6052 28.0195C22.6139 28.429 21.9736 29.3812 21.9736 30.446V30.9846C21.9736 31.5023 21.5526 31.9233 21.0352 31.9233H19.9654C19.4477 31.9233 19.0267 31.5023 19.0267 30.9846V30.446C19.0267 29.3812 18.3864 28.429 17.3954 28.0198L17.3798 28.0133C16.3891 27.6016 15.2624 27.8221 14.5095 28.5748L14.1285 28.9557C13.7625 29.3217 13.1672 29.3217 12.8012 28.9557L12.0449 28.1994C11.6789 27.8334 11.6789 27.2381 12.0449 26.8722L12.4259 26.4912C13.1785 25.7382 13.399 24.6118 12.988 23.6227L12.9811 23.6055C12.5716 22.6143 11.6195 21.9739 10.5547 21.9739H10.0157C9.49834 21.9739 9.0773 21.5529 9.0773 21.0352V19.9654C9.0773 19.448 9.49834 19.027 10.0157 19.027H10.5547C11.6192 19.027 12.5716 18.3864 12.9808 17.3957L12.9874 17.3801C13.399 16.3891 13.1785 15.2624 12.4259 14.5095L12.0446 14.1288C11.6789 13.7628 11.6789 13.1675 12.0446 12.8016L12.8012 12.0449C13.1672 11.6792 13.7625 11.6792 14.1285 12.0449L14.5095 12.4262C15.2621 13.1788 16.3888 13.399 17.3779 12.9883L17.3951 12.9811C18.3864 12.572 19.0267 11.6195 19.0267 10.555V10.016C19.0267 9.49864 19.4477 9.0776 19.9651 9.0776H21.0349C21.5526 9.0776 21.9736 9.49864 21.9736 10.016V10.555C21.9736 11.6195 22.6139 12.572 23.6105 12.9833L23.6206 12.9877C24.6112 13.399 25.7379 13.1788 26.4909 12.4262L26.8718 12.0449C27.2378 11.6792 27.8331 11.6792 28.1991 12.0449L28.9554 12.8016C29.3214 13.1675 29.3214 13.7628 28.9554 14.1288L28.5744 14.5098C27.8218 15.2624 27.6013 16.3891 28.0123 17.3782L28.0192 17.3954C28.4287 18.3867 29.3812 19.027 30.4456 19.027H30.9843C31.502 19.027 31.923 19.448 31.923 19.9654V21.0352C31.923 21.5529 31.502 21.9739 30.9843 21.9739H30.4456C29.3809 21.9739 28.4287 22.6143 28.0195 23.6052L28.013 23.6209C27.6013 24.6118 27.8218 25.7382 28.5744 26.4912C29.0437 26.9604 29.8041 26.9604 30.2733 26.4912C30.7422 26.0223 30.7425 25.2615 30.2733 24.7926C30.2107 24.7301 30.1945 24.6318 30.2323 24.5402L30.2398 24.5224C30.2764 24.4335 30.3574 24.376 30.4456 24.376H30.9843C32.8264 24.376 34.3254 22.8773 34.3254 21.0352V19.9654C34.3251 18.123 32.8264 16.6243 30.9843 16.6243Z" fill="white"/>
+                                            <defs>
+                                            <linearGradient id="paint0_linear" x1="0" y1="20.5" x2="41" y2="20.5" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#00F1FF"/>
+                                            <stop offset="0.231" stop-color="#00D8FF"/>
+                                            <stop offset="0.5138" stop-color="#00C0FF"/>
+                                            <stop offset="0.7773" stop-color="#00B2FF"/>
+                                            <stop offset="1" stop-color="#00ADFF"/>
+                                            </linearGradient>
+                                            </defs>
+                                            </svg></button>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="emp-white-wrap-g">
+                                        <div class="apxtable_grid_table">
+
+                                            <div class="table-responsive apx-responsive table-responsive-realest">
+                                                <table class="table open-exc-table-g">
+                                                    <thead>
+                                                        <tr>
+                                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Exchange #
+                                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                            </th>
+                                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">RELINQUISHED PROPERTY ADDRESS
+                                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                            </th>
+                                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">45-DaY Deadline
+                                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                            </th>
+                                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">180-Day Deadline
+                                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                            </th>
+                                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">BALANCE
+                                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span></th>
+                
+                                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">OPEN DATE
+                                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                            </th>
+                
+                                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">CLOSE DATE
+                                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                            </th>
+                                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Status
+                                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                                            </th>
+                                                            
+                
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr  *ngFor="let exchange of ExchangeList | orderBy: order:reverse| paginate: { itemsPerPage: 10, currentPage: p } ">
+                                                            <td *ngIf='exchange.status==="Approved"; else leadWithoutLink' [routerLink]="['/synergy/syn-exchange',exchange.exchangeId,exchange.propertyId,exchange.status]">
+                                                                <a href="javascript:void(0);" class="exchange-num-g">{{exchange.exchangeNumber}}</a></td>
+                                                                <ng-template #leadWithoutLink>
+                                                                    <td>{{exchange.exchangeNumber}}</td>
+                                                                </ng-template>
+                                                            <td>{{exchange.propertyAddress}}</td>
+                                                            <td>{{exchange.dateOf45|date}}</td>
+                                                            <td>{{exchange.dateOf180|date}}</td>
+                                                            <td>{{exchange.balance ? exchange.balance: 0|currency}}</td>
+                                                            <td>{{exchange.openDate|date}}</td>
+                                                            <td>{{exchange.closeDate|date}}</td>
+                                                            <td>{{exchange.status}}</td>
+                                                           
+                
+                                                        </tr>
+                
+                
+                                                    </tbody>
+                
+                                                </table>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="apxtable_pagination_wrapper">
+                                       
+                                        <div class="apxtable_pagination">
+                                            <!-- <ul>
+                                      <li class="prev">Prev</li>
+                                      <li class="active"><a href="#">1</a></li>
+                                      <li><a href="#">2</a></li>
+                                      <li><a href="#">3</a></li>
+                                      <li>...</li>
+                                      <li><a href="#">16</a></li>
+                                      <li><a href="#">17</a></li>
+                                      <li><a href="#">18</a></li>
+                                      <li class="next">Next</li>
+                                  </ul> -->
+                                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        </ng-container>
+
+                        <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 dash-inner-rgt">
+                            <ng-container
+                            *ngIf="MonthlyAccount==true;">
+                            <div class="rt-tab-g">
+                                <div class="rt-tb-hd-g">
+                                    <h2>JULY 2020 <span>(Monthly Accounts)</span></h2>
+                                    <svg class="tb-sort-gg" xmlns="http://www.w3.org/2000/svg" width="10" height="17" viewBox="0 0 10 17" fill="none">
+                                    <path d="M4.99998 16.6953C4.82076 16.6953 4.64156 16.6183 4.50493 16.4647L0.205142 11.6274C-0.0683806 11.3197 -0.0683806 10.8208 0.205142 10.5132C0.478554 10.2056 0.921935 10.2056 1.19548 10.5132L4.99998 14.7935L8.80451 10.5133C9.07803 10.2058 9.52137 10.2058 9.79476 10.5133C10.0684 10.8209 10.0684 11.3198 9.79476 11.6275L5.49504 16.4648C5.35834 16.6185 5.17914 16.6953 4.99998 16.6953Z" fill="white"/>
+                                    <path d="M4.99998 0.282557C4.82076 0.282557 4.64156 0.359541 4.50493 0.513186L0.205142 5.35048C-0.0683806 5.65819 -0.0683806 6.1571 0.205142 6.46468C0.478554 6.77227 0.921935 6.77227 1.19548 6.46468L4.99998 2.18438L8.80451 6.46453C9.07803 6.77212 9.52137 6.77212 9.79476 6.46453C10.0684 6.15695 10.0684 5.65804 9.79476 5.35033L5.49504 0.513036C5.35834 0.359367 5.17914 0.282557 4.99998 0.282557Z" fill="white"/>
+                                    </svg>
+                                </div>
+
+                                <div class="synergy-table-sec">
+                                    <table class="synergy-table">
+                                        <thead>
+                                            <tr>
+                                                <th>DATE</th>
+                                                <th>DESCRIPTION</th>
+                                                <th>AMOUNT</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Fees</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Interest</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Fees</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Interest</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Fees</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Interest</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Fees</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Interest</td>
+                                                <td>$900.00</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Fees</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Interest</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Fees</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Interest</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Fees</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Interest</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Fees</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Interest</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Fees</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Interest</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Fees</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Interest</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Fees</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7/21/2020</td>
+                                                <td>E-3500 Interest</td>
+                                                <td>$900.00</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="emo-footer">
+                    <p class="mail-sec"> help@peakexchange.com </p>
+                    <p class="ph-sec"><b>|</b>+1-541-754-3010</p>
+                    <span>Copyright © 2020 Peak 1031 Exchange</span>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+</div>

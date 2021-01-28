@@ -1,0 +1,114 @@
+<header class="login_header">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 logtext_wrap no-padding">
+        <div class="sidebar-brand">
+          <a href="#"><img src="../../../../assets/images/peak-logo.png" /></a>
+          <!-- <div id="close-sidebar">
+              <i class="fas fa-times"></i>
+          </div>
+         -->
+         <img id="menuburgerMobile" class="mob_show"  src="../../../../assets/images/mneubar.png" alt="icons">
+      </div>
+        <div class="logtext">
+          <img id="menuburger" class="mob_none" src="../../../../assets/images/mneubar.png" alt="icons">
+          <h2>{{headerMainTitle}}</h2>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 head_rgt_wrap">
+        <div class="head_rgt dropdown" id="notification_profile">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <div class="">
+              <div class="user-info">
+                <div class="content-user-tlt">
+                  <span class="user-name"> <strong >{{UserName}}</strong>
+                  </span>
+                </div>
+                <img [src]='imageurl' />
+
+              </div>
+            </div>
+            <div class="newhead_room dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <ul>
+                <li class="room_profiles">
+                  <a class="dropdown-item" routerLink="/customer/manage-profile">
+                    <div class="head_profiles">
+                      <div class="head_profiles_img">
+                        <img [src]='imageurl'/>
+                      </div>
+                      <div class="head_profiles_content">
+                        <h3 >{{UserName}}</h3>
+                        <span>View Profile Information</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/customer/manage-profile">Change Password</a>
+                </li>
+                <li >
+                  <a  class="dropdown-item"  >Logout <i class='fas fa-sign-out-alt'></i></a>
+                </li>
+              </ul>
+            </div>
+          </button>
+        </div>
+        <div class="flexibles">
+          <div class="bell-notificaton">
+            <i  class="fa fa-bell" (click)="bellButton()"></i>
+            <span class="badge badge-pill badge-warning notification">&nbsp;{{notificationLead.notificationsCount}}</span>
+            <div class="notifi_wrapper" *ngIf="noficationshow">
+              <div class="notification_list">
+                <div class="close_btn" (click)="closeButton()"><img src="../../../../assets/images/close_btn.png"></div>
+                <!-- <h2>Notifications <a (click)="clearNotification()">Clear All</a></h2> -->
+                <ul class="notification_wrap">
+                  <li *ngFor="let notificationList of notificationLead.notificationList">
+                    <div class="notification_details">
+                      <i class="{{notificationList.notificationIcon}}"></i>
+                      <h1 *ngIf='notificationList.methodName==="CommonNotification"; else leadWithoutLink'>NEW MESSAGE FROM ADMIN</h1>
+                      <ng-template #leadWithoutLink>
+                        <h1>{{notificationList.userName}}</h1>
+                    </ng-template>  
+                      <span *ngIf='notificationList.methodName==="CommonNotification"; else leadWithoutLink1'></span>
+                      <ng-template #leadWithoutLink1>
+                        <h1>{{notificationList.date|date}}</h1>
+                    </ng-template>  
+                    </div>
+                    <p *ngIf='notificationList.methodName==="CommonNotification"; else leadWithoutLink2' style="color: red;">{{notificationList.description}}</p>
+                    <ng-template #leadWithoutLink2>
+                      <p >{{notificationList.description}}</p>
+                  </ng-template>  
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+<!-- login Delete Popup -->
+<div class="modal fade ldd" id="login_delete_dialog" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog del-modal modal-dialog-centered yes-no-popup" role="document">
+      <div class="modal-content">
+
+          <div class="modal-body">
+              <h2>Are you sure? You want to Logout?</h2>
+              <div class="btn_flex">
+                  <button class="btn_Confirm" [routerLink]="['/customer/login']" data-dismiss="modal">Yes</button>
+                  <button data-dismiss="modal" class="btn_Cancel">No</button>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+<!-- login Delete Popup -->
+      </div>
+  
+    </div>
+  </div>
+  
+</header>
+
+

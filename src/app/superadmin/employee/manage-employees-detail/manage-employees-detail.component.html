@@ -1,0 +1,56 @@
+<div class="container-fluid contentpage_wrapper">
+  <div class="pagecontent_wrapper">
+    <form [formGroup]="form">
+      <div class="manage-employees-detail">
+        <label class="peak-form-label">Select Employee</label>
+
+        <ng-select placeholder="Select Employee" appendTo="body"
+                   [multiple]="multiboolean" formControlName="userIds">
+          <ng-option *ngFor="let item of employeeListDropdown" [value]="item.userID" [disabled]="item.disabled">{{item.fullName}}</ng-option>
+        </ng-select>
+
+        <h4>Set Permission</h4>
+        <div class="flx_div">
+          <div formArrayName="previleges" *ngFor="let control of previlegesList;let i = index;">
+            <div class="form-group" [formGroupName]="i">
+              <input type="checkbox" class="custom_ipt" id="{{i}}" formControlName="checkbox" [value]="control.previlesId" (click)="previlegeIsChecked($event)">
+              <label for="{{i}}" class="custom_lbl">
+                <span></span> {{control.moduleName}}
+              </label>
+              <div *ngIf="checkedIstrue(i)">
+                <div class="form-group">
+                  <input type="checkbox" class="custom_ipt" id="1_{{i}}" formControlName="isView">
+                  <label for="1_{{i}}" class="custom_lbl">
+                    <span></span> View Role
+                  </label>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" class="custom_ipt" id="2_{{i}}" formControlName="isEdit">
+                  <label for="2_{{i}}" class="custom_lbl">
+                    <span></span> Edit Role
+                  </label>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" class="custom_ipt" id="3_{{i}}" formControlName="isCreate">
+                  <label for="3_{{i}}" class="custom_lbl">
+                    <span></span> Create Role
+                  </label>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" class="custom_ipt" id="4_{{i}}" formControlName="isDelete">
+                  <label for="4_{{i}}" class="custom_lbl">
+                    <span></span> Delete Role
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn_flex">
+          <button (click)="setPrivilegeToEmployee()" class="btn_Confirm">UPDATE</button>
+          <button class="btn_Cancel" [routerLink]="['/employee/list']">CANCEL</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

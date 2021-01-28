@@ -1,0 +1,431 @@
+<div class="container-fluid contentpage_wrapper">
+    <div class="pagecontent_wrapper">
+
+
+        <form (ngSubmit)=ExchangeForm.form.valid #ExchangeForm="ngForm">
+            <div class="white_wrapper">
+                <h2 class="peak-form-head">New Exchange Intake Form</h2>
+                <div class="c0l-12 form-bk-g">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inner-g">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-inner-g">
+                                    <div class="peak-form">
+                                        <!-- <div class="flx_section"> -->
+                                        <label class="peak-form-label">Select Contact</label>
+                                        <div id="multiselect_custom">
+                                            <mat-form-field appearance="fill">
+
+                                                <mat-select [(ngModel)]="Exchanges.contactid" name="contactid" #contactid="ngModel" (selectionChange)="getcontactvalues($event.value)"
+                                                    [ngClass]="{ 'is-invalid': ExchangeForm.submitted && contactid.invalid }"
+                                                    required [ngModelOptions]="{standalone: true}">
+
+                                                    <input placeholder="Please select contact" type="text" (keyup)="onSearchUsers($event)" class="peak-box-g" (keydown)="$event.stopPropagation()">
+
+                                                    <mat-option *ngFor="let Contact of ClientContactDropdownList" value="{{Contact.userId}}">
+                                                        {{Contact.fullName}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+
+
+                                            <button type="button" class="btn select-btn" data-toggle="modal" data-target="#bank_profile">
+                                                <img src="../../../../assets/images/superadmin/escrow-icon.png">
+                                            </button>
+                                            <span> </span>
+                                            <div *ngIf="ExchangeForm.submitted && contactid.invalid" class="invalid-feedback">
+                                                <div *ngIf="Email.errors.required">Contact is required</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-inner-g">
+                                    <div class="peak-form">
+                                        <label class="peak-form-label">Email Address
+                                            <span class="c-red">*</span>
+                                        </label>
+                                        <input type="text" placeholder="Enter Email" [(ngModel)]="Exchanges.Email" [readonly]="true" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                            name="Email" #Email="ngModel" [ngClass]="{ 'is-invalid': ExchangeForm.submitted && Email.invalid }"
+                                            required class="peak-box-g">
+                                        <div *ngIf="ExchangeForm.submitted && Email.invalid" class="invalid-feedback">
+                                            <div *ngIf="Email.errors.required">Email is required</div>
+                                        </div>
+                                        <div *ngIf="Email.errors && Email.errors.pattern" class="invalid-feedback">
+                                            Email is invalid
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-inner-g">
+                                    <div class="peak-form">
+                                        <label class="peak-form-label">Phone #
+                                            <span class="c-red">*</span>
+                                        </label>
+                                        <input type="text" [readonly]="true" mask= '(000) 000-0000' placeholder="+1-541-754-3010" [(ngModel)]="Exchanges.Phone" name="Phone" #Phone="ngModel"
+                                            [ngClass]="{ 'is-invalid': ExchangeForm.submitted && Phone.invalid }" required class="peak-box-g">
+                                        <div *ngIf="ExchangeForm.submitted && Phone.invalid" class="invalid-feedback">
+                                            <div *ngIf="Phone.errors.required">Phone number is required</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 form-inner-g">
+                            <div class="peak-form">
+                                <label class="peak-form-label">Relinquished Property Address
+                                    <span class="c-red">*</span>
+                                </label>
+                                <textarea placeholder="Enter Address" [(ngModel)]="Exchanges.RelinquishedAddress" name="RelinquishedAddress" class="peak-box-g peak-t-area"
+                                    #RelinquishedAddress="ngModel" [ngClass]="{ 'is-invalid': ExchangeForm.submitted && RelinquishedAddress.invalid }"
+                                    required></textarea>
+                                <div *ngIf="ExchangeForm.submitted && RelinquishedAddress.invalid" class="invalid-feedback">
+                                    <div *ngIf="RelinquishedAddress.errors.required">Address is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- second right -->
+                        <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 form-inner-g">
+                            <div class="row">
+                                
+       <!-- state and pincode -->
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-inner-g">
+                                    <div>
+                                        <!-- <div class="flx_section"> -->
+                                        <label class="peak-form-label">State<span class="c-red">*</span></label>
+                                        <select name="stateId" formControlName=stateId (input)="select_dropdown($event,'city',true)">
+                                            <option selected>----Select State---</option>
+                                            <!-- <option>tn</option> -->
+                                            <option *ngFor="let state of statelist" [value]="state.stateId">
+                                              {{ state.stateName }}
+                                            </option>
+                                          </select>
+
+                                    </div>
+                                </div>
+<!-- city dropdown -->
+                                  
+                               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-inner-g">
+                                    <div>
+                                        <!-- <div class="flx_section"> -->
+                                        <label class="peak-form-label">City<span class="c-red">*</span></label>
+                                        <select name="cityId" formControlName="cityId">
+                                            <option selected>----Select City---</option>
+                                            <option *ngFor="let city of citylist" [value]="city.cityId">
+                                              {{ city.cityName }}
+                                            </option>
+                                          </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-inner-g">
+                                    <div>
+                                        <!-- <div class="flx_section"> -->
+                                        <label class="peak-form-label">Settlement Agent / Escrow Officer Name
+                                            <span class="c-red">*</span>
+                                        </label>
+                                        <div id="multiselect_custom">
+                                            <mat-form-field appearance="fill">
+                                                <mat-select (selectionChange)="getescrowcontactvalues($event.value)" [(ngModel)]="Exchanges.SettlementAgent" name="SettlementAgent"
+                                                    #SettlementAgent="ngModel" [ngClass]="{ 'is-invalid': ExchangeForm.submitted && SettlementAgent.invalid }"
+                                                    required [ngModelOptions]="{standalone: true}">
+
+                                                    <input type="text" (keyup)="onSearchUsers($event)" class="peak-box-g" (keydown)="$event.stopPropagation()">
+                                                    <mat-option *ngFor="let Contact of SynergyContactDropdownList" value="{{Contact.userId}}">
+                                                        {{Contact.fullName}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+
+
+
+                                            <button type="button" class="btn select-btn" data-toggle="modal" data-target="#bank_profile">
+                                                <img src="../../../../assets/images/superadmin/escrow-icon.png">
+                                            </button>
+                                            <div *ngIf="ExchangeForm.submitted && SettlementAgent.invalid" class="invalid-feedback">
+                                                <div *ngIf="SettlementAgent.errors.required">Officer Name is required</div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-inner-g">
+                                    <div class="peak-form">
+                                        <label class="peak-form-label">Settlement Agent/Escrow Company Name
+                                            <span class="c-red">*</span>
+                                        </label>
+                                        <input type="text" placeholder="Enter Company Name" [(ngModel)]="Exchanges.EscrowCompany" name="EscrowCompany" class="peak-box-g"
+                                            #EscrowCompany="ngModel" [ngClass]="{ 'is-invalid': ExchangeForm.submitted && EscrowCompany.invalid }"
+                                            required>
+                                        <div *ngIf="ExchangeForm.submitted && EscrowCompany.invalid" class="invalid-feedback">
+                                            <div *ngIf="EscrowCompany.errors.required">Escrow Company name is required</div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-inner-g">
+                                    <div class="peak-form">
+                                        <label class="peak-form-label">Settlement Agent/Escrow Officer Phone #
+                                            <span class="c-red">*</span>
+                                        </label>
+                                        <input type="text" [readonly]="true" placeholder="Enter Officer Phone" [(ngModel)]="Exchanges.EscrowPhone" name="EscrowPhone"
+                                            class="peak-box-g" #EscrowPhone="ngModel" [ngClass]="{ 'is-invalid': ExchangeForm.submitted && EscrowPhone.invalid }"
+                                            required>
+                                        <div *ngIf="ExchangeForm.submitted && EscrowPhone.invalid" class="invalid-feedback">
+                                            <div *ngIf="EscrowPhone.errors.required">Escrow phone number is required</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-inner-g">
+                                    <div class="peak-form">
+                                        <label class="peak-form-label">Settlement Agent / Escrow Officer Email
+                                            <span class="c-red">*</span>
+                                        </label>
+                                        <input type="Email" [readonly]="true" placeholder="Enter Officer Email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                            [(ngModel)]="Exchanges.EscrowOfficerEmail" name="EscrowOfficerEmail" class="peak-box-g"
+                                            #EscrowOfficerEmail="ngModel" [ngClass]="{ 'is-invalid': ExchangeForm.submitted && EscrowOfficerEmail.invalid }"
+                                            required>
+                                        <div *ngIf="ExchangeForm.submitted && EscrowOfficerEmail.invalid" class="invalid-feedback">
+                                            <div *ngIf="EscrowOfficerEmail.errors.required">Escrow mail is required</div>
+                                        </div>
+                                        <div *ngIf="EscrowOfficerEmail.errors && EscrowOfficerEmail.errors.pattern" class="invalid-feedback">
+                                            Email is invalid
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- second right -->
+
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-inner-g">
+                            <div class="peak-form">
+                                <label class="peak-form-label">How do you hold title to the Property?
+                                    <span class="c-red">*</span>
+                                </label>
+                                <input type="text" placeholder="Enter Title" [(ngModel)]="Exchanges.Propertytitle" name="Propertytitle" class="peak-box-g"
+                                    #Propertytitle="ngModel" [ngClass]="{ 'is-invalid': ExchangeForm.submitted && Propertytitle.invalid }"
+                                    required>
+                                <div *ngIf="ExchangeForm.submitted && Propertytitle.invalid" class="invalid-feedback">
+                                    <div *ngIf="Propertytitle.errors.required">Property title is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-inner-g">
+                            <div class="peak-form">
+                                <label class="peak-form-label">Approx.Current debt on property
+                                    <span class="c-red">*</span>
+                                </label>
+                                <input type="number" min="0" max="9999999999999999" maxlength="30" oninput="this.value=this.value.slice(0,this.maxLength||1/0);this.value=(this.value   < 1) ? (1/0) : this.value;"
+                                    placeholder="Enter Amount" [(ngModel)]="Exchanges.debt" name="debt" class="peak-box-g" #debt="ngModel"
+                                    [ngClass]="{ 'is-invalid': ExchangeForm.submitted && debt.invalid }" required>
+                                <div *ngIf="ExchangeForm.submitted && debt.invalid" class="invalid-feedback">
+                                    <div *ngIf="debt.errors.required">Debt Amount is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-inner-g">
+                            <div class="peak-form">
+                                <label class="peak-form-label">Sales Price
+                                    <span class="c-red">*</span>
+                                </label>
+                                <input type="number" min="0" max="9999999999999999" maxlength="30" oninput="this.value=this.value.slice(0,this.maxLength||1/0);this.value=(this.value   < 1) ? (1/0) : this.value;"
+                                    placeholder="Enter Price" [(ngModel)]="Exchanges.SalesPrice" name="SalesPrice" class="peak-box-g"
+                                    #SalesPrice="ngModel" [ngClass]="{ 'is-invalid': ExchangeForm.submitted && SalesPrice.invalid }"
+                                    required>
+                                <div *ngIf="ExchangeForm.submitted && SalesPrice.invalid" class="invalid-feedback">
+                                    <div *ngIf="SalesPrice.errors.required">Sales Price is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Last left  -->
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-inner-g">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inner-g">
+                                    <div class="peak-form">
+                                        <label class="peak-form-label">Referral Source
+                                            <span class="c-red">*</span>
+                                        </label>
+                                        <input type="text" placeholder="Enter referral source" [(ngModel)]="Exchanges.Referral" name="Referral" class="peak-box-g"
+                                            #Referral="ngModel" [ngClass]="{ 'is-invalid': ExchangeForm.submitted && Referral.invalid }"
+                                            required>
+                                        <div *ngIf="ExchangeForm.submitted && Referral.invalid" class="invalid-feedback">
+                                            <div *ngIf="Referral.errors.required">Referral Source is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inner-g">
+                                    <div class="peak-form">
+                                        <label class="peak-form-label">Expected Closing Date
+                                            <span class="c-red">*</span>
+                                        </label>
+                                        <dp-date-picker placeholder="select date" [(ngModel)]="Exchanges.ClosingDate" name="ClosingDate" theme="dp-material" [config]="datePickerConfig"
+                                            required="true" #ClosingDate="ngModel" [ngClass]="{ 'is-invalid': ExchangeForm.submitted && ClosingDate.invalid }"
+                                            required>
+                                        </dp-date-picker>
+                                        <div *ngIf="ExchangeForm.submitted && ClosingDate.invalid" class="invalid-feedback">
+                                            <div *ngIf="ClosingDate.errors.required">Expected Closing Date is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- end last left -->
+
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 form-inner-g">
+                            <div class="peak-form">
+                                <label class="peak-form-label">Notes</label>
+                                <textarea placeholder="Enter Notes" [(ngModel)]="Exchanges.Notes" name="Notes" class="peak-box-g peak-t-area-notes"></textarea>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="button-area-g">
+                    <button class="create-btn" (click)="addExchange()">CREATE</button>
+                    <button [routerLink]="['/dashboard']" class="cancel-btn">CANCEL</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Dialog box -->
+<div class="modal fade" #closebutton id="bank_profile" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog del-modal modal-dialog-centered document-temp-popup" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="header_flx">
+                    <h3>Add Contact</h3>
+                    <button type="button" id="close-modal" (click)="close()" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="col-lg-12 dt-popup">
+                    <div class="col-12 col-lg-6 dtp-left">
+                        <div class="flx_section">
+                            <label class="peak-form-label">Contact Type
+                                <span>*</span>
+                            </label>
+                            <div class="select_div w-250">
+                                <select id="typeid" [(ngModel)]="Contacts.userTypeId" name="userTypeId" #userTypeId="ngModel">
+                                    <option value="3">Synergy Client</option>
+                                    <option value="4">Client</option>
+                                    <option value="5">Escrow Officer</option>
+                                    <option value="6">Broker/Agent</option>
+                                </select>
+                                <span>
+                                    <i class="fa fa-angle-down"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flx_section">
+                            <label class="peak-form-label">First Name
+                                <span>*</span>
+                            </label>
+                            <input class="ipt" type="text" [(ngModel)]="Contacts.firstName" #firstName="ngModel" name="firstName" placeholder="First Name">
+
+                        </div>
+                        <div class="flx_section">
+                            <label class="peak-form-label">Last Name
+                                <span>*</span>
+                            </label>
+                            <input class="ipt" type="text" [(ngModel)]="Contacts.lastName" #lastName="ngModel" name="lastName" placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 dtp-right">
+                        <div class="flx_section">
+                            <label class="peak-form-label">Company Name
+                                <span>*</span>
+                            </label>
+                            <input class="ipt" type="text" [(ngModel)]="Contacts.companyname" #companyname="ngModel" name="companyname" placeholder="company name">
+                        </div>
+                        <div class="flx_section">
+                            <label class="peak-form-label">Phone Number
+                                <span>*</span>
+                            </label>
+                            <input class="ipt" type="text" [(ngModel)]="Contacts.mobileNumber" #mobileNumber="ngModel" name="mobileNumber" placeholder="PhoneNumber">
+                        </div>
+                        <div class="flx_section">
+                            <label class="peak-form-label">Email Address
+                                <span>*</span>
+                            </label>
+                            <input class="ipt" type="email" [(ngModel)]="Contacts.emailAddress" #emailAddress="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                name="emailAddress" placeholder="Email Address">
+                        </div>
+                        <div class="flx_section">
+                            <label class="peak-form-label">Fax</label>
+                            <input class="ipt" type="text" [(ngModel)]="Contacts.faxNumber" #faxNumber="ngModel" name="faxNumber" placeholder="Fax">
+                        </div>
+                        <div class="flx_section">
+                            <label class="peak-form-label">Address
+                                <span>*</span>
+                            </label>
+                            <textarea placeholder="Address" [(ngModel)]="Contacts.mailingAddress" #mailingAddress="ngModel" name="mailingAddress"></textarea>
+                        </div>
+                    </div>
+
+
+
+                    <div class="flx_section   padding-15" *ngFor="let item of ContactsCF,index as i">
+
+
+                        <label class="peak-form-label">{{item.labelName}}</label>
+
+                        <div *ngIf="item.valueType=='Text'" class="flexWt-100">
+
+                            <ng-container>
+                                <input type="item.valueType" placeholder="{{item.toolTip}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}">
+                            </ng-container>
+
+                        </div>
+
+
+                        <div *ngIf="item.valueType=='Interger '" class="flexWt-100">
+                            <ng-container>
+                                <input type="number" placeholder="{{item.toolTip}}" [(ngModel)]="item.value">
+                            </ng-container>
+
+                        </div>
+
+
+                        <div *ngIf="item.valueType=='Date '" [config]="datePickerConfig">
+                            <ng-container>
+                                <dp-date-picker theme="dp-material" placeholder="{{item.toolTip}}" [(ngModel)]="item.value">
+                                </dp-date-picker>
+
+                            </ng-container>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                <div class="btn_flex">
+                    <button class="btn_Confirm" (click)="addContact()">CREATE</button>
+                    <button class="btn_Cancel" data-dismiss="modal" (click)="close()">CANCEL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Dialog box -->

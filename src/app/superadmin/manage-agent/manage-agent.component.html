@@ -1,0 +1,102 @@
+
+<div class="page-wrapper chiller-theme">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+      
+        <app-header headerMainTitle="Manage Contact">
+        </app-header>
+        <div class="container-fluid contentpage_wrapper">
+          <div class="pagecontent_wrapper">
+            <div class="top_form">
+             
+                
+            </div>
+              <div class="manage-contacts flt_left">
+                <div class="mel-left-auto">       
+                  <input type="text" placeholder="Search Contact..." [(ngModel)]="searchText" (input)="onSearch(searchText)"/> 
+
+                <div class="table-responsive apx-responsive table-responsive-realest">
+                  <table class="table peak-table">
+                    <thead>
+                      <tr>
+                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                          S.No
+                          <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                          <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                        </th>
+                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                          First Name
+                          <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                          <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                        </th>
+                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                          Last Name
+                          <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                          <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                        </th>
+                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                          Phone Number
+                          <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                          <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                        </th>
+                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                          Email Address
+                          <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                          <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                        </th>
+                       
+  
+                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                          Actions
+                          <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                          <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let contact of contactListArray | orderBy: order:reverse| paginate: { itemsPerPage: 5, currentPage: p };let i = index ">
+  
+                        <td>{{i+1}}</td>
+                        <td>{{contact.firstName}}</td>
+                        <td>{{contact.lastName}}</td>
+                        <td>{{contact.mobileNumber}}</td>
+                        <td>{{contact.emailAddress}}</td>
+                     
+                        <td>
+                            <button (click)="approvecontact(contact.userId,'Active')" class="accept-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12"
+                                    viewBox="0 0 16 12" fill="none">
+                                    <path
+                                        d="M0 6.51044L5.4791 12L16 1.4895L14.4896 -6.10352e-05L5.4791 8.99993L1.48953 5.01039L0 6.51044Z"
+                                        fill="white" />
+                                </svg>
+                                Accept
+                            </button>
+                            <button (click)="approvecontact(contact.userId,'IsActive')" class="reject-btn">
+                                <img
+                                    src="../../../../assets/images/close_btn.png"></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>             
+                </div>
+              </div>
+              <div class="apxtable_pagination_wrapper">
+                <div class="apxtable_pagelist">
+                  
+                </div>
+                <div class="apxtable_pagination">
+                 
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+              </div>
+              </div>    
+          </div>
+        </div>
+    
+    </main>
+  </div>

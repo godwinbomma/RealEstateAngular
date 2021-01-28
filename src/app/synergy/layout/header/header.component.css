@@ -1,0 +1,112 @@
+.notification_list {
+  background: #EEF8FF;
+  box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 20px 0px 0px 20px;
+  position: absolute;
+  z-index: 999;
+  width: 393px;
+  padding: 19px 23px;
+  right: 0;
+  top: 0;
+  height: 100vh;
+}
+
+.notification_list ul {
+  margin-left: 0px;
+  padding-left: 0px;
+  overflow: auto;
+  height: calc(100vh - 90px);
+}
+
+.notification_list ul li {
+  background: #fff;
+  list-style-type: none;
+  padding: 17px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.notification_list ul li .notification_details {
+  float: left;
+  width: 100%;
+}
+
+.notification_list ul li .notification_details i {
+  float: left;
+  text-align: left;
+  width: auto;
+}
+
+.notification_list ul li .notification_details i.bg-active-color {
+  color: #F15925;
+}
+
+.notification_list ul li .notification_details i.bg-inactive-color {
+  color: #BABFC2;
+}
+
+.notification_list ul li .notification_details h1 {
+  float: left;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.notification_list ul li .notification_details span {
+  float: right;
+  margin-top: 8px;
+  color: #9F9E9B;
+}
+
+.notification_list ul li p {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 23px;
+  color: #606669;
+  margin-bottom: 0px;
+}
+
+.notification_list h2 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: uppercase;
+  color: #333333;
+  margin: 16px 0px;
+}
+
+.notification_list h2 a {
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-decoration-line: underline;
+  color: #606669;
+  text-transform: capitalize;
+  float: right;
+}
+
+.notifi_wrapper {
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  background: #00000066;
+  left: 0;
+  top: 0;
+  z-index: 99;
+}
+
+.close_btn {
+  position: absolute;
+  left: -39px;
+  background: #FFFFFF;
+  box-shadow: -4px 0px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 10px 0px 0px 10px;
+  padding: 12px;
+}

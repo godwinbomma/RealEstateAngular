@@ -1,0 +1,66 @@
+
+      <div class="container-fluid contentpage_wrapper">
+        <div class="pagecontent_wrapper">
+          <div class="manage-employees-add-detail">
+            <h4>Basic Details</h4>
+            <form [formGroup]="AddEmployeeForm">
+              <div class="flx_div">
+                <div class="flx_section">
+                  <label class="peak-form-label">First Name<span class="c-red">*</span></label>
+                  <input class="ipt" type="text" formControlName="FirstName" placeholder="First Name">
+                  <span class="input-error-span" *ngIf="AddEmployeeForm.get('FirstName').errors && AddEmployeeForm.get('FirstName').touched">
+                    <span *ngIf="AddEmployeeForm.get('FirstName').errors.required">FirstName is required</span>
+                  </span>
+                </div>
+                <div class="flx_section">
+                  <label class="peak-form-label">Last Name<span class="c-red">*</span></label>
+                  <input class="ipt" type="text" formControlName="LastName" placeholder="Last Name">
+                  <span class="input-error-span" *ngIf="AddEmployeeForm.get('LastName').errors && AddEmployeeForm.get('LastName').touched">
+                    <span *ngIf="AddEmployeeForm.get('LastName').errors.required">LastName is required</span>
+                  </span>
+                </div>
+                <div class="flx_section">
+                  <label class="peak-form-label">Phone Number<span class="c-red">*</span></label>
+                 
+                  <input class="ipt" type="text" formControlName="MobileNumber"  placeholder="Phone Number" mask= '(000) 000-0000'>
+                  <span class="input-error-span" *ngIf="AddEmployeeForm.get('MobileNumber').errors && AddEmployeeForm.get('MobileNumber').touched">
+                    <span *ngIf="AddEmployeeForm.get('MobileNumber').errors.required">PhoneNumber is required</span>
+                  </span>
+                
+                </div>
+                <div class="flx_section">
+                  <label class="peak-form-label">Email Address<span class="c-red">*</span></label>
+                  <input class="ipt" type="email" formControlName="EmailAddress" placeholder="Email">
+                  <span class="input-error-span" *ngIf="AddEmployeeForm.get('EmailAddress').errors && AddEmployeeForm.get('EmailAddress').touched">
+                    <span *ngIf="AddEmployeeForm.get('EmailAddress').errors.required">Email is required</span>
+                    <span *ngIf="AddEmployeeForm.get('EmailAddress').errors.pattern">Email is invalid</span>
+                  </span>
+                </div>
+              </div>
+              <div class="flx_section">
+                <label class="peak-form-label">Authentication Method</label>
+                <div class="select_div w-250">
+                <select  id="typeid"  formControlName="twofactorConfig" style="width: 207px;margin-left: 0px;">
+                              
+                             <option value="0">No Authentication</option>
+                              <option value="1">Both</option>
+                              <option value="2">Mobile</option>
+                              <option value="3">Email</option>
+                </select>
+                <span><i class="fa fa-angle-down"></i></span>
+                </div>
+                <span class="input-error-span" *ngIf="AddEmployeeForm.get('twofactorConfig').errors && AddEmployeeForm.get('twofactorConfig').touched">
+                  <span *ngIf="AddEmployeeForm.get('twofactorConfig').errors.required">Authentication is required</span>
+                
+                </span>
+              </div>
+              <div class="btn_flex">
+                <button class="btn_Confirm" (click)="AddEmployee()" style="width: 160px;">ADD EMPLOYEE</button>
+                <button class="btn_Cancel" [routerLink]="['/employee/list']" >CANCEL</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+ 
+  

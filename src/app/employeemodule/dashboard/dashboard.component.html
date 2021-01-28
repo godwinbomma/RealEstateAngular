@@ -1,0 +1,135 @@
+<div class="page-wrapper chiller-theme employee-wrapper">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <app-header >
+        </app-header>
+
+        <div class="container-fluid contentpage_wrapper">
+            <div class="pagecontent_wrapper">
+                <div class="emp-dashboard-section">
+                    <div class="emp-dashboard-chart">
+                        <div class="emp-charts">
+                            <div class="chart-inner">
+                                <p>Assigned Tasks</p>
+                                <span>{{ListCount.assignedTaskCount}}</span>
+                            </div>
+                        </div>
+                        <div class="emp-charts antique-pink">
+                            <div class="chart-inner">
+                                <p>New Client Uploads</p>
+                                <span>{{ListCount.newClientUploadCount}}</span>
+                            </div>
+                        </div>
+                        <div class="emp-charts blue">
+                            <div class="chart-inner">
+                                <p>Proceeds Received</p>
+                                <span>{{ListCount.proceedsReceiveCount}}</span>
+                            </div>
+                        </div>
+                        <div class="emp-charts azure-blue">
+                            <div class="chart-inner">
+                                <p>Non-Money Closeouts</p>
+                                <span>{{ListCount.nonMoneyCloseOutCount}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="emp-dashboard-chart ">
+                        <div class="emp-charts barbie-pink">
+                            <div class="chart-inner">
+                                <p>Unidentified Past 45 Days</p>
+                                <span>{{ListCount.nonMoneyCloseOutCount}}</span>
+                            </div>
+                        </div>
+                        <div class="emp-charts black">
+                            <div class="chart-inner">
+                                <p> Money Closeouts (Past 180)</p>
+                                <span>{{ListCount.moneyCloseOutCount}}</span>
+                            </div>
+                        </div>
+                        <div class="emp-charts sky-blue">
+                            <div class="chart-inner">
+                                <p>Positive Balance - ID Form Satisfied</p>
+                                <span>{{ListCount.positiveBalanceSatifyIDFormCount}}</span>
+                            </div>
+                        </div>
+                        <div class="emp-charts yellow">
+                            <div class="chart-inner">
+                                <p>Unfunded - Expected Close Date Passed</p>
+                                <span>{{ListCount.unfundedExpectedCloseOutCount}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="task-do-section">
+                    <h5>TO-DO TASK</h5>
+                </div>
+                <div class="emp-white-wrap">
+                    <div class="apxtable_grid_table">
+                        <div class="table-responsive apx-responsive table-responsive-realest">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">EXCHANGE #
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Status
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">ASSIGNED DATE
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">CUSTOMER NAME
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                       
+                                      
+
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">NOTES
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let leadlist of AssignList | orderBy: order:reverse| paginate: { itemsPerPage: 5, currentPage: p } ">
+                                        
+                                        <td *ngIf='leadlist.status==="Approved"; else leadWithoutLink'  [routerLink]="['/employee/emp-exchange-general',leadlist.exchangeId,leadlist.propertyId,leadlist.status]" class="me-routing">{{leadlist.exchangeNumber}}</td>
+                                        <ng-template #leadWithoutLink>
+                                            <td>{{leadlist.exchangeNumber}}</td>
+                                        </ng-template> 
+                                        <td>{{leadlist.status}}</td>
+                                        <td>{{leadlist.openDate| date}}</td>
+                                        <td>{{leadlist.customerName}}</td>
+                                        <td>{{leadlist.notes}}</td>
+                                        
+                                    </tr>
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="emo-footer">
+                    <p class="mail-sec"> help@peakexchange.com </p>
+                    <p class="ph-sec">+1-541-754-3010</p>
+                    <span>Copyright © 2020 Peak 1031 Exchange</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>

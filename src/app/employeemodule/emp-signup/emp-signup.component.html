@@ -1,0 +1,80 @@
+<div class="emp-login-g">
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-xs-12 colsm-12 emp-login-left">
+            <div class="emp-prof-txt-g">
+                <img src="../../../assets/images/emp-signup.png" class="logo-g-emp">
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xs-12 colsm-12 emp-login-right">
+            <div class="login-wrapper-emp-g emp-forgot-pw-g">
+                <div class="login-inner-wrap-emp-g">
+                    <img src="../../../assets/images/logo.png" class="login-home-logo-g">
+                    <h2 class="login-head">Employee Sign up</h2>
+                    <form (ngSubmit)=signupForm.form.valid&&Signup() #signupForm="ngForm">
+                      <div class="sign-up-bx-g">
+                          <div class="login-box-g">
+                              <label>First Name</label>
+                              <input type="text" class="login-input-bx" placeholder="Enter your First Name" name="firstName" [(ngModel)]="signupDetails.firstName" #firstName="ngModel" [ngClass]="{ 'is-invalid': signupForm.submitted && firstName.invalid }" required>
+                              <div *ngIf="signupForm.submitted && firstName.invalid" class="invalid-feedback">
+                                <div *ngIf="firstName.errors.required">First Name is required</div>
+                            </div>
+                            </div>
+                            <div class="login-box-g">
+                              <label>Last Name</label>
+                              <input type="text" class="login-input-bx" placeholder="Enter your Last Name" name="lastName" [(ngModel)]="signupDetails.lastName" #lastName="ngModel" [ngClass]="{ 'is-invalid': signupForm.submitted && lastName.invalid }" required >
+                              <div *ngIf="signupForm.submitted && lastName.invalid" class="invalid-feedback">
+                                <div *ngIf="lastName.errors.required">Last Name is required</div>
+                            </div>
+                            </div>
+                            <div class="login-box-g">
+                              <label>Phone Number</label>
+                              <input type="text" class="login-input-bx"  placeholder="Enter Your Phone Number" name="mobileNo" mask= '(000) 000-0000' [(ngModel)]="signupDetails.mobileNo" #mobileNo="ngModel" [ngClass]="{ 'is-invalid': signupForm.submitted && mobileNo.invalid }" required >
+                              <div *ngIf="signupForm.submitted && mobileNo.invalid" class="invalid-feedback">
+                                <div *ngIf="mobileNo.errors.required">Phone Number is required</div>
+                            </div>
+                            </div>
+                            <div class="login-box-g">
+                              <label>Email Address</label>
+                              <input type="text" class="login-input-bx" placeholder="Enter your Mail Id" name="emailAddress" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [(ngModel)]="signupDetails.emailAddress" #emailAddress="ngModel" [ngClass]="{ 'is-invalid': signupForm.submitted && emailAddress.invalid }" required >
+                              <div *ngIf="signupForm.submitted && emailAddress.invalid" class="invalid-feedback">
+                                <div *ngIf="emailAddress.errors.required">Email Address is required</div>
+                            </div>
+                            <div  *ngIf="emailAddress.errors && emailAddress.errors.pattern" class="invalid-feedback">
+                              Email is invalid
+                          </div>
+                            </div>
+                            <div class="login-box-g">
+                              <label>Password</label>
+                              <input type="password" #passwordToggle class="login-input-bx" placeholder="Enter your password" name="Password" [(ngModel)]="signupDetails.Password" #Password="ngModel" [ngClass]="{ 'is-invalid': signupForm.submitted && Password.invalid }" required >
+                              <a class="hide-icon-g" (click)="toggleClick()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M19.8729 9.611C19.6942 9.36658 15.4371 3.62638 9.9999 3.62638C4.56274 3.62638 0.305391 9.36658 0.126914 9.61076C-0.0423048 9.84264 -0.0423048 10.1571 0.126914 10.389C0.305391 10.6334 4.56274 16.3736 9.9999 16.3736C15.4371 16.3736 19.6942 10.6334 19.8729 10.3892C20.0423 10.1574 20.0423 9.84264 19.8729 9.611ZM9.9999 15.055C5.99486 15.055 2.52606 11.2451 1.49922 9.99955C2.52473 8.75295 5.98626 4.94505 9.9999 4.94505C14.0048 4.94505 17.4733 8.75428 18.5006 10.0005C17.4751 11.247 14.0135 15.055 9.9999 15.055Z" fill="#ACB2B5"/>
+                          <path d="M9.99988 6.04396C7.81855 6.04396 6.04382 7.81869 6.04382 10C6.04382 12.1814 7.81855 13.9561 9.99988 13.9561C12.1812 13.9561 13.9559 12.1814 13.9559 10C13.9559 7.81869 12.1812 6.04396 9.99988 6.04396ZM9.99988 12.6374C8.54558 12.6374 7.36254 11.4543 7.36254 10C7.36254 8.54576 8.54562 7.36267 9.99988 7.36267C11.4541 7.36267 12.6372 8.54576 12.6372 10C12.6372 11.4543 11.4542 12.6374 9.99988 12.6374Z" fill="#ACB2B5"/>
+                          </svg>
+                            </a>
+                              <div *ngIf="signupForm.submitted && Password.invalid" class="invalid-feedback">
+                                <div *ngIf="Password.errors.required">Password is required</div>
+                            </div>
+                            </div>
+                            <div class="login-box-g">
+                              <label>Confirm Password</label>
+                              <input type="password" #passwordToggle1 class="login-input-bx" placeholder="Enter your password" name="ConfirmPassword" [(ngModel)]="signupDetails.ConfirmPassword" #ConfirmPassword="ngModel" [ngClass]="{ 'is-invalid': signupForm.submitted && ConfirmPassword.invalid }" required>
+                              <a class="hide-icon-g" (click)="toggleClick1()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M19.8729 9.611C19.6942 9.36658 15.4371 3.62638 9.9999 3.62638C4.56274 3.62638 0.305391 9.36658 0.126914 9.61076C-0.0423048 9.84264 -0.0423048 10.1571 0.126914 10.389C0.305391 10.6334 4.56274 16.3736 9.9999 16.3736C15.4371 16.3736 19.6942 10.6334 19.8729 10.3892C20.0423 10.1574 20.0423 9.84264 19.8729 9.611ZM9.9999 15.055C5.99486 15.055 2.52606 11.2451 1.49922 9.99955C2.52473 8.75295 5.98626 4.94505 9.9999 4.94505C14.0048 4.94505 17.4733 8.75428 18.5006 10.0005C17.4751 11.247 14.0135 15.055 9.9999 15.055Z" fill="#ACB2B5"/>
+                          <path d="M9.99988 6.04396C7.81855 6.04396 6.04382 7.81869 6.04382 10C6.04382 12.1814 7.81855 13.9561 9.99988 13.9561C12.1812 13.9561 13.9559 12.1814 13.9559 10C13.9559 7.81869 12.1812 6.04396 9.99988 6.04396ZM9.99988 12.6374C8.54558 12.6374 7.36254 11.4543 7.36254 10C7.36254 8.54576 8.54562 7.36267 9.99988 7.36267C11.4541 7.36267 12.6372 8.54576 12.6372 10C12.6372 11.4543 11.4542 12.6374 9.99988 12.6374Z" fill="#ACB2B5"/>
+                          </svg>
+                            </a>
+                              <div *ngIf="signupForm.submitted && ConfirmPassword.invalid" class="invalid-feedback">
+                                <div *ngIf="ConfirmPassword.errors.required">Confirm Password is required</div>
+                            </div>
+                            </div>                        
+                          </div>
+                        <button class="sign-in-btn">SIGN UP</button>
+                        <button type="button" routerLink="/employee/login" class="sign-in-btn">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

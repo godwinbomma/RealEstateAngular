@@ -1,0 +1,27 @@
+.document-temp-popup button.btn_Cancel {
+    margin-left: 0;
+    margin-top: 16px;
+}
+button.btn_Confirm {
+    margin-top: 20px;
+}
+.peak-t-area {
+    height: 100px;
+}
+
+
+.peak-box-g {
+    background: #FAFDFF;
+    border: 1px solid #CCD9E1;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 85%;
+    padding: 8px 20px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #242E3E;
+}
+.mat-form-field-wrapper{padding-bottom: 10px !important;}
+dp-date-picker{width: 85%;}
+

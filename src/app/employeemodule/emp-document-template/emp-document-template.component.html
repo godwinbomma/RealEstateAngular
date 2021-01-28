@@ -1,0 +1,171 @@
+<div class="page-wrapper chiller-theme employee-wrapper">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+      <app-header >
+      </app-header>
+      <form  #TemplateForm="ngForm" >
+        <div class="container-fluid contentpage_wrapper">
+            <div class="pagecontent_wrapper ww-decgrade">
+                <div class="white_wrapper">
+                    <div class="mel-top">
+                        <h2 class="peak-form-head">Document Template</h2>
+                        <div class="mel-left-auto">
+                            <input type="text" placeholder="Search..." [(ngModel)]="searchText" (input)="onSearch(searchText)"/>
+                            <button data-toggle="modal" data-target="#bank_profile" class="btn doc-template">+ new document template</button>
+                        </div>
+                    </div>
+                    <div class="apxtable_grid_table doc-template-table">
+                        <div class="table-responsive apx-responsive table-responsive-realest">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Template NAME
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">CREATED DATE
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">SHARING
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">CREATED BY
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">DESCRIPTIONS
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span></th>
+
+
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">ACTIONS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 <tr *ngFor="let Templatelist of TemplateData | orderBy: order:reverse| paginate: { itemsPerPage: 5, currentPage: p };">
+                      <td>{{Templatelist.templateName}}</td>
+                      <td>{{Templatelist.createdOn | date : 'd/MM/yyyy' }}</td>
+                      <td>{{Templatelist.sharing}}</td>
+                      <td>{{Templatelist.createdUser}}</td>
+                      <td>{{Templatelist.description}}</td>
+                      <td>
+                        <div class=" apx-actions ">
+                          <img (click)="GetTemplate(Templatelist.templateId)" data-toggle="modal" data-target="#bank_profile" src="../../../assets/images/superadmin/pencil-icon.png" alt="no-img" />
+                          <img (click)="OpenModal(Templatelist.templateId)"  data-toggle="modal" data-target="#delete_dialog" src="../../../assets/images/superadmin/del-icon.png" alt="no-img" />
+                          <a [download]="Templatelist.templateFileName" [href]="Templatelist.templatePath"><img src="../../../assets/images/superadmin/download-icon.png" alt="no-img" /></a>
+                        </div>
+                      </td>
+  
+                    </tr>
+                                </tbody>
+     
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="apxtable_pagination_wrapper">
+                    <div class="apxtable_pagelist">
+                        
+                    </div>
+                    <div class="apxtable_pagination">
+                     
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <div class="modal fade" #closebutton  id="bank_profile" role="dialog" data-backdrop="static" 
+        data-keyboard="false"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog del-modal modal-dialog-centered document-temp-popup" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="header_flx">
+                            <h3>Document Template</h3>
+                            <button type="button" id="close-modal" (click)="close()" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="col-lg-12 dt-popup">
+                            <div class="col-12 col-lg-6 dtp-left">
+                                <div class="form-group">
+                                    <label class="">
+                                Name <span>*</span>
+                              </label>
+                              <input type="text" [(ngModel)]="TemplateData.templateName" #templateName="ngModel" name="templateName">
+                           
+                                </div>
+                                <div class="form-group">
+                                    <label class="">
+                                  Template <span>*</span>
+                                </label>
+                                    <div class="relinquished-header input-upload-section">
+                                        <label style="display: none;">
+                                            <input id="upload_file" [(ngModel)]="TemplateData.File" name="file" type="file" #file (change)="onChange(file)">
+                                        </label>
+                                        <div class="float-end-sec" *ngIf="fileName">
+                                            <p>{{fileName}}</p>
+                                        </div>
+                                        <input readonly="true" type="text" id="file" (click)="trigger()" value="Browse">
+                                    </div>
+                                    <p class="file-label">Please upload MS Word 2007+ documents only. (.docx)</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="dark-label">
+                                    Sharing <span>*</span>
+                            </label>
+                                    <div class="top_form">
+                                        <div class="select_div">
+                                            <select [(ngModel)]="TemplateData.sharing" #sharing="ngModel" name="sharing">
+                                                <option value="public">public</option>
+                                                <option value="private">private</option>
+                                              </select><span><i  class="fa fa-angle-down"></i></span>
+                                        
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 dtp-right">
+                                <div class="form-group">
+                                    <label class="dark-label">
+                                      Description
+                               </label>
+                               <textarea [(ngModel)]="TemplateData.description" placeholder="Enter Description" name="description"></textarea>
+                               
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="btn_flex">
+                          
+                            <button class="btn_Confirm" (click)="AddTemplate()">{{label}}</button>
+                            <button class="btn_Cancel" data-dismiss="modal" (click)="close()">CANCEL</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                                                         <!-- Delete Popup -->
+                                                         <div class="modal fade" id="delete_dialog" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog del-modal modal-dialog-centered yes-no-popup" role="document">
+                                                                <div class="modal-content">
+                                                
+                                                                    <div class="modal-body">
+                                                                        <h2>Are you sure? You want to delete permenantly?</h2>
+                                                                        <div class="btn_flex">
+                                                                            <button class="btn_Confirm" (click)="DeleteTemplate()"   data-dismiss="modal">Yes</button>
+                                                                            <button data-dismiss="modal" class="btn_Cancel">No</button>
+                                                                        </div>
+                                                                    </div>
+                                                
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Delete Popup --> 
+        </form>
+    </main>
+</div>

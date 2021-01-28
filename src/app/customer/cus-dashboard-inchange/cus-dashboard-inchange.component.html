@@ -1,0 +1,110 @@
+<div class="page-wrapper chiller-theme employee-wrapper cust-wrap">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <app-header>
+        </app-header>
+        <div class="container-fluid contentpage_wrapper">
+            <div class="emp-dashboard-section">
+                <div class="emp-dashboard-chart cus-dashboard-head-g">
+                    <div class="emp-charts">
+                        <div class="chart-inner">
+                            <p (click)="getExchangeList()">Number of Open Exchanges</p>
+                            <span>{{DashBoardCount.openExchnages}}</span>
+                        </div>
+                    </div>
+                    <div class="emp-charts antique-pink">
+                        <div class="chart-inner">
+                            <p (click)="getcloseExchangeList()">Number of Completed Exchanges
+                            </p>
+                            <span>{{DashBoardCount.closedExchnages}}</span>
+                        </div>
+                    </div>
+                    <div class="tb-rt-btn">
+                        <button routerLink="/customer/cus-exchange" class="add-cust-btn-g">Add New Exchange</button>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="pagecontent_wrapper">
+
+                <div class="col-lg-12 dash-brd-tab open-exchange-table-g p-0">
+                    <div class="synergy-tab-hd-g">
+                        <h2>OPEN EXCHANGES</h2>
+
+                    </div>
+
+
+                    <div class="emp-white-wrap-g p-0">
+                        <div class="apxtable_grid_table">
+
+                            <div class="table-responsive apx-responsive table-responsive-realest">
+                                <table class="table open-exc-table-g">
+                                    <thead>
+                                        <tr>
+                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">EXCHANGE NUMBER
+                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                            </th>
+                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Status
+                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                            </th>
+                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">RELINQUISHED PROPERTY ADDRESS
+                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                            </th>
+                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">CURRENT ACC BALANCE
+                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let leadlist of DashBoard | orderBy: order:reverse| paginate: { itemsPerPage: 5, currentPage: p } ">
+                                            
+                                    
+                                            <td *ngIf='leadlist.status==="Approved"; else leadWithoutLink' [routerLink]="['/customer/cus-exchange-general',leadlist.exchangeId,leadlist.propertyId,leadlist.status]">
+                                                <a href="javascript:void(0);" class="exchange-num-g">{{leadlist.exchangeNumber}}</a>
+                                            </td>
+                                            <ng-template #leadWithoutLink>
+                                                <td>{{leadlist.exchangeNumber}}</td>
+                                            </ng-template>                        
+                                            <td>{{leadlist.status}}</td>
+                                            <td>{{leadlist.propertyAddress}}</td>
+                                            <td>{{leadlist.withholdingAmount ?leadlist.withholdingAmount: 0 | currency}}</td>                                          
+                                        </tr>
+
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    
+                    <div class="apxtable_pagination_wrapper">
+                       
+                        <div class="apxtable_pagination">
+                         
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="emo-footer">
+                    <p class="mail-sec"> help@peakexchange.com </p>
+                    <p class="ph-sec"><b>|</b>+1-541-754-3010</p>
+                    <span>Copyright © 2020 Peak 1031 Exchange</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

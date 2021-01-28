@@ -1,0 +1,237 @@
+<nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+        <!-- <div class="sidebar-brand">
+            <a href="#"><img src="../../../../assets/images/peak-logo.png" /></a>
+            <div id="close-sidebar">
+                <i class="fas fa-times"></i>
+            </div>
+        </div> -->
+
+        <!-- sidebar-header  -->
+
+        <!-- sidebar-search  -->
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a routerLink="/dashboard" [ngClass]="{'link-active':currentUrl=='/dashboard'}" routerLinkActive="link-active">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path
+                                d="M15.5232 8.94116H8.54412L13.1921 13.5891C13.3697 13.7667 13.6621 13.7812 13.8447 13.6091C14.9829 12.5367 15.7659 11.0912 15.9956 9.46616C16.035 9.18793 15.8041 8.94116 15.5232 8.94116ZM15.0576 7.03528C14.8153 3.52176 12.0076 0.714119 8.49412 0.471767C8.22589 0.453237 8 0.679413 8 0.948236V7.5294H14.5815C14.8503 7.5294 15.0762 7.30352 15.0576 7.03528ZM6.58824 8.94116V1.96206C6.58824 1.68118 6.34147 1.45029 6.06353 1.48971C2.55853 1.985 -0.120585 5.04705 0.00412089 8.71675C0.132356 12.4856 3.37736 15.5761 7.14794 15.5288C8.6303 15.5103 10 15.0326 11.1262 14.2338C11.3585 14.0691 11.3738 13.727 11.1724 13.5256L6.58824 8.94116Z"
+                                fill="#F44336"
+                            />
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-dropdown">
+                    <a [ngClass]="{'link-active':currentUrl=='/exchange/create' || currentUrl=='/exchange/approval/list' || currentUrl=='/exchange/list'}" routerLinkActive="link-active">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path
+                                d="M3.55556 3.66667H12.4444V9H3.55556V3.66667ZM14.6667 6.33333C14.6667 7.06972 15.2636 7.66667 16 7.66667V10.3333C16 11.0697 15.4031 11.6667 14.6667 11.6667H1.33333C0.596944 11.6667 0 11.0697 0 10.3333V7.66667C0.736389 7.66667 1.33333 7.06972 1.33333 6.33333C1.33333 5.59694 0.736389 5 0 5V2.33333C0 1.59694 0.596944 1 1.33333 1H14.6667C15.4031 1 16 1.59694 16 2.33333V5C15.2636 5 14.6667 5.59694 14.6667 6.33333ZM13.3333 3.44444C13.3333 3.07625 13.0349 2.77778 12.6667 2.77778H3.33333C2.96514 2.77778 2.66667 3.07625 2.66667 3.44444V9.22222C2.66667 9.59042 2.96514 9.88889 3.33333 9.88889H12.6667C13.0349 9.88889 13.3333 9.59042 13.3333 9.22222V3.44444Z"
+                                fill="#01A9AC"
+                            />
+                        </svg>
+                        <span>Manage Exchanges</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li>
+                                <a routerLink="/exchange/create" routerLinkActive="active" routerLinkActive="link-active-submenu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <circle cx="8" cy="8" r="6.5" fill="#242E3E" stroke="#01A9AC" stroke-width="3" />
+                                    </svg> Create Exchange
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/exchange/approval/list" routerLinkActive="active" routerLinkActive="link-active-submenu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <circle cx="8" cy="8" r="6.5" fill="#242E3E" stroke="#01A9AC" stroke-width="3" />
+                                    </svg> Approval List
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/exchange/list" routerLinkActive="active" routerLinkActive="link-active-submenu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <circle cx="8" cy="8" r="6.5" fill="#242E3E" stroke="#01A9AC" stroke-width="3" />
+                                    </svg> Exchanges List
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a routerLink="/employee/list" routerLinkActive="link-active" [ngClass]="{'link-active':currentUrl=='/employee/list'}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path
+                                d="M8 8C10.2094 8 12 6.20937 12 4C12 1.79063 10.2094 0 8 0C5.79063 0 4 1.79063 4 4C4 6.20937 5.79063 8 8 8ZM10.9937 9.01875L9.5 15L8.5 10.75L9.5 9H6.5L7.5 10.75L6.5 15L5.00625 9.01875C2.77812 9.125 1 10.9469 1 13.2V14.5C1 15.3281 1.67188 16 2.5 16H13.5C14.3281 16 15 15.3281 15 14.5V13.2C15 10.9469 13.2219 9.125 10.9937 9.01875Z"
+                                fill="#FF9800"
+                            />
+                        </svg>
+                        <span>Manage Employees</span>
+                    </a>
+                </li>
+                
+
+                <li>
+                    <a routerLink="/custom-fields" routerLinkActive="link-active" [ngClass]="{'link-active':currentUrl=='/custom-fields'}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path
+                                d="M7.99998 2C4.31998 2 1.33331 4.98667 1.33331 8.66667C1.33331 12.3467 4.31998 15.3333 7.99998 15.3333C11.68 15.3333 14.6666 12.3467 14.6666 8.66667C14.6666 4.98667 11.68 2 7.99998 2ZM6.66665 12L3.33331 8.66667L4.27331 7.72667L6.66665 10.1133L11.7266 5.05333L12.6666 6L6.66665 12Z"
+                                fill="#01A9AC"
+                            />
+                        </svg>
+                        <span>Custom Fields</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/manage-contact" routerLinkActive="link-active" [ngClass]="{'link-active':currentUrl=='/manage-contact'}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path
+                                d="M2.4 7.2C3.2825 7.2 4 6.4825 4 5.6C4 4.7175 3.2825 4 2.4 4C1.5175 4 0.8 4.7175 0.8 5.6C0.8 6.4825 1.5175 7.2 2.4 7.2ZM13.6 7.2C14.4825 7.2 15.2 6.4825 15.2 5.6C15.2 4.7175 14.4825 4 13.6 4C12.7175 4 12 4.7175 12 5.6C12 6.4825 12.7175 7.2 13.6 7.2ZM14.4 8H12.8C12.36 8 11.9625 8.1775 11.6725 8.465C12.68 9.0175 13.395 10.015 13.55 11.2H15.2C15.6425 11.2 16 10.8425 16 10.4V9.6C16 8.7175 15.2825 8 14.4 8ZM8 8C9.5475 8 10.8 6.7475 10.8 5.2C10.8 3.6525 9.5475 2.4 8 2.4C6.4525 2.4 5.2 3.6525 5.2 5.2C5.2 6.7475 6.4525 8 8 8ZM9.92 8.8H9.7125C9.1925 9.05 8.615 9.2 8 9.2C7.385 9.2 6.81 9.05 6.2875 8.8H6.08C4.49 8.8 3.2 10.09 3.2 11.68V12.4C3.2 13.0625 3.7375 13.6 4.4 13.6H11.6C12.2625 13.6 12.8 13.0625 12.8 12.4V11.68C12.8 10.09 11.51 8.8 9.92 8.8ZM4.3275 8.465C4.0375 8.1775 3.64 8 3.2 8H1.6C0.7175 8 0 8.7175 0 9.6V10.4C0 10.8425 0.3575 11.2 0.8 11.2H2.4475C2.605 10.015 3.32 9.0175 4.3275 8.465Z"
+                                fill="#17CD81"
+                            />
+                        </svg>
+                        <span>Manage Contacts</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/banks/list" routerLinkActive="link-active" [ngClass]="{'link-active':currentUrl=='/banks/list'}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <g clip-path="url(#clip0)">
+                                <path
+                                    d="M8 8.49976C7.724 8.49976 7.5 8.27576 7.5 7.99976C7.5 7.72376 7.724 7.49976 8 7.49976H9C9.276 7.49976 9.5 7.27576 9.5 6.99976C9.5 6.72376 9.276 6.49976 9 6.49976H8.5V5.99976C8.5 5.72376 8.276 5.49976 8 5.49976C7.724 5.49976 7.5 5.72376 7.5 5.99976V6.59176C6.919 6.79876 6.5 7.34876 6.5 7.99976C6.5 8.82676 7.173 9.49976 8 9.49976C8.276 9.49976 8.5 9.72476 8.5 9.99976C8.5 10.2748 8.276 10.4998 8 10.4998H7C6.724 10.4998 6.5 10.7238 6.5 10.9998C6.5 11.2758 6.724 11.4998 7 11.4998H7.5V11.9998C7.5 12.2758 7.724 12.4998 8 12.4998C8.276 12.4998 8.5 12.2758 8.5 11.9998V11.4078C9.081 11.2008 9.5 10.6508 9.5 9.99976C9.5 9.17276 8.827 8.49976 8 8.49976Z"
+                                    fill="#FF9800"
+                                />
+                                <path
+                                    d="M15.5 4.99974C15.776 4.99974 16 4.77574 16 4.49974V3.49974C16 3.31474 15.898 3.14574 15.735 3.05874L8.235 -0.941256C8.088 -1.01926 7.912 -1.01926 7.764 -0.941256L0.264 3.05874C0.102 3.14574 0 3.31474 0 3.49974V4.49974C0 4.77574 0.224 4.99974 0.5 4.99974H2V12.9997H1C0.449 12.9997 0 13.4477 0 13.9997V14.4997C0 14.7757 0.224 14.9997 0.5 14.9997H15.5C15.776 14.9997 16 14.7757 16 14.4997V13.9997C16 13.4477 15.552 12.9997 15 12.9997H14V4.99974H15.5ZM8 0.999744C8.552 0.999744 9 1.44774 9 1.99974C9 2.55174 8.552 2.99974 8 2.99974C7.448 2.99974 7 2.55174 7 1.99974C7 1.44774 7.448 0.999744 8 0.999744ZM12 12.9997H4V4.99974H12V12.9997Z"
+                                    fill="#FF9800"
+                                />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0">
+                                    <rect width="16" height="16" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <span>Manage Banks</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/manage-agent" routerLinkActive="link-active" [ngClass]="{'link-active':currentUrl=='/manage-agent'}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path
+                                d="M2.4 7.2C3.2825 7.2 4 6.4825 4 5.6C4 4.7175 3.2825 4 2.4 4C1.5175 4 0.8 4.7175 0.8 5.6C0.8 6.4825 1.5175 7.2 2.4 7.2ZM13.6 7.2C14.4825 7.2 15.2 6.4825 15.2 5.6C15.2 4.7175 14.4825 4 13.6 4C12.7175 4 12 4.7175 12 5.6C12 6.4825 12.7175 7.2 13.6 7.2ZM14.4 8H12.8C12.36 8 11.9625 8.1775 11.6725 8.465C12.68 9.0175 13.395 10.015 13.55 11.2H15.2C15.6425 11.2 16 10.8425 16 10.4V9.6C16 8.7175 15.2825 8 14.4 8ZM8 8C9.5475 8 10.8 6.7475 10.8 5.2C10.8 3.6525 9.5475 2.4 8 2.4C6.4525 2.4 5.2 3.6525 5.2 5.2C5.2 6.7475 6.4525 8 8 8ZM9.92 8.8H9.7125C9.1925 9.05 8.615 9.2 8 9.2C7.385 9.2 6.81 9.05 6.2875 8.8H6.08C4.49 8.8 3.2 10.09 3.2 11.68V12.4C3.2 13.0625 3.7375 13.6 4.4 13.6H11.6C12.2625 13.6 12.8 13.0625 12.8 12.4V11.68C12.8 10.09 11.51 8.8 9.92 8.8ZM4.3275 8.465C4.0375 8.1775 3.64 8 3.2 8H1.6C0.7175 8 0 8.7175 0 9.6V10.4C0 10.8425 0.3575 11.2 0.8 11.2H2.4475C2.605 10.015 3.32 9.0175 4.3275 8.465Z"
+                                fill="#17CD81"
+                            />
+                        </svg>
+                        <span>Manage Agents</span>
+                    </a>
+                </li>
+                <li class="sidebar-dropdown bg_orgList">
+                    <a [ngClass]="{'link-active':currentUrl=='/document-template' || currentUrl=='/template-fields-contact'}" routerLinkActive="link-active">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <g clip-path="url(#clip0)">
+                                <path d="M7.5 16H1.16667C0.498667 16 0 15.296 0 14.6667V13.1667C0 12.5233 0.523333 12 1.16667 12H7.5C8.14333 12 8.66667 12.5233 8.66667 13.1667V14.8333C8.66667 15.4767 8.14333 16 7.5 16Z" fill="#FF5364" />
+                                <path
+                                    d="M13.1373 5.52802C12.8766 5.26735 12.4553 5.26735 12.1946 5.52802L10.2173 7.50535L9.52462 6.81269C9.38129 6.67002 9.16729 6.62735 8.98062 6.70402C8.79395 6.78135 8.67195 6.96335 8.67129 7.16535L8.66595 9.49869C8.66595 9.63135 8.71795 9.75935 8.81262 9.85335C8.90662 9.94735 9.03329 10 9.16595 10H9.16729L11.5006 9.99535C11.7026 9.99535 11.884 9.87269 11.9613 9.68602C12.038 9.49935 11.9959 9.28469 11.8526 9.14202L11.16 8.44935L13.1373 6.47202C13.3979 6.21002 13.3979 5.78869 13.1373 5.52802Z"
+                                    fill="#FF5364"
+                                />
+                                <path
+                                    d="M14 0H2C0.9 0 0 0.9 0 2V10.96C0.346667 10.7733 0.746667 10.6667 1.16667 10.6667H1.33333V3.33333H14.6667V12.6667C14.6667 13.0333 14.3667 13.3333 14 13.3333H10V14.6667H14C15.1 14.6667 16 13.7667 16 12.6667V2C16 0.9 15.1 0 14 0Z"
+                                    fill="#FF5364"
+                                />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0">
+                                    <rect width="16" height="16" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <span>Template Management</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li>
+                                <a routerLink="/document-template" routerLinkActive="link-active-submenu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <circle cx="8" cy="8" r="6.5" fill="#242E3E" stroke="#FF5364" stroke-width="3" />
+                                    </svg> Document Templates
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/template-fields-contact" routerLinkActive="link-active-submenu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <circle cx="8" cy="8" r="6.5" fill="#242E3E" stroke="#FF5364" stroke-width="3" />
+                                    </svg> Template Fields
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-dropdown bg_purpList">
+                    <a [ngClass]="{'link-active':currentUrl=='/reports/balance/overtime' || currentUrl=='/reports/balance/breakdown' || currentUrl=='/reports/revenue/overtime' || currentUrl=='/reports/revenue/breakdown'}"
+                        routerLinkActive="link-active">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path
+                                d="M15 11.25V0.75C15 0.334375 14.6656 0 14.25 0H4C2.34375 0 1 1.34375 1 3V13C1 14.6562 2.34375 16 4 16H14.25C14.6656 16 15 15.6656 15 15.25V14.75C15 14.5156 14.8906 14.3031 14.7219 14.1656C14.5906 13.6844 14.5906 12.3125 14.7219 11.8313C14.8906 11.6969 15 11.4844 15 11.25ZM5 4.1875C5 4.08437 5.08437 4 5.1875 4H11.8125C11.9156 4 12 4.08437 12 4.1875V4.8125C12 4.91563 11.9156 5 11.8125 5H5.1875C5.08437 5 5 4.91563 5 4.8125V4.1875ZM5 6.1875C5 6.08437 5.08437 6 5.1875 6H11.8125C11.9156 6 12 6.08437 12 6.1875V6.8125C12 6.91563 11.9156 7 11.8125 7H5.1875C5.08437 7 5 6.91563 5 6.8125V6.1875ZM12.9187 14H4C3.44688 14 3 13.5531 3 13C3 12.45 3.45 12 4 12H12.9187C12.8594 12.5344 12.8594 13.4656 12.9187 14Z"
+                                fill="#7759DE"
+                            />
+                        </svg>
+                        <span>Reports</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li>
+                                <a routerLink="/reports/balance/overtime" routerLinkActive="link-active-submenu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <circle cx="8" cy="8" r="6.5" fill="#242E3E" stroke="#7759DE" stroke-width="3" />
+                                    </svg> Balance Over Time
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/reports/balance/breakdown" routerLinkActive="link-active-submenu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <circle cx="8" cy="8" r="6.5" fill="#242E3E" stroke="#7759DE" stroke-width="3" />
+                                    </svg> Balance Breakdown
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/reports/revenue/overtime" routerLinkActive="link-active-submenu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <circle cx="8" cy="8" r="6.5" fill="#242E3E" stroke="#7759DE" stroke-width="3" />
+                                    </svg> Revenue Over Time
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/reports/revenue/breakdown" routerLinkActive="link-active-submenu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <circle cx="8" cy="8" r="6.5" fill="#242E3E" stroke="#7759DE" stroke-width="3" />
+                                    </svg> Revenue Breakdown
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <div class="dash-msg-sec">
+                <div class="msg-head-sec-g">
+                    <h2 class="msg-head-txt-g"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8.00002 16C9.10377 16 9.99909 15.1047 9.99909 14H6.00096C6.00096 15.1047 6.89627 16 8.00002 16ZM14.731 11.3216C14.1272 10.6728 12.9975 9.69687 12.9975 6.5C12.9975 4.07188 11.295 2.12812 8.9994 1.65125V1C8.9994 0.447812 8.5519 0 8.00002 0C7.44815 0 7.00065 0.447812 7.00065 1V1.65125C4.70502 2.12812 3.00252 4.07188 3.00252 6.5C3.00252 9.69687 1.87283 10.6728 1.26908 11.3216C1.08158 11.5231 0.998459 11.7641 1.00002 12C1.00346 12.5125 1.40565 13 2.00315 13H13.9969C14.5944 13 14.9969 12.5125 15 12C15.0016 11.7641 14.9185 11.5228 14.731 11.3216Z" fill="#01A9AC"/>
+                  </svg> Manage Message
+                    </h2>
+                </div>
+                <div class="msg-body-sec-g">
+                   
+                    <input type="text" [(ngModel)]="Superadmin.Message" name="Message" #Message="ngModel" class="msg-sec-ip-g" placeholder="New Message">
+                    <div><button (click)="sendmessage()" class="btn doc-template">Send</button></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- sidebar-menu  -->
+
+
+
+    </div>
+    <!-- sidebar-content  -->
+</nav>

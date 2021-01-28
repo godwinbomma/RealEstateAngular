@@ -1,0 +1,104 @@
+<div class="page-wrapper chiller-theme employee-wrapper">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <app-header >
+        </app-header>
+
+        <div class="container-fluid contentpage_wrapper">
+            <div class="pagecontent_wrapper">
+
+                <div class="col-lg-12 dash-brd-tab open-exchange-table-g p-0">
+                    <div class="synergy-tab-hd-g">
+                        <h2>ACCOUNTS LIST</h2>
+                        <div class="tb-rt-btn">
+                            <button (click)="exportAsXLSX()" class="add-cust-btn-g">Download CSV</button>
+
+                        </div>
+                    </div>
+
+
+                    <div class="emp-white-wrap-g p-0">
+                        <div class="apxtable_grid_table">
+
+                            <div class="table-responsive apx-responsive table-responsive-realest">
+                                <table class="table open-exc-table-g">
+                                    <thead>
+                                        <tr>
+             
+                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">EXCHANGE NUMBER
+                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                            </th>
+
+                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">RELINQUISHED PROPERTY ADDRESS
+                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                            </th>
+                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">REPLACEMENT PROPERTY ADDRESS
+                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                            </th>
+                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">FEE DETAILS
+                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span></th>
+
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <tr *ngFor="let leadlist of accountList | orderBy: order:reverse| paginate: { itemsPerPage: 5, currentPage: p } ">
+                            
+                                            <td [routerLink]="['/synergy/syn-accounts-detail',leadlist.exchangeID]"><a href="javascript:void(0);"  class="tb-txt-u">{{leadlist.exchangenumber}}</a></td>
+                                            <td>{{leadlist.relinquishedProperty}}</td>
+                                            <td>{{leadlist.replacementProperty}}</td>
+                                            <td>{{leadlist.feeDetails}}</td>
+
+                                        </tr>
+
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="apxtable_pagination_wrapper">
+                        <div class="apxtable_pagelist">
+                            
+                        </div>
+                        <div class="apxtable_pagination">
+                            <!-- <ul>
+                      <li class="prev">Prev</li>
+                      <li class="active"><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li>...</li>
+                      <li><a href="#">16</a></li>
+                      <li><a href="#">17</a></li>
+                      <li><a href="#">18</a></li>
+                      <li class="next">Next</li>
+                  </ul> -->
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="emo-footer">
+                    <p class="mail-sec"> help@peakexchange.com </p>
+                    <p class="ph-sec"><b>|</b>+1-541-754-3010</p>
+                    <span>Copyright © 2020 Peak 1031 Exchange</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>

@@ -1,0 +1,78 @@
+<div class="container-fluid contentpage_wrapper">
+    <div class="pagecontent_wrapper">
+        <div class="chart-pie-g">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 pie-table-g">
+                    <div class="white_wrapper">
+                        <h2 class="page-head-g">Revenue Breakdown</h2>
+                        <div class="chat-left-inner">
+                            <div class="dat-area peak-form">
+                                <dp-date-picker placeholder="From Date" theme="dp-material" [config]="datePickerConfig"
+                                    required="true">
+                                </dp-date-picker>
+                            </div>
+                            <div class="dat-area peak-form">
+                                <dp-date-picker placeholder="To Date" theme="dp-material" [config]="datePickerConfig"
+                                    required="true">
+                                </dp-date-picker>
+                            </div>
+                            <button class="filter-btn-g">Filter</button>
+                        </div>
+                        <div class="pie-table-sc">
+                            <div class="table-responsive">
+                                <table id="pie-cht-tb" class="peak-table report-table">
+                                    <thead>
+                                        <tr>
+                                            <th>S No.</th>
+                                            <th>Revenue</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>01</td>
+                                            <td><span class="cl-iden c-o"></span>Synergy Client #1</td>
+                                            <td>$25,000,000.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>02</td>
+                                            <td><span class="cl-iden c-g"></span>Synergy Client #2</td>
+                                            <td>$25,000,000.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>03</td>
+                                            <td><span class="cl-iden c-skyb"></span>Peak 1031</td>
+                                            <td>$25,000,000.00</td>
+                                        </tr>
+
+                                        <tr class="balace-row-g">
+                                            <td></td>
+                                            <td class="bal-txt-g">Total Revenue</td>
+                                            <td>$7,000,000.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 pie-chart-ed-g">
+                    <div class="white_wrapper p-2">
+                        <div class="pie-chrt">
+                            <img src="../../../assets/images/superadmin/pie-chart-2.png" class="img-fluid">
+                        </div>
+                        <div class="chart-det-sec mt-2">
+                            <h1><span class="cl-iden c-o"></span>Synergy Client #1</h1>
+                            <h1><span class="cl-iden c-g"></span>Synergy Client #2</h1>
+                            <h1><span class="cl-iden c-skyb"></span>Peak 1031</h1>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

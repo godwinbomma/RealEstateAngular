@@ -1,0 +1,43 @@
+
+<div class="container-fluid contentpage_wrapper">
+    <div class="pagecontent_wrapper">
+        <form (ngSubmit)=BankForm.form.valid&&addBank() #BankForm="ngForm">
+        <div class="manage-banks-add">
+
+            <h4>Add New Bank</h4>
+            <div class="flx_div">
+                <div class="flx_section">
+                    <label class="peak-form-label">Bank Name</label>
+                    <input class="ipt bb" type="text"  [(ngModel)]="Bank.bankName" #bankName="ngModel" name ="bankName" [ngClass]="{ 'is-invalid': BankForm.submitted && bankName.invalid }" required  placeholder="Bank Name">
+                    <div *ngIf="BankForm.submitted && bankName.invalid" class="invalid-feedback">
+                        <div *ngIf="bankName.errors.required">Bank Name is required</div>
+                    </div>
+                </div>
+                <div class="flx_section">
+                    <label class="peak-form-label">Interest Rate</label>
+                    <input class="ipt" type="text" [(ngModel)]="Bank.interestRate" #interestRate="ngModel" name ="interestRate" [ngClass]="{ 'is-invalid': BankForm.submitted && interestRate.invalid }" required  placeholder="Interest Rate" >
+                    <div *ngIf="BankForm.submitted && interestRate.invalid" class="invalid-feedback">
+                        <div *ngIf="interestRate.errors.required">Interest Rate is required</div>
+                    </div>
+                </div>
+                <div class="flx_section">
+                    <label class="peak-form-label">Effective From</label>
+                    <dp-date-picker placeholder="08-28-2020" [(ngModel)]="Bank.effectFrom" #effectFrom="ngModel" name ="effectFrom" [ngClass]="{ 'is-invalid': BankForm.submitted && effectFrom.invalid }" required theme="dp-material" [config]="datePickerConfig" required="true"></dp-date-picker>
+                    <div *ngIf="BankForm.submitted && effectFrom.invalid" class="invalid-feedback">
+                        <div *ngIf="effectFrom.errors.required">Effective Date is required</div>
+                    </div>
+                </div>
+                <div class="flx_section">
+                    <label class="peak-form-label">Notes</label>
+                    <input class="ipt bb" type="text" [(ngModel)]="Bank.note" #note="ngModel" name ="note"   placeholder="Enter Notes">
+                </div>
+
+            </div>
+            <div class="btn_flex">
+                <button class="btn_Confirm">{{label}}</button>
+                <button type="button" [routerLink]="['/superadmin/banks/list']" class="btn_Cancel">CANCEL</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

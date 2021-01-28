@@ -1,0 +1,89 @@
+<div class="page-wrapper chiller-theme employee-wrapper">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <app-header >
+        </app-header>
+        <div class="container-fluid contentpage_wrapper">
+            <div class="pagecontent_wrapper">
+                <div class="syn-contacts-hd-g">
+                    
+                </div>
+                <div class="col-lg-12 dash-brd-tab open-exchange-table-g p-0">
+                    <div class="synergy-tab-hd-g">
+                        <h4>CONTACTS LIST</h4>
+                        
+                    </div>
+                    <div class="mel-left-auto">
+                        <input type="text" placeholder="Search Contact..." [(ngModel)]="searchText" (input)="onSearch(searchText)"/>                      
+                    </div>
+                    <div style="padding-top: 20px;">
+                    <div class="emp-white-wrap-g p-0">
+                        <div class="apxtable_grid_table">
+
+                            <div class="table-responsive apx-responsive table-responsive-realest">
+                                <table class="table op-exc-table-g">
+                                    <thead>
+                                        <tr>
+                                           
+                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')"> NAME
+                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                            </th>
+                                           
+                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">PHONE NUMBER
+                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                            </th>
+                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">EMAIL ADDRESS
+                                                <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span></th>
+                                            <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Company Name
+                                                    <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                                    <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let contact of contactListArray | orderBy: order:reverse| paginate: { itemsPerPage: 5, currentPage: p };let i = index ">
+                  
+                                         
+                                          <td>{{contact.fullName}}</td>
+                                          <td>{{contact.phoneNumber}}</td>
+                                          <td>{{contact.emailAddress}}</td>
+                                          <td>{{contact.companyName}}</td>
+                                         
+                                        </tr>
+                                      </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="apxtable_pagination_wrapper">
+                     
+                        <div class="apxtable_pagination">
+                            <!-- <ul>
+                        <li class="prev">Prev</li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li>...</li>
+                        <li><a href="#">16</a></li>
+                        <li><a href="#">17</a></li>
+                        <li><a href="#">18</a></li>
+                        <li class="next">Next</li>
+                    </ul> -->
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+ 
+    </main>
+</div>

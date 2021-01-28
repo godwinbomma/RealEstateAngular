@@ -1,0 +1,1770 @@
+<ng-template  #mymodal let-modal>
+
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">User Detail</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+        <form  #ContactForm="ngForm">
+            <div class="manage-contacts-detail profile_detail_card">
+                <h4>Add Contact</h4>
+                <div class="flx_div">
+                  <div class="flx_section">
+                    <label class="peak-form-label">Contact Type</label>
+                    <p>{{Contacts.contactType}}</p>
+                    </div>
+                  <div class="flx_section">
+                    <label class="peak-form-label">First Name</label>
+                    <p>{{Contacts.firstName}}</p>
+                  </div>
+                  <div class="flx_section">
+                    <label class="peak-form-label">Last Name</label>
+                    <p>{{Contacts.lastName}}</p>
+                  </div>
+                  <div class="flx_section">
+                    <label class="peak-form-label">Company Name</label>
+                    <p>{{Contacts.companyName}}</p>
+                  </div>
+                  <div class="flx_section">
+                    <label class="peak-form-label">Phone Number</label>
+                    <p>({{Contacts.mobileNumber | slice:0:3}}) - {{Contacts.mobileNumber | slice:3:0}} {{Contacts.mobileNumber | slice:3:6}}-  {{Contacts.mobileNumber | slice:-4}}</p>
+                  </div>
+
+                  <div class="flx_section">
+                    <label class="peak-form-label">Fax</label>
+                    <p>({{Contacts.faxNumber | slice:0:3}})- {{Contacts.faxNumber | slice:3:0}} {{Contacts.faxNumber | slice:3:6}}-  {{Contacts.faxNumber | slice:-4}}</p>
+
+                  </div>
+                  <div class="flx_section">
+                    <label class="peak-form-label">Email Address</label>
+                    <p>{{Contacts.emailAddress}}</p>
+                  </div>
+                    <div class="flex_notes">
+                      <div class="flx_section">
+                        <label class="peak-form-label">Address</label>
+                        <p>{{Contacts.mailingAddress}}</p>
+                      </div>
+                      <div class="flx_section">
+                        <label class="peak-form-label">Notes</label>
+                        <p>{{Contacts.notes}}</p>
+                      </div>
+                    </div>
+
+                </div>
+                <div class="flx_section Customfield">
+                <div class="flex_added">
+
+
+                        <div  class="integreatedBlock   padding-15" *ngFor="let item of ContactsCF,index as i">
+                          <div class="row no-margin-row nmr-mb">
+                              <div class="relinquished-details-list">
+
+                                        <label class="peak-form-label">{{item.labelName}}</label>
+
+                                      <div *ngIf="item.valueType=='Text'" class="flexWt-100">
+
+                                          <ng-container >
+                                            <p>{{item.value}}</p>
+                                          </ng-container>
+
+                                      </div>
+
+
+                                      <div *ngIf="item.valueType=='Interger '"  class="flexWt-100">
+                                          <ng-container >
+                                              <p>{{item.value}}</p>
+                                          </ng-container>
+
+                                      </div>
+
+
+                                      <div *ngIf="item.valueType=='Date '"  style="pointer-events:none;"  [config]="datePickerConfig">
+                                          <ng-container>
+                                              <p>{{item.value}}</p>
+
+                                          </ng-container>
+
+                                      </div>
+
+                              </div>
+
+                          </div>
+
+                    </div>
+                </div>
+                </div>
+            </div>
+        </form>
+       
+    </div>
+    <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+    </div>
+   -->
+
+
+
+  </ng-template>
+
+<div class="container-fluid contentpage_wrapper peak-manage-exchanges peak-radius10">
+<div class="pagecontent_wrapper">
+
+    <div class="col-lg-12 custom_mobWrap">
+        <div class="row">
+            <div class="col-lg-12 col-md-8 col-sm-12 col-12 no-padding">
+                <div class="white_wrapper white_firstChild">
+                    <div class="peak_flex">
+                        <div class="peak_exhange_form">
+                            <label>Direct Transfer</label>
+                            <label class="switch" for="checkbox">
+                                <input type="checkbox" id="checkbox"
+                                    [checked]="exchange.exchangeCloseOutModel.directTransfer" />
+                                <div class="slider round"></div>
+                            </label>
+                        </div>
+                        <div class="peak_exhange_form">
+                            <label>Exchange Fee Received</label>
+                            <label class="switch" for="checkbox1">
+                                <input type="checkbox" id="checkbox1"
+                                    [checked]="exchange.exchangeCloseOutModel.exchangeFeeReceived" />
+                                <div class="slider round"></div>
+                            </label>
+                        </div>
+                        <div class="peak_exhange_form">
+                            <label>Identified</label>
+                            <label class="switch" for="checkbox2">
+                                <input id="checkbox2" type="checkbox"
+                                    [checked]="exchange.exchangeCloseOutModel.identified" />
+                                <!-- <label for="example" class="toggle--label"></label> -->
+                                <div class="slider round"></div>
+                                <!-- <div class="foux-toggle"></div> -->
+                            </label>
+                        </div>
+                        <div class="peak_exhange_form">
+                            <label>Cancelled</label>
+                            <label class="switch" for="checkbox3">
+                                <input id="checkbox3" type="checkbox" [checked]="exchange.exchangeCloseOutModel.cancelled"/>
+                                <!-- <label for="example" class="toggle--label"></label> -->
+                                <div class="slider round"></div>
+                                <!-- <div class="foux-toggle"></div> -->
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12 no-padding">
+                <div class="white_wrapper ">
+                    <div class="description_peakWrap">
+                        <div class="wrapper_firstChild">
+                            <p class="descHeader"> <strong class="hover"  (click)="getUserData(exchange.contactId,mymodal)">{{exchange.customerName}}</strong> <small>({{exchange.companyName}})</small>
+                                <span id="edit_blocks">
+                                    <a (click)="editexchange()"><img src="../../../assets/images/pen.png"/>
+                                  </a>
+                                  <a (click)="Updateexchangenumber()"> <img src="../../../assets/images/floppy-disk.png"/>
+                                  </a>
+                                  </span>
+                            </p>
+                            <ul>
+                                <li> <span class="nth-span1">Exchange Number</span>
+                                                                <ng-container *ngIf="exchangeedit; else interestPayable">
+                                                                                          <input type="text" [(ngModel)]="exchange.exchangeNumber" >
+                                                                    </ng-container>
+                                                                    <ng-template #interestPayable>
+                                                                        <span><span
+                                                                            class="ftBold">{{exchange.exchangeNumber}}</span> </span>
+                                                                    </ng-template></li>
+
+
+                                <li>
+                                    <span class="nth-span1">Relinquished Address</span>
+                                    <ng-container *ngIf="exchangeedit; else interestPayable1">
+                                        <input type="text" [(ngModel)]="exchange.propertyAddress" >
+                  </ng-container>
+                  <ng-template #interestPayable1>
+                      <span><span class="ftBold">{{exchange.propertyAddress}}</span> </span>
+                  </ng-template>
+                                     </li>
+
+                                <li><span class="nth-span1">Current Account Balancer</span><span
+                                        class="ftBold">{{totalBalance|currency}}</span> </li>
+                            </ul>
+                        </div>
+                        <div class="wrapper_secondChild">
+                            <p class="sub_titleHeader">Exchange Deadlines</p>
+                            <ul>
+                                <li><span class="nth-span1">45-Day Deadline</span><span
+                                    class="ftBold">{{exchange.exchange45Date | date:'d/M/yy'}}</span> </li>
+                                    <ng-container
+                                        *ngIf="exchange.day45Left=='0'; else progressbar1">
+                                        <li style="color: #ffffff;">N/A
+                                        </li>
+                                    </ng-container>
+                                    <ng-template #progressbar1>
+                                        <li class="warn_desc">There are <small>{{exchange.day45Left}}</small> days left to turn in the ID form.
+                                        </li>
+                                    </ng-template>
+
+                            <li><span class="nth-span1">180-Day Deadline</span><span
+                                    class="ftBold">{{exchange.exchange180Date | date:'d/M/yy'}}</span> </li>
+                                    <ng-container
+                                        *ngIf="exchange.day180Left=='0'; else progressbar2">
+                                        <li style="color: #ffffff;">N/A
+                                        </li>
+                                    </ng-container>
+                                    <ng-template #progressbar2>
+                                        <li class="warn_desc">There are <small>{{exchange.day180Left}}</small> days left to turn in the ID form.
+                                        </li>
+                                    </ng-template>
+
+                            </ul>
+                        </div>
+                        <div class="wrapper_thirdChild">
+                            <p class="sub_titleHeader">Special Instruction</p>
+                            <ng-container *ngIf="exchangeedit; else interestPayable2">
+                                <textarea name="" class="form-control editable" [(ngModel)]="exchange.note"  style="background-color:  #ffffff;">{{exchange.note}}</textarea>
+          </ng-container>
+          <ng-template #interestPayable2>
+              <span><span class="ftBold">{{exchange.note}}</span> </span>
+          </ng-template>
+
+                        </div>
+                    </div>
+
+                    <div class="tabs_headerBlock">
+                        <div class="custom_TabWrapper">
+
+                            <div class="tab_static customs380tab">
+                                <div class="static_innertab">
+                                    <mat-tab-group class="nav nav-tabs">
+                                        <mat-tab label="GENERAL">
+                                            <div class="tab-pane  active" id="generals">
+
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                                        <p class="font18">Account Statements</p>
+                                                        <button class="add-property-ag-btn" *ngIf="onDisabledShow"
+                                                            (click)="addTransaction(null)">Add Transaction</button>
+                                                    </div>
+                                                    <div class="col-lg-8 col-md-8 col-sm-12">
+                                                        <button class="btn peak_grey btn_acct" *ngIf="onEnabledShow"
+                                                            (click)="onEdit()">Edit Account Statement</button>
+                                                        <div class="btn_peak_grp" *ngIf="onDisabledShow">
+                                                            <button class="btn peak_update"
+                                                                (click)="accountSubmit()">Update</button>
+                                                            <button class="btn peak_cancel"
+                                                                (click)="onEdit()">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="body_content table_editable table-responsive">
+
+                                                            <form [formGroup]="form">
+                                                                <table class="table borderless" #content
+                                                                    id="excel-table">
+                                                                    <thead class="first-child">
+
+                                                                        <tr>
+                                                                            <div>
+                                                                                <th style="width:135px;min-width:135px;max-width: 135px;"
+                                                                                    class="bg_hdr">Date</th>
+                                                                                <th style="width:135px;min-width:135px;max-width: 150px;"
+                                                                                    class="bg_hdr">Fund To/From</th>
+                                                                                <th style="width:300px;min-width:300px;max-width: 300px;"
+                                                                                    class="bg_hdr">Description</th>
+                                                                                <th style="width:150px;min-width:150px;max-width: 150px;"
+                                                                                    class="bg_hdr">Incoming Amount
+                                                                                </th>
+                                                                                <th style="width:150px;min-width:150px;max-width: 150px;"
+                                                                                    class="bg_hdr">Outgoing Amount
+                                                                                </th>
+                                                                                <th style="width:150px;min-width:150px;max-width: 150px;"
+                                                                                    class="bg_hdr">Balance</th>
+                                                                            </div>
+                                                                        </tr>
+
+                                                                    </thead>
+                                                                    <tbody>
+
+                                                                        <tr formArrayName="accounts"
+                                                                            *ngFor="let item of getControls(); index as i">
+                                                                            <div [formGroupName]="i">
+                                                                                <td
+                                                                                    style="width:135px;min-width:135px;max-width: 135px;">
+                                                                                    <input type="text"
+                                                                                        formControlName="date"
+                                                                                        [disabled]="true"
+                                                                                        class="disabled_input" />
+                                                                                </td>
+                                                                                <td
+                                                                                    style="width:135px;min-width:135px;max-width: 150px;">
+                                                                                    <input type="text"
+                                                                                        formControlName="senderOrReceiver"
+                                                                                        class="disabled_input"
+                                                                                        [disabled]="true">
+                                                                                </td>
+                                                                                <td
+                                                                                    style="width:300px;min-width:300px;max-width: 300px;">
+                                                                                    <input type="text"
+                                                                                        formControlName="description"
+                                                                                        class="disabled_input"
+                                                                                        [disabled]="true">
+                                                                                </td>
+                                                                                <td
+                                                                                    style="width:150px;min-width:150px;max-width: 150px;">
+                                                                                    <input type="number"
+                                                                                        formControlName="incomingAmount"
+                                                                                        class="disabled_input amountvalue"
+                                                                                        [disabled]="true"
+                                                                                        [readonly]="isValueExits(i, 'outgoingAmount')">
+                                                                                </td>
+                                                                                <td
+                                                                                    style="width:150px;min-width:150px;max-width: 150px;">
+                                                                                    <input type="number"
+                                                                                        formControlName="outgoingAmount"
+                                                                                        class="disabled_input amountvalue"
+                                                                                        [disabled]="true"
+                                                                                        [readonly]="isValueExits(i, 'incomingAmount')">
+                                                                                </td>
+                                                                                <td
+                                                                                    style="width:150px;min-width:150px;max-width: 150px;">
+                                                                                    {{getbalance(item, i)|currency}}
+                                                                                </td>
+                                                                            </div>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td style="background:#ffffff; padding: 11px 0px; vertical-align: middle;border-right: unset;    border-top-left-radius: 10px;border-bottom-left-radius: 10px;"
+                                                                                colspan="4">
+                                                                                <p class="font18"
+                                                                                    style="margin: 0;text-align: center;">
+                                                                                    Current Balance </p>
+                                                                            </td>
+                                                                            <td
+                                                                                style="background:#ffffff; padding: 11px 0px; vertical-align: middle;    border-top-right-radius: 10px;border-bottom-right-radius: 10px;">
+                                                                                <p class="font18"
+                                                                                    style="margin: 0;text-align: center;">
+                                                                                    {{totalBalance|currency}}
+                                                                                </p>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn peak_grey btn_downloads"
+                                                    (click)="Downloadexchangedocs()">Download Exchange
+                                                    Documents</button>
+                                            </div>
+                                        </mat-tab>
+                                        <mat-tab label="RELINQUISHED">
+                                            <div class="tab-pane  active" id="relinquished">
+                                                <div class="relinquished-secton col-lg-12 no-padding">
+                                                    <div class="relinquished-header btn_grps">
+                                                        <h2>Relinquished Detailss</h2>
+                                                        <button class="btn end-sub-edit"
+                                                        (click)="isEditOrCancelRel()" title="Edit" ><i   class="fa fa-edit"></i></button>
+                                                        <button class="btn end-download"
+                                                            (click)="Downloadexchangedocs()" title="Download Documents"><i  aria-hidden="true" class="fa fa-download"></i></button>
+                                                        <!-- <button class="btn custom-field" data-toggle="modal"
+                                                            data-target="#dialog_box">Duplicate</button> --> 
+                                                            <button class="btn custom-field" (click)="createData()">Duplicate</button>
+                                                    </div>
+                                                    <div class="row no-margin-row nmr-mb">
+                                                        <div
+                                                            class="relinquished-details-list col-12 col-md-6 col-xl-6">
+                                                            <div class="row">
+                                                                <div class="col-12 col-xl-8 no-padding rd-label">
+                                                                    <p>Settlement Agent / Escrow Officer Name</p>
+                                                                </div>
+                                                                <div class="relinquished-details-drop">
+                                                                    <ng-container
+                                                                    *ngIf="isRelinquisEdit; else escrowOfficerName">
+                                                                    <div id="multiselect_custom">
+
+                                                                        <mat-form-field appearance="fill">
+                                                                            <mat-select  [(ngModel)]="exchange.relinquished.escrowOfficerName"  name="SettlementAgent"  #SettlementAgent="ngModel" required [ngModelOptions]="{standalone: true}">
+
+                                                                              <input type="text" (keyup)="onSearchUsers($event)"  class="peak-box-g" (keydown)="$event.stopPropagation()">
+                                                                              <mat-option *ngFor="let Contact of SynergyContactDropdownList"  value ="{{Contact.userId}}">
+                                                                                {{Contact.fullName}} ({{Contact.contactType}})
+                                                                              </mat-option>
+                                                                            </mat-select>
+                                                                          </mat-form-field>
+
+
+
+                                                                      <button type="button" class="btn select-btn" data-toggle="modal" data-target="#bank_profile"><img src="../../../../assets/images/superadmin/escrow-icon.png" ></button>
+
+                                                                </div>
+                                                                </ng-container>
+                                                                <ng-template #escrowOfficerName>
+                                                                    <span class="link-span" (click)="getUserData(exchange.relinquished.synergyID,mymodal)"
+                                                                        >{{exchange.relinquished?.escrowOfficerName}}</span>
+                                                                </ng-template>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="relinquished-details-list col-12 col-md-6 col-xl-6">
+                                                            <div class="row">
+                                                                <div class="col-12 col-xl-8 no-padding rd-label">
+                                                                    <p>How do you hold title to the Property?</p>
+                                                                </div>
+                                                                <div class="col-12 col-xl-4 no-padding">
+                                                                    <ng-container
+                                                                    *ngIf="isRelinquisEdit; else propertyTitle">
+                                                                    <input type="text"
+                                                                    [(ngModel)]="exchange.relinquished.propertyTitle">
+                                                                </ng-container>
+                                                                <ng-template #propertyTitle>
+                                                                   <span>{{exchange.relinquished?.propertyTitle}}
+                                                                    </span>
+                                                                </ng-template>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row no-margin-row nmr-mb">
+                                                        <div
+                                                            class="relinquished-details-list col-12 col-md-6 col-xl-6">
+                                                            <div class="row">
+                                                                <div class="col-12 col-xl-8 no-padding rd-label">
+                                                                    <p>Sales Price</p>
+                                                                </div>
+                                                                <div class="col-12 col-xl-4 no-padding">
+                                                                    <ng-container
+                                                                    *ngIf="isRelinquisEdit; else salesPrice">
+                                                                    <input type="text"
+                                                                    [(ngModel)]="exchange.relinquished.salesPrice">
+                                                                </ng-container>
+                                                                <ng-template #salesPrice>
+                                                                    <span>{{exchange.relinquished?.salesPrice  | currency}}</span>
+                                                                </ng-template>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="relinquished-details-list col-12 col-md-6 col-xl-6">
+                                                            <div class="row">
+                                                                <div class="col-12 col-xl-8 no-padding rd-label">
+                                                                    <p>Approx. Current debt on Property</p>
+                                                                </div>
+                                                                <div class="col-12 col-xl-4 no-padding">
+                                                                    <ng-container
+                                                                    *ngIf="isRelinquisEdit; else currentDebtOnProperty">
+                                                                    <input type="text"
+                                                                    [(ngModel)]="exchange.relinquished.currentDebtOnProperty">
+                                                                </ng-container>
+                                                                <ng-template #currentDebtOnProperty>
+                                                                    <span>{{exchange.relinquished?.currentDebtOnProperty | currency}}</span>
+                                                                </ng-template>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row no-margin-row nmr-mb">
+                                                        <div
+                                                            class="relinquished-details-list col-12 col-md-6 col-xl-6">
+                                                            <div class="row">
+                                                                <div class="col-12 col-xl-8 no-padding rd-label">
+                                                                    <p>% Ownership Interest</p>
+                                                                </div>
+                                                                <div class="col-12 col-xl-4 no-padding">
+                                                                    <ng-container
+                                                                    *ngIf="isRelinquisEdit; else ownerShipInterest">
+                                                                    <input type="text"
+                                                                    [(ngModel)]="exchange.relinquished.ownerShipInterest">
+                                                                </ng-container>
+                                                                <ng-template #ownerShipInterest>
+                                                                    <span>{{exchange.relinquished?.ownerShipInterest ? exchange.relinquished?.ownerShipInterest: 0}}%</span>
+                                                                </ng-template>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="relinquished-details-list col-12 col-md-6 col-xl-6">
+                                                            <div class="row">
+                                                                <div class="col-12 col-xl-8 no-padding rd-label">
+                                                                    <p>Rel Property Closed Date</p>
+                                                                </div>
+                                                                <div class="col-12 col-xl-4 no-padding">
+                                                                    <ng-container
+                                                                        *ngIf="isRelinquisEdit; else relPropertyClosedate">
+
+                                                                        <dp-date-picker placeholder="select date"
+                                                                            [(ngModel)]="exchange.relinquished.relPropertyClosedate"
+                                                                            theme="dp-material"
+                                                                            [config]="datePickerConfig"
+                                                                            required="true">
+                                                                        </dp-date-picker>
+                                                                    </ng-container>
+                                                                    <ng-template #relPropertyClosedate>
+                                                                        <span>{{exchange.relinquished?.relPropertyClosedate | date:'MM/dd/yy'}}</span>
+                                                                    </ng-template>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row no-margin-row nmr-mb">
+                                                        <div
+                                                            class="relinquished-details-list col-12 col-md-6 col-xl-6">
+                                                            <div class="row">
+                                                                <div class="col-12 col-xl-8 no-padding rd-label">
+                                                                    <p>Interest Payable to Exchanger</p>
+                                                                </div>
+                                                                <div class="col-12 col-xl-4 no-padding">
+                                                                    <ng-container
+                                                                    *ngIf="isRelinquisEdit; else value">
+                                                                        <input type="text"
+                                                                            [(ngModel)]="exchange.relinquished.interestPayableToExchanger">
+                                                                    </ng-container>
+                                                                    <ng-template #value>
+                                                                        <span>{{exchange.relinquished?.interestPayableToExchanger }}%</span>
+                                                                    </ng-template>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="row">
+
+                                                                <div *ngFor="let item of customFieldsRelinquish"
+                                                                    class="relinquished-details-list mb-15 col-12 col-md-6 col-xl-6">
+
+                                                                    <div class="row">
+                                                                        <div
+                                                                            class="col-12 col-xl-8 no-padding rd-label">
+                                                                            <p>{{item.labelName}}</p>
+                                                                        </div>
+
+                                                                        <div *ngIf="item.valueType=='Text'"
+                                                                            class="col-12 col-xl-4 no-padding">
+
+                                                                            <ng-container
+                                                                                *ngIf="isRelinquisEdit; else value">
+                                                                                <input type="item.valueType"
+                                                                                    placeholder="{{item.toolTip}}"
+                                                                                    [(ngModel)]="item.value">
+                                                                            </ng-container>
+                                                                            <ng-template #value>
+                                                                                <span>{{item.value}}</span>
+                                                                            </ng-template>
+                                                                        </div>
+
+
+                                                                        <div *ngIf="item.valueType=='Interger '"
+                                                                            class="col-12 col-xl-4 no-padding">
+                                                                            <ng-container
+                                                                                *ngIf="isRelinquisEdit; else value">
+                                                                                <input type="item.valueType"
+                                                                                    placeholder="{{item.toolTip}}"
+                                                                                    [(ngModel)]="item.value">
+                                                                            </ng-container>
+                                                                            <ng-template #value>
+                                                                                <span>{{item.value}}</span>
+                                                                            </ng-template>
+                                                                        </div>
+
+
+                                                                        <div *ngIf="item.valueType=='Date '"
+                                                                            class="col-12 col-xl-4 no-padding">
+                                                                            <ng-container
+                                                                                *ngIf="isRelinquisEdit; else value">
+                                                                                <dp-date-picker
+                                                                                    placeholder="{{item.toolTip}}"
+                                                                                    theme="dp-material"
+                                                                                    [(ngModel)]="item.value">
+                                                                                </dp-date-picker>
+
+                                                                            </ng-container>
+                                                                            <ng-template #value>
+                                                                                <span>{{item.value}}</span>
+                                                                            </ng-template>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="relinquished-header input-upload-section">
+                                                        <label style="display: none;">
+                                                            <input id="upload_file" type="file" #file
+                                                                (change)="onChange(file)">
+                                                        </label>
+                                                        <div class="float-end-sec" *ngIf="fileName">
+                                                            <p>{{fileName}}</p>
+                                                            <img (click)="removeFile()"
+                                                                src="../../../../assets/images/superadmin/input-delete.png" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="relinquished-header">
+                                                        <h2>Exchange Documents</h2>
+
+                                                    </div>
+                                                    <div class="table-responsive exchange-document-table">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Date</th>
+                                                                    <th>Uploaded by</th>
+                                                                    <th>Document Name</th>
+                                                                    <th>Document Type</th>
+                                                                    <th>Document integrated slot</th>
+                                                                    <th>Attachments</th>
+                                                                    <th>Action</th>
+                                                                    <th>Status</th>
+                                                                    <th>Download Signed Document</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item of exchange.relinquished?.documentList">
+                                                                    <td>{{item.createdOn | date}}</td>
+                                                                    <td>{{item.createdUser}}</td>
+                                                                    <td>{{item.documentName}}</td>
+                                                                    <td>{{item.extensionName}}</td>
+                                                                    <td>{{item.subExtensionName}}</td>
+                                                                   
+                                                                    <td> 
+                                                                         <a [download]="item.documentName"
+                                                                            [href]="item.documentPath"
+                                                                            target="_blank"><img
+                                                                                src="../../../assets/images/superadmin/download-icon.png"
+                                                                                alt="no-img" /></a>
+                                                                           
+                                                                    </td>
+                                                                    <ng-container
+                                                                                *ngIf=item.docuType>
+                                                                    <td>
+                                                                        <button class="btn btn-docsign docsn" (click)="getstatus()">  <a [download]="item.documentName"
+                                                                        [href]=item.docusignsignURL
+                                                                        target="_blank">Docusign </a>
+                                                                        </button>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="flexDiv">
+                                                                        <button class="btn btn-docsign" (click)="getstatus()"> 
+                                                                             <a [download]="item.documentName"
+                                                                             [href]=item.docusignstatusURL
+                                                                        target="_blank"> {{item.documentOriginalName}}</a> 
+                                                                        <a [download]="item.documentName" class="fas fa-sync-alt"
+                                                                             [href]=item.docusignstatusURL
+                                                                        target="_blank"></a> 
+                                                                     
+                                                                        </button>
+                                                                        
+                                                                    </div>
+                                                                   
+                                                                    </td>
+                                                            <td> 
+                                                                    <a [download]="item.documentName"
+                                                                    [href]=item.docusigndownloadURL
+                                                                    target="_blank"><img
+                                                                        src="../../../assets/images/superadmin/download-icon.png"
+                                                                        alt="no-img" /></a>
+                                                        </td>
+                                                                    </ng-container>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="relinquished-header">
+                                                        <h2>Uploaded Documents</h2>
+                                                        <button (click)="uploadAllFiles()"
+                                                            class="btn custom-field upload-all">Upload all</button>
+                                                    </div>
+                                                    <div class="file-uploader-section">
+                                                        <img
+                                                            src="../../../../assets/images/superadmin/file-uploader-icon.png" />
+                                                        <div class="fus">
+                                                            <label>
+                                                                <input type="file"
+                                                                    (change)="onSelectMultipleFile($event)"
+                                                                    accept=".xls,.xlsx,.docx,.pdf,.doc" multiple>
+                                                            </label>
+                                                            <!-- <input readonly="true" type="text" id="file" (click)="trigger()"
+                                                                value=""> -->
+                                                        </div>
+                                                        <div class="float-end-sec" *ngIf="fileName">
+                                                            <p>{{fileName}}</p>
+                                                        </div>
+                                                        <span>Drag and Drop your files here or
+                                                            <!-- <input readonly="true"
+                                                                type="text" id="file" (click)="trigger()"
+                                                                value="Browse your computer"> -->
+                                                        </span>
+
+                                                    </div>
+                                                    <div
+                                                        class="table-responsive exchange-document-table edt-end-table">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Date</th>
+                                                                    <th>Document Name</th>
+                                                                    <th>Document Type</th>
+                                                                    <th>Document Designated Slot</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item of filesSelected; let i = index">
+                                                                    <td>{{item.date | date}}</td>
+                                                                    <td>{{item.name}}</td>
+                                                                    <td>
+                                                                        <select class="peak-box-g"
+                                                                            [(ngModel)]="item.documentType"
+                                                                            (change)="getdocumentslotList(item)"
+                                                                            name="documentType"
+                                                                            #documentType="ngModel">
+                                                                            <option value="0" disabled>Select
+                                                                                document type</option>
+                                                                            <option value="1">Exchange</option>
+                                                                            <option value="2">Escrow</option>
+                                                                            <option value="5">Identification
+                                                                            </option>
+                                                                            <option value="6">CloseOut</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+
+                                                                        <select class="peak-box-g"
+                                                                            [(ngModel)]="item.documentdesignatedslot"
+                                                                            name="documentType"
+                                                                            #documentType="ngModel">
+                                                                            <option value="0" disabled>Select
+                                                                                designated type</option>
+                                                                            <option
+                                                                                *ngFor="let doc of item.Documentslotlist"
+                                                                                [ngValue]="doc.extensionId">
+                                                                                {{doc.extensionName}} </option>
+                                                                        </select>
+
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="page-end-buttons col-xl-12">
+                                                      
+                                                           
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </mat-tab>
+                                        <mat-tab label="IDENTIFICATION">
+                                            <div class="tab-pane  active" id="identifications">
+                                                <form [formGroup]="identification">
+                                                    <div class="identi-beginer" *ngIf="ruleFromToggle">
+                                                        <p>You can fill out the identification form on behalf of the
+                                                            client.
+                                                            However, the client will have to sign and submit the
+                                                            form before we
+                                                            will accept it as a completed ID form.</p>
+                                                        <h4>3 Property Rule &#x00a0; <span><svg width="18"
+                                                                    height="20" viewBox="0 0 18 20" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <path
+                                                                        d="M9 0.132812C4.0371 0.132812 0 4.49289 0 9.85284C0 15.2128 4.0371 19.5729 9 19.5729C13.9629 19.5729 18 15.2128 18 9.85284C18 4.49289 13.9629 0.132812 9 0.132812ZM8.62499 16.3329C8.00462 16.3329 7.49999 15.7879 7.49999 15.1179C7.49999 14.4479 8.00462 13.9029 8.62499 13.9029C9.24536 13.9029 9.74999 14.4479 9.74999 15.1179C9.74999 15.7879 9.24536 16.3329 8.62499 16.3329ZM9.74999 11.3922V12.6879C9.74999 12.9117 9.58226 13.0929 9.37498 13.0929H7.875C7.66772 13.0929 7.49999 12.9117 7.49999 12.6879V10.6629C7.49999 9.76981 8.17309 9.04285 9 9.04285C9.82691 9.04285 10.5 8.3159 10.5 7.42284C10.5 6.52977 9.82691 5.80282 9 5.80282C8.17309 5.80282 7.49999 6.52977 7.49999 7.42284V7.82785C7.49999 8.05171 7.33226 8.23286 7.12498 8.23286H5.625C5.41772 8.23286 5.24999 8.05171 5.24999 7.82785V7.42284C5.24999 5.18977 6.93236 3.37281 9 3.37281C11.0676 3.37281 12.75 5.18981 12.75 7.42284C12.75 9.36639 11.4822 11.0133 9.74999 11.3922Z"
+                                                                        fill="#F05922" />
+                                                                </svg> What is the 3-Property Rule?</span>
+                                                        </h4>
+                                                        <div class="flx_div" formArrayName="thirdProperty"
+                                                            *ngFor="let item of getThirdProperty(); index as i">
+                                                            <div class="flx_div" [formGroupName]="i">
+                                                                <div class="flx_section">
+                                                                    <label class="peak-form-label"></label>
+                                                                    <label class="peak-form-label">#{{i+1}} </label>
+
+                                                                    <!-- <input class="ipt" type="text" formControlName="propertTitle" placeholder="Title"> -->
+                                                                </div>
+                                                                <div class="flx_section">
+                                                                    <label class="peak-form-label">Replacement
+                                                                        Property Address #{{i+1}}</label>
+                                                                    <input class="ipt big" type="text"
+                                                                        formControlName="propertyAddress"
+                                                                        placeholder="Address">
+                                                                </div>
+                                                                <div class="flx_section">
+                                                                    <label class="peak-form-label">Acquiring
+                                                                        approx.</label>
+                                                                    <input class="ipt" type="number" min="0"
+                                                                        max="9999999999999999" maxlength="30"
+                                                                        oninput="this.value=this.value.slice(0,this.maxLength||1/0);this.value=(this.value   < 1) ? (1/0) : this.value;"
+                                                                        formControlName="acquiring"
+                                                                        placeholder="Acquiring">
+                                                                    <span>% ownership</span>
+                                                                </div>
+                                                                <div class="flx_section switchalign" *ngIf="item.value.propertyTransactionsId">
+                                                                    <div  formArrayName="orders" >
+                                                                        <div class=" apx-actions ">
+                                                                          <label class="switch">
+                                                                            <input unchecked type="checkbox" formControlName="propertyTransactionsId"  (change)="getpropertyvalue(item.value.propertyTransactionsId,$event.target.checked)"  [ngModelOptions]="{standalone: true}">
+                                                                            <span class="slider round"></span>
+                                                                          </label>
+                                                                        </div>
+
+                                                                      </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <h3>I intend to aquire</h3>
+                                                        <div class="flx_div">
+                                                            <div class="form-group">
+                                                                <input type="radio" class="custom_ipt" id="one1"
+                                                                    formControlName="intendToAquire" [value]="1">
+                                                                <label for="one1" class="custom_lbl">
+                                                                    <span></span> One
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="radio" class="custom_ipt" id="two2"
+                                                                    formControlName="intendToAquire" [value]="2">
+                                                                <label for="two2" class="custom_lbl">
+                                                                    <span></span> Two
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="radio" class="custom_ipt" id="three3"
+                                                                    formControlName="intendToAquire" [value]="3">
+                                                                <label for="three3" class="custom_lbl">
+                                                                    <span></span> Three
+                                                                </label>
+                                                            </div>
+                                                            <p>of the properties identified above</p>
+                                                        </div>
+                                                        <h4 class="mb-2">Disclaimer</h4>
+                                                        <p style="font-weight: normal;font-style: italic;">Exchanger
+                                                            is strongly
+                                                            advised to contact their own Tax/Legal advisor with
+                                                            respect to the
+                                                            completion of this identification form and this 1031 Tax
+                                                            Deferred
+                                                            exchange transaction</p>
+                                                        <div class="btn_btm">
+                                                            <button class="save_id" (click)="saveIdForm()">Save ID
+                                                                Form</button>
+                                                            <button class="save-id-btn-g" (click)="identificationproperty()">Approve ID
+                                                                    Form</button>
+                                                            <button class="download_id" target="_blank"
+                                                                (click)="DownloadIDform()">Download Completed ID
+                                                                Form</button>
+                                                            <button data-toggle="modal" data-target="#dialog_box_1"
+                                                                class="rule_form">Use the 200% Rule Form</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="identi-200" *ngIf="!ruleFromToggle">
+                                                        <h2 class="tab-headtxt-g">You can fill out the
+                                                            identification form on
+                                                            behalf of the client. However, the client will have to
+                                                            sign and
+                                                            submit the form before we will accept it as a completed
+                                                            ID form.
+                                                        </h2>
+                                                        <div class="tab-heading-sect-g">
+                                                            <div class="tab-hd-left-g">
+                                                                <h2 class="rule-text-g">200% Rule Form</h2>
+                                                                <a href="#" class="wt-rule-txt-g"><span
+                                                                        class="q-sv-g"><svg
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            width="18" height="18"
+                                                                            viewBox="0 0 18 18" fill="none">
+                                                                            <path
+                                                                                d="M9 0.231934C4.0371 0.231934 0 4.20445 0 9.08795C0 13.9715 4.0371 17.944 9 17.944C13.9629 17.944 18 13.9715 18 9.08795C18 4.20445 13.9629 0.231934 9 0.231934ZM8.62499 14.992C8.00462 14.992 7.49999 14.4954 7.49999 13.885C7.49999 13.2745 8.00462 12.778 8.62499 12.778C9.24536 12.778 9.74999 13.2745 9.74999 13.885C9.74999 14.4954 9.24536 14.992 8.62499 14.992ZM9.74999 10.4905V11.671C9.74999 11.8749 9.58226 12.04 9.37498 12.04H7.875C7.66772 12.04 7.49999 11.8749 7.49999 11.671V9.82598C7.49999 9.0123 8.17309 8.34996 9 8.34996C9.82691 8.34996 10.5 7.68763 10.5 6.87395C10.5 6.06027 9.82691 5.39793 9 5.39793C8.17309 5.39793 7.49999 6.06027 7.49999 6.87395V7.24296C7.49999 7.44692 7.33226 7.61197 7.12498 7.61197H5.625C5.41772 7.61197 5.24999 7.44692 5.24999 7.24296V6.87395C5.24999 4.83938 6.93236 3.18393 9 3.18393C11.0676 3.18393 12.75 4.83942 12.75 6.87395C12.75 8.64474 11.4822 10.1452 9.74999 10.4905Z"
+                                                                                fill="#F05922" />
+                                                                        </svg></span> What is the 200% Rule?</a>
+                                                            </div>
+                                                            <div class="tab-hd-right-g">
+                                                                <button (click)="addSecondProperty()"
+                                                                    class="add-property-ag-btn">Add Property
+                                                                    Address</button>
+                                                            </div>
+                                                        </div>
+                                                        <!-- address sec -->
+                                                        <div class="property-addr-sec-g"
+                                                            formArrayName="secondProperty"
+                                                            *ngFor="let item of getSecondProperty(); index as i">
+                                                            <div class="property-addr-sec-g" [formGroupName]="i">
+
+                                                                <div class="prop-inner-g">
+
+                                                                    <label class="peak-form-label"></label>
+                                                                    <label class="peak-form-label">#{{i+1}} </label>
+
+                                                                </div>
+
+
+                                                                <div class="prop-addr-g">
+                                                                    <div class="prop-inner-g">
+                                                                        <label class="peak-form-label">Replacement
+                                                                            Property Address
+                                                                            #{{i+1}}</label>
+                                                                        <input type="text"
+                                                                            placeholder="Enter Address"
+                                                                            formControlName="propertyAddress"
+                                                                            class="peak-box-g">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="prop-acqu-g">
+                                                                    <div class="prop-inner-g">
+                                                                        <label class="peak-form-label">Acquiring
+                                                                            approx.</label>
+                                                                        <div class="acqi-inner-g">
+                                                                            <input type="number" min="0"
+                                                                                max="9999999999999999"
+                                                                                maxlength="30"
+                                                                                oninput="this.value=this.value.slice(0,this.maxLength||1/0);this.value=(this.value   < 1) ? (1/0) : this.value;"
+                                                                                placeholder="Enter Value"
+                                                                                class="peak-box-g"
+                                                                                formControlName="acquiring">
+                                                                            <h2 class="perc-txt-g">%</h2>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="prop-value-g">
+                                                                    <div class="prop-inner-g">
+                                                                        <label class="peak-form-label">Value</label>
+                                                                        <div class="property-val-bx-g">
+                                                                            <span class="dollar-sym-g"><svg
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="8" height="14"
+                                                                                    viewBox="0 0 8 14" fill="none">
+                                                                                    <path
+                                                                                        d="M7.84 9.242C7.84 9.998 7.574 10.6327 7.042 11.146C6.51 11.65 5.80533 11.958 4.928 12.07V13.624H3.752V12.098C2.44533 12.014 1.38133 11.608 0.56 10.88L1.078 9.802C1.51667 10.1567 1.95533 10.4227 2.394 10.6C2.83267 10.7773 3.30867 10.8847 3.822 10.922V7.66C3.178 7.492 2.64133 7.31467 2.212 7.128C1.792 6.94133 1.43733 6.666 1.148 6.302C0.868 5.92867 0.728 5.44333 0.728 4.846C0.728 4.342 0.854 3.88467 1.106 3.474C1.36733 3.054 1.72667 2.71333 2.184 2.452C2.64133 2.18133 3.164 2.01333 3.752 1.948V0.407999H4.928V1.948C5.47867 2.01333 5.992 2.14867 6.468 2.354C6.95333 2.55933 7.364 2.82067 7.7 3.138L7.182 4.216C6.49133 3.6 5.72133 3.24067 4.872 3.138V6.582C5.488 6.73133 5.99667 6.89933 6.398 7.086C6.80867 7.26333 7.14933 7.52467 7.42 7.87C7.7 8.21533 7.84 8.67267 7.84 9.242ZM2.184 4.776C2.184 5.18667 2.324 5.50867 2.604 5.742C2.89333 5.966 3.29933 6.15267 3.822 6.302V3.124C3.30867 3.19867 2.90733 3.38067 2.618 3.67C2.32867 3.95933 2.184 4.328 2.184 4.776ZM4.872 10.88C5.35733 10.796 5.73067 10.6187 5.992 10.348C6.25333 10.068 6.384 9.71333 6.384 9.284C6.384 8.93867 6.25333 8.66333 5.992 8.458C5.74 8.25267 5.36667 8.07533 4.872 7.926V10.88Z"
+                                                                                        fill="#242E3E" />
+                                                                                </svg></span>
+                                                                            <input type="text" prefix="$" separatorLimit="100000000000000000" [showMaskTyped]="true" mask="separator" thousandSeparator="," tabindex="8" min="0" max="9999999999999999" maxlength="30" 
+                                                                                oninput="this.value=this.value.slice(0,this.maxLength||1/0);this.value=(this.value   < 1) ? (1/0) : this.value;"
+                                                                                placeholder="Enter Value"
+                                                                                class="peak-box-g"
+                                                                                formControlName="amount">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flx_section switchalign" *ngIf="item.value.propertyTransactionsId">
+                                                                    <div  formArrayName="orders" >
+                                                                        <div class=" apx-actions ">
+                                                                          <label class="switch">
+                                                                            <input unchecked type="checkbox" formControlName="propertyTransactionsId"  (change)="getpropertyvalue(item.value.propertyTransactionsId,$event.target.checked)"  [ngModelOptions]="{standalone: true}">
+                                                                            <span class="slider round"></span>
+                                                                          </label>
+                                                                        </div>
+
+                                                                      </div>
+                                                                </div>
+                                                                <div class="tab-hd-right-g">
+                                                                    <button (click)="deleteSecondProperty(i)"
+                                                                        class="add-property-ag-btn">Delete</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end address sec -->
+
+                                                        <!-- total value sec -->
+                                                        <div class="total-valsec-g">
+                                                            <div class="row">
+                                                                <div
+                                                                    class="col-lg-6 col-md-6 col-sm-12 col-xs-12 val-left-g">
+                                                                    <div class="rul-val-bk-g">
+                                                                        <label class="valu-lbl-g">200% Rule Value
+                                                                            Limit</label>
+                                                                        <p class="valu-lbl-g" style="color: white;">
+                                                                            {{exchange.money200PerRuleLimit}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div
+                                                                    class="col-lg-6 col-md-6 col-sm-12 col-xs-12 val-left-g">
+                                                                    <div class="tot-val-bk-g">
+                                                                        <label class="total-val-iden-g">Total Value
+                                                                            Identified</label>
+                                                                        <ng-container
+                                                                            *ngIf="exchange.money200PerRuleLimit < totalIdentifyValue; else value">
+                                                                            <p class="tt-iden-txt-g"
+                                                                                style="color: red;">
+                                                                                {{totalIdentifyValue|currency}}</p>
+                                                                        </ng-container>
+                                                                        <ng-template #value>
+                                                                            <p class="tt-iden-txt-g">
+                                                                                {{totalIdentifyValue|currency}}</p>
+
+                                                                        </ng-template>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end total value sec -->
+
+                                                        <!-- acquire sec -->
+                                                        <div class="ident-sel-g">
+                                                            <label class="peak-form-label">I intend to
+                                                                aquire</label>
+                                                            <input class="peak-box-g"
+                                                                [value]="identification.get('secondProperty').controls.length">
+                                                            <p>of the properties identified above</p>
+                                                        </div>
+                                                        <!-- end acquire sec -->
+                                                        <div class="dis-claimer-g">
+                                                            <h2 class="dis-cl-hd">Disclaimer</h2>
+                                                            <p>Exchanger is strongly advised to contact their own
+                                                                Tax/Legal
+                                                                advisor with respect to the completion of this
+                                                                identification
+                                                                form and this 1031 Tax Deferred exchange transaction
+                                                            </p>
+                                                        </div>
+
+                                                        <div class="bot-btn-sec">
+                                                            <button class="save-id-btn-g"
+                                                                (click)="saveIdForm()">Save ID Form</button>
+                                                           <button class="save-id-btn-g" (click)="identificationproperty()">Approve ID
+                                                                    Form</button>
+                                                            <button class="download_id" target="_blank"
+                                                                (click)="DownloadIDform()">Download Completed ID
+                                                                Form</button>
+                                                            <button data-toggle="modal" data-target="#dialog_box_2"
+                                                                class="thr-prop-btn-g">Use the 3-Property Rule
+                                                                Form</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </mat-tab>
+                                        <mat-tab *ngFor="let item of replacementList; let i = index"
+                                            label="REPLACEMENT {{i+1}}">
+                                            <div class="tab-pane  active" id="replacement1">
+                                                <div
+                                                    class="relinquished-secton replacement-1-section col-lg-12 no-padding">
+                                                    <div class="relinquished-header btn_grps">
+                                                        <h2>Property Details</h2>
+                                                        <button class="btn end-sub-edit"
+                                                        (click)="isEditOrCancelRep()"><i class="fa fa-edit"></i></button>
+                                                        <button class="btn end-download download-replacement"
+                                                            (click)="DownloadexchangedocsReplacement(item.propertyId)"><i class="fa fa-download" aria-hidden="true"></i></button>
+
+                                                        <button class="btn custom-field" data-toggle="modal"
+                                                            data-target="#dialog_box">Duplicate</button>
+                                                    </div>
+
+                                                    <!-- <button (click)="getSelectedValue()">Get Selected Values</button> -->
+                                                    <div class="row no-margin-row nmr-mb">
+                                                        <div
+                                                            class="relinquished-details-list col-12 col-md-4 col-xl-4 no-padding-left">
+
+                                                            <div class="col-12 col-xl-12 no-padding rd-label">
+                                                                <p>Replacement Property Address</p>
+                                                            </div>
+                                                            <div class="col-12 col-xl-12 no-padding">
+                                                                <ng-container
+                                                                    *ngIf="isReplaceEdit; else propertyAddress">
+                                                                    <input type="text"
+                                                                    [(ngModel)]="item.propertyAddress">
+                                                                </ng-container>
+                                                                <ng-template #propertyAddress>
+                                                                    <span>{{item.propertyAddress}}</span>
+                                                                </ng-template>
+
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="relinquished-details-list col-12 col-md-4 col-xl-4 no-padding">
+
+                                                            <div class="col-12 col-xl-12 no-padding rd-label">
+                                                                <p>Purchase Price</p>
+                                                            </div>
+                                                            <div class="col-12 col-xl-12 no-padding">
+                                                                <ng-container
+                                                                *ngIf="isReplaceEdit; else salesPrice1">
+                                                                <input type="text"
+                                                                [(ngModel)]="item.salesPrice">
+                                                            </ng-container>
+                                                            <ng-template #salesPrice1>
+                                                                <span>{{item.salesPrice? item.salesPrice: 0| currency}}
+                                                                </span>
+                                                            </ng-template>
+
+
+
+                                                            </div>
+
+                                                        </div>
+                                                        <div
+                                                            class="relinquished-details-list col-12 col-md-4 col-xl-4 no-padding-right">
+
+                                                            <div class="col-12 col-xl-12 no-padding rd-label">
+                                                                <p>Settlement Agent Name</p>
+                                                            </div>
+                                                            <div class="col-12 col-xl-12 no-padding">
+                                                                <ng-container
+                                                                    *ngIf="isReplaceEdit; else escrowOfficerName1">
+                                                                    <div id="multiselect_custom">
+
+                                                                        <mat-form-field appearance="fill">
+                                                                            <mat-select  [(ngModel)]="item.escrowOfficerName"  name="SettlementAgent"  #SettlementAgent="ngModel" required [ngModelOptions]="{standalone: true}">
+
+                                                                              <input type="text" (keyup)="onSearchUsers($event)"  class="peak-box-g" (keydown)="$event.stopPropagation()">
+                                                                              <mat-option *ngFor="let Contact of SynergyContactDropdownList"  value ="{{Contact.userId}}">
+                                                                                {{Contact.fullName}}
+                                                                              </mat-option>
+                                                                            </mat-select>
+                                                                          </mat-form-field>
+
+
+
+                                                                      <button type="button" class="btn select-btn" data-toggle="modal" data-target="#bank_profile"><img src="../../../../assets/images/superadmin/escrow-icon.png" ></button>
+
+                                                                </div>
+                                                                </ng-container>
+                                                                <ng-template #escrowOfficerName1>
+                                                                    <span class="link-span" (click)="getUserData(item.escrowOfficerId,mymodal)">{{item.escrowOfficerName}}</span>
+
+                                                                </ng-template>
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row no-margin-row nmr-mb">
+
+                                                        <div
+                                                            class="relinquished-details-list col-12 col-md-4 col-xl-4 no-padding-left">
+
+                                                            <div class="col-12 col-xl-12 no-padding rd-label">
+                                                                <p>Settlement Agent Company</p>
+                                                            </div>
+                                                            <div class="col-12 col-xl-12 no-padding">
+                                                                <span>{{item.escrowOfficerCompanyName}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="relinquished-details-list col-12 col-md-4 col-xl-4 no-padding">
+
+                                                            <div class="col-12 col-xl-12 no-padding rd-label">
+                                                                <p>Settlement Agent Email</p>
+                                                            </div>
+                                                            <div class="col-12 col-xl-12 no-padding">
+                                                                <span>{{item.escrowOfficerEmail}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="relinquished-details-list col-12 col-md-4 col-xl-4 no-padding-right">
+
+                                                            <div class="col-12 col-xl-12 no-padding rd-label">
+                                                                <p>% Ownership Interest</p>
+                                                            </div>
+                                                            <div class="col-12 col-xl-12 no-padding">
+                                                                <ng-container
+                                                                *ngIf="isReplaceEdit; else ownerShipInterest">
+                                                                <input type="text"
+                                                                [(ngModel)]="item.ownerShipInterest">
+                                                            </ng-container>
+                                                            <ng-template #ownerShipInterest>
+                                                                <span>{{item.ownerShipInterest}}%</span>
+
+                                                            </ng-template>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div *ngFor="let item of replacementList[i].customFields"
+                                                            class="relinquished-details-list col-12 col-md-4 col-xl-4">
+
+                                                            <div class="col-12 col-xl-8 no-padding rd-label">
+                                                                <p>{{item.labelName}}</p>
+                                                            </div>
+
+                                                            <div *ngIf="item.valueType=='Text'"
+                                                                class="col-12 col-xl-12 no-padding">
+
+                                                                <ng-container *ngIf="isReplaceEdit; else value">
+                                                                    <input type="item.valueType"
+                                                                        placeholder="{{item.toolTip}}"
+                                                                        [(ngModel)]="item.value">
+                                                                </ng-container>
+                                                                <ng-template #value>
+                                                                    <span>{{item.value}}</span>
+                                                                </ng-template>
+                                                            </div>
+
+
+                                                            <div *ngIf="item.valueType=='Interger '"
+                                                                class="col-12 col-xl-12 no-padding">
+                                                                <ng-container *ngIf="isReplaceEdit; else value">
+                                                                    <input type="item.valueType"
+                                                                        placeholder="{{item.toolTip}}"
+                                                                        [(ngModel)]="item.value">
+                                                                </ng-container>
+                                                                <ng-template #value>
+                                                                    <span>{{item.value}}</span>
+                                                                </ng-template>
+                                                            </div>
+
+
+                                                            <div *ngIf="item.valueType=='Date '"
+                                                                class="col-12 col-xl-12 no-padding">
+                                                                <ng-container *ngIf="isReplaceEdit; else value">
+                                                                    <dp-date-picker placeholder="{{item.toolTip}}"
+                                                                        [(ngModel)]="item.value">
+                                                                    </dp-date-picker>
+
+                                                                </ng-container>
+                                                                <ng-template #value>
+                                                                    <span>{{item.value}}</span>
+                                                                </ng-template>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="relinquished-header input-upload-section">
+                                                        <label style="display: none;">
+                                                            <input id="upload_file" type="file" #file
+                                                                (change)="onChange(file)"
+                                                                accept=".xls,.xlsx,.docx,.pdf,.doc">
+                                                        </label>
+
+
+                                                        <div class="float-end-sec" *ngIf="fileName">
+                                                            <p>{{fileName}}</p>
+                                                            <!-- <button type="button" >Remove File</button> -->
+                                                            <img (click)="removeFile()"
+                                                                src="../../../../assets/images/superadmin/input-delete.png" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="relinquished-header">
+                                                        <h2>Exchange Documents</h2>
+
+                                                    </div>
+                                                    <div class="table-responsive exchange-document-table">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Date</th>
+                                                                    <th>Uploaded by</th>
+                                                                    <th>Document Name</th>
+                                                                    <th>Document Type</th>
+                                                                    <th>Document integrated slot</th>
+                                                                    <th>Attachments</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let doc of item.documentList">
+                                                                    <td>{{doc.createdOn | date}}</td>
+                                                                    <td>{{doc.createdUser}}</td>
+                                                                    <td>{{doc.documentName}}</td>
+                                                                    <td>{{doc.extensionName}}</td>
+                                                                    <td>{{doc.subExtensionName}}</td>
+                                                                    <!-- <td>Document Name - 1</td> -->
+                                                                    <td> <a [download]="doc.documentName"
+                                                                            [href]="doc.documentPath"
+                                                                            target="_blank"><img
+                                                                                src="../../../assets/images/superadmin/download-icon.png"
+                                                                                alt="no-img" /></a>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="relinquished-header">
+                                                        <h2>Uploaded Documents</h2>
+                                                        <button
+                                                            (click)="uploadAllFilesReplacement(item.propertyId,item.propertyTransactionId)"
+                                                            class="btn custom-field upload-all">Upload all</button>
+                                                    </div>
+                                                    <div class="file-uploader-section">
+                                                        <img
+                                                            src="../../../../assets/images/superadmin/file-uploader-icon.png" />
+                                                        <div class="fus">
+                                                            <label>
+                                                                <input type="file"
+                                                                    (change)="onSelectMultipleFile($event)"
+                                                                    accept=".xls,.xlsx,.docx,.pdf,.doc" multiple>
+                                                            </label>
+                                                            <!-- <input readonly="true" type="text" id="file" (click)="trigger()"
+                                                                value=""> -->
+                                                        </div>
+                                                        <div class="float-end-sec" *ngIf="fileName">
+                                                            <p>{{fileName}}</p>
+                                                        </div>
+                                                        <span>Drag and Drop your files here or
+                                                            <!-- <input readonly="true"
+                                                                type="text" id="file" (click)="trigger()"
+                                                                value="Browse your computer"> -->
+                                                        </span>
+
+                                                    </div>
+                                                    <div
+                                                        class="table-responsive exchange-document-table edt-end-table">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Date</th>
+                                                                    <th>Document Name</th>
+                                                                    <th>Document Type</th>
+                                                                    <th>Document Designated Slot</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item of filesSelected; let i = index">
+                                                                    <td>{{item.date | date}}</td>
+                                                                    <td>{{item.name}}</td>
+                                                                    <td>
+                                                                        <select class="peak-box-g"
+                                                                            [(ngModel)]="item.documentType"
+                                                                            (change)="getdocumentslotList(item)"
+                                                                            name="documentType"
+                                                                            #documentType="ngModel">
+                                                                            <option value="0" disabled>Select
+                                                                                document type</option>
+                                                                            <option value="1">Exchange</option>
+                                                                            <option value="2">Escrow</option>
+                                                                            <option value="5">Identification
+                                                                            </option>
+                                                                            <option value="6">CloseOut</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+
+                                                                        <select class="peak-box-g"
+                                                                            [(ngModel)]="item.documentdesignatedslot"
+                                                                            name="documentType"
+                                                                            #documentType="ngModel">
+                                                                            <option value="0" disabled>Select
+                                                                                designated type</option>
+                                                                            <option
+                                                                                *ngFor="let doc of item.Documentslotlist"
+                                                                                [ngValue]="doc.extensionId">
+                                                                                {{doc.extensionName}} </option>
+                                                                        </select>
+
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="page-end-buttons col-xl-12">
+                                                        <ng-container *ngIf="isReplaceEdit; else btn">
+                                                            <button class="btn reliquis_update_btn"
+                                                                (click)="updateReplacement(item.propertyTransactionId,i)">Update</button>
+                                                            <button class="btn reliquis_cancel_btn"
+                                                                (click)="isEditOrCancelRep()">Cancel</button>
+                                                        </ng-container>
+                                                        <!-- <ng-template #btn>
+                                                            <button class="btn end-sub-edit"
+                                                                (click)="isEditOrCancelRep()">Edit</button>
+                                                        </ng-template>
+                                                        <button class="btn end-download download-replacement"
+                                                            (click)="DownloadexchangedocsReplacement(item.propertyId)">Download
+                                                            Replacement Documents</button> -->
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </mat-tab>
+
+                                        <mat-tab label="CLOSEOUT">
+                                            <div class="tab-pane  active" id="closeout">
+                                                <div
+                                                    class="relinquished-secton coloseout-section col-lg-12 no-padding">
+
+                                                    <div class="closeout-insider d-flex">
+                                                        <p>Relinquished Property Sales Price</p>
+                                                        <input type="number" min="0" max="9999999999999999"
+                                                            maxlength="30"
+                                                            oninput="this.value=this.value.slice(0,this.maxLength||1/0);this.value=(this.value   < 1) ? (1/0) : this.value;"
+                                                            [(ngModel)]="exchange.exchangeCloseOutModel.salesPrice" />
+                                                    </div>
+                                                    <div class="closeout-insider d-flex">
+                                                        <p>Relinquished Percentage of Ownership</p>
+                                                        <input type="number" min="0" max="9999999999999999"
+                                                            maxlength="30"
+                                                            oninput="this.value=this.value.slice(0,this.maxLength||1/0);this.value=(this.value   < 1) ? (1/0) : this.value;"
+                                                            [(ngModel)]="exchange.exchangeCloseOutModel.relinquishedOwnershipInterest "
+                                                            value="{{exchange.relinquished?.interestPayableToExchanger ? exchange.relinquished?.interestPayableToExchanger: 0}}" />
+                                                    </div>
+                                                    <div class="closeout-insider d-flex">
+                                                        <p>Account Balance</p>
+                                                        <input type="number" min="0" max="9999999999999999"
+                                                            maxlength="30"
+                                                            oninput="this.value=this.value.slice(0,this.maxLength||1/0);this.value=(this.value   < 1) ? (1/0) : this.value;"
+                                                            [(ngModel)]="exchange.exchangeCloseOutModel.accountbalance"
+                                                            value="{{totalBalance}}" />
+                                                    </div>
+                                                    <div class="closeout-insider d-flex">
+                                                        <p>Mortgage Boot</p>
+                                                        <input type="number" min="0" max="9999999999999999"
+                                                            maxlength="30"
+                                                            oninput="this.value=this.value.slice(0,this.maxLength||1/0);this.value=(this.value   < 1) ? (1/0) : this.value;"
+                                                            [(ngModel)]="exchange.exchangeCloseOutModel.mortgageBoot" />
+                                                    </div>
+                                                    <div class="closeout-insider d-flex">
+                                                        <p>CA Transaction?</p>
+                                                        <div class="peak_exhange_form ci-toggle">
+                                                            <label class="switch" for="checkbox111">
+                                                                <input type="checkbox" id="checkbox111"
+                                                                    [(ngModel)]="exchange.exchangeCloseOutModel.caTransaction"
+                                                                    [checked]="exchange.exchangeCloseOutModel.caTransaction == true ? true: false" />
+                                                                <div class="slider round"></div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="closeout-insider d-flex">
+                                                        <p>Exempt from Withholding?</p>
+                                                        <div class="peak_exhange_form ci-toggle">
+                                                            <label class="switch" for="checkbox112">
+                                                                <input type="checkbox" id="checkbox112"
+                                                                    [(ngModel)]="exchange.exchangeCloseOutModel.exemptFromWithholding"
+                                                                    [checked]="exchange.exchangeCloseOutModel.exemptFromWithholding == true ? true: false" />
+                                                                <div class="slider round"></div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="closeout-insider d-flex">
+                                                        <p>Failed Exchange</p>
+                                                        <div class="peak_exhange_form ci-toggle">
+                                                            <label class="switch" for="checkbox113">
+                                                                <input type="checkbox" id="checkbox113"
+                                                                    [(ngModel)]="exchange.exchangeCloseOutModel.failedExchange"
+                                                                    [checked]="exchange.exchangeCloseOutModel.failedExchange == true ? true: false" />
+                                                                <div class="slider round"></div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="closeout-insider d-flex">
+                                                        <p>Withholding Amount</p>
+                                                        <input type="number" min="0" max="9999999999999999"
+                                                            maxlength="30"
+                                                            oninput="this.value=this.value.slice(0,this.maxLength||1/0);this.value=(this.value   < 1) ? (1/0) : this.value;"
+                                                            [(ngModel)]="exchange.exchangeCloseOutModel.withholdingAmount" />
+                                                    </div>
+                                                    <div class="closeout-insider d-flex">
+                                                        <p>Wire Fee?</p>
+                                                        <div class="peak_exhange_form ci-toggle">
+                                                            <label class="switch" for="checkbox114">
+                                                                <input type="checkbox" id="checkbox114"
+                                                                    [(ngModel)]="exchange.exchangeCloseOutModel.wireFee"
+                                                                    [checked]="exchange.exchangeCloseOutModel?.wireFee == true ? true: false" />
+                                                                <div class="slider round"></div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="closeout-insider d-flex">
+                                                        <p>Amount Being Released to Client</p>
+                                                        <input type="number" min="0" max="9999999999999999"
+                                                            maxlength="30"
+                                                            oninput="this.value=this.value.slice(0,this.maxLength||1/0);this.value=(this.value   < 1) ? (1/0) : this.value;"
+                                                            [(ngModel)]="exchange.exchangeCloseOutModel.amountBeingReleasedtoClient" />
+                                                    </div>
+                                                    <div class="closeout-insider d-flex">
+                                                        <p>Alternative Withholding?</p>
+                                                        <div class="peak_exhange_form ci-toggle">
+                                                            <label class="switch" for="checkbox132">
+                                                                <input type="checkbox" id="checkbox132"
+                                                                    [(ngModel)]="exchange.exchangeCloseOutModel.alternativeWithHolding "
+                                                                    [checked]="exchange.exchangeCloseOutModel.alternativeWithHolding  == true ? true: false" />
+                                                                <div class="slider round"></div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="closeout-insider d-flex">
+                                                        <p>Alternative Withholding Amount</p>
+                                                        <input type="number" min="0" max="9999999999999999"
+                                                            maxlength="30"
+                                                            oninput="this.value=this.value.slice(0,this.maxLength||1/0);this.value=(this.value   < 1) ? (1/0) : this.value;"
+                                                            [(ngModel)]="exchange.exchangeCloseOutModel.alternativeWithHoldingAmount " />
+                                                    </div>
+
+                                                    <div class="page-end-buttons col-xl-12">
+                                                        <button class="btn closepac"
+                                                            (click)="closeOutPacket()">Closeout Packet</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </mat-tab>
+                                    </mat-tab-group>
+
+                                </div>
+                            </div>
+
+                            <div class="tab_static">
+                                <div class="rtSend" *ngIf="templateDuplicateToggle">
+                                    <button data-toggle="modal" data-target="#dialog_box_10"
+                                        (click)="ApplyTemplatedropdownList()" class="btn btn_apply">Apply
+                                        Template</button>
+                                </div>
+                                <div class="rtSend rtDuplicate" *ngIf="!templateDuplicateToggle">
+                                    <button data-toggle="modal" data-target="#dialog_box"
+                                        class="btn btn_duplicate">Duplicate</button>
+                                </div>
+                                <div class="static_innertab">
+
+                                    <p class="font18">Notes</p>
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab"
+                                                (click)="selectednotetab('Internal')" href="#Internal">Internal</a>
+                                                <span class="badge badge-pill badge-warning notification">&nbsp;{{NotesCountInternal}}</span>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#General"
+                                                (click)="selectednotetab('General')"> General</a>
+                                                <span class="badge badge-pill badge-warning notification">&nbsp;{{NotesCountExternal}}</span>
+                                        </li>
+                                    </ul>
+
+
+                                    <div class="tab-content">
+                                        <div class="tab-pane container active" id="Internal">
+                                            <div class="list_internalScroll">
+                                                <h6 *ngFor="let leadlist of NotesInternal" class="clone_textarea">
+                                                    <p>{{leadlist.messageBody}}</p>
+                                                    <span> from {{leadlist.senduserName}} on
+                                                        {{leadlist.dateTime|date:'short'}}</span>
+                                                </h6>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="tab-pane container fade" id="General">
+                                            <div class="list_internalScroll">
+                                                <h6 *ngFor="let leadlist of NotesExternal" class="clone_textarea">
+                                                    <p>{{leadlist.messageBody}}</p>
+                                                    <span> from {{leadlist.senduserName}} on
+                                                        {{leadlist.dateTime|date:'short'}}</span>
+                                                </h6>
+
+                                            </div>
+                                        </div>
+                                        <div class="peak-form mt_20">
+                                            <textarea placeholder="Enter Notes" [(ngModel)]="Notes.Note"
+                                                class="peak-box-g peak-t-area"></textarea>
+                                        </div>
+                                        <button class="btn btn_send" (click)="Addnotes()">Add Notes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<!--Send Email Popup -->
+<div class="modal fade" id="send_email" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog del-modal modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+        <div class="modal-body">
+            <h4>Documents</h4>
+            <hr>
+            <label>Select Document</label>
+            <div class="select_div">
+                <select>
+                    <option>Exchange Documnt / Lorem Ipsum Doucment / ...</option>
+                </select>
+                <span><i class="fa fa-angle-down"></i></span>
+            </div>
+            <div class="btn_flex">
+                <button class="btn_Confirm">Submit</button>
+                <button data-dismiss="modal" class="btn_Cancel">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+<!-- Send Email Popup -->
+<!-- Dialog box -->
+<div class="modal fade" id="dialog_box" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog del-modal modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+        <div class="modal-body">
+            <h4 class="head_label">Duplicate Exchange Tab</h4>
+            <div class="select_div">
+                <select [(ngModel)]="duplicateexchange.PropertyTransactionId">
+                    <option value="0">Relinquish</option>
+                    <option *ngFor="let leadlist of DuplicateToList;index as i" value="{{leadlist}}">Replacement Tab
+                        {{i+1}}</option>
+                </select>
+                <span><i class="fa fa-angle-down"></i></span>
+            </div>
+            <h4 class="head_label">Duplicate To</h4>
+            <div class="select_div">
+                <select [(ngModel)]="duplicateexchange.ToExchangeId">
+                    <option *ngFor="let leadlist of DuplicateFromList" value="{{leadlist.exchangeId}}">
+                        {{leadlist.exchangeNumber}}</option>
+                </select>
+                <span><i class="fa fa-angle-down"></i></span>
+
+            </div>
+            <div class="btn_flex">
+                <button class="btn_Confirm"
+                    (click)="duplicateexchangeval(duplicateexchange.PropertyTransactionId,duplicateexchange.ToExchangeId)">Confirm</button>
+                <button data-dismiss="modal" class="btn_Cancel">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+
+<!-- Dialog box -->
+
+<!-- frame 3 -->
+<div class="modal fade" id="frame_3" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog del-modal modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+        <div class="modal-body">
+            <img src="../../../assets/images/superadmin/frame_3_tick.svg">
+            <h2>Document Duplicated Successfully</h2>
+            <button data-dismiss="modal" class="ok">Okay</button>
+        </div>
+
+    </div>
+</div>
+</div>
+
+
+<!-- frame 3 -->
+<div class="modal fade" id="dialog_box_1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog del-modal modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <img src="../../../assets/images/superadmin/dialog_pic.png">
+                <h2>Are you sure you want to use the 200% Rule? Any information you have entered in the 3-Property Rule form will be lost.</h2>
+                <div class="btn_flex">
+                    <button class="btn_Confirm" data-dismiss="modal"
+                        (click)="propertychange('secondProperty')">Yes</button>
+                    <button data-dismiss="modal" class="btn_Cancel">No</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End frame 3 -->
+
+<!-- frame 4 -->
+<div class="modal fade" id="dialog_box_2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog del-modal modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <img src="../../../assets/images/superadmin/dialog_pic.png">
+                
+                <h2>Are you sure you want to use the 3-Property Rule? Any information you have entered in the 200% Rule form will be lost.</h2>
+                <div class="btn_flex">
+                    <button class="btn_Confirm" data-dismiss="modal"
+                    (click)="propertychange('thirdProperty')">Yes</button>
+                    <button data-dismiss="modal" class="btn_Cancel">No</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End frame 4 -->
+<!-- Dialog box -->
+<div class="modal fade" id="dialog_box_10" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog del-modal modal-dialog-centered" role="document">
+    <div class="modal-content apply-temp-pop">
+        <h3 class="atp-heading">APPLY Template</h3>
+        <div class="modal-body">
+            <h4 class="head_label">Contact</h4>
+            <div class="select_div">
+                <input type="text" [(ngModel)]="ApplyTemplateList.contactName" [readonly]="true" name="contactName"
+                    #contactName="ngModel" class="peak-box-g">
+
+            </div>
+            <h4 class="head_label">Exchange</h4>
+            <div class="select_div">
+                <input type="text" [(ngModel)]="ApplyTemplateList.exchangeNumber" [readonly]="true"
+                    name="exchangeNumber" #exchangeNumber="ngModel" class="peak-box-g">
+            </div>
+            <h4 class="head_label">Select Template</h4>
+            <div class="select_div">
+                <select [(ngModel)]="ApplyTemplate.templateId" name="templateId" #templateId="ngModel">
+                    <option value="" disabled>Please select Template</option>
+                    <option *ngFor="let template of ApplyTemplateList.templateDocuments"
+                        [ngValue]="template.templateId">{{template.templateFileName}} </option>
+                </select>
+                <span><i class="fa fa-angle-down"></i></span>
+            </div>
+            <div class="btn_flex">
+                <a [download]="ApplyTemplateList.Documentname" [href]="ApplyTemplateList.resPath"></a>
+                <button (click)="ApplytemplateDownload()" class="btn_Confirm">Download</button>
+
+                <button data-dismiss="modal" class="btn_Cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<ng-template  #identificationamount let-modal>
+    <div class="modal-content">
+    
+        <div class="modal-body">
+            <img src="../../../assets/images/superadmin/dialog_pic.png">
+            <h2>The total aggregate value you have identified exceeds 200% of your relinquished property sales price. Please adjust your identification form. Note: Your value limit is: [amount]</h2>
+            <div class="btn_flex">
+                <button class="btn_Confirm" data-dismiss="modal">Ok</button>
+                
+            </div>
+        </div>
+
+    </div>
+</ng-template>
+<!-- <div class="modal fade" id="identificationamount" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog del-modal modal-dialog-centered" role="document">
+        <div class="modal-content">
+    
+            <div class="modal-body">
+                <img src="../../../assets/images/superadmin/dialog_pic.png">
+                <h2>The total aggregate value you have identified exceeds 200% of your relinquished property sales price. Please adjust your identification form. Note: Your value limit is: [amount]</h2>
+                <div class="btn_flex">
+                    <button class="btn_Confirm" data-dismiss="modal">Ok</button>
+                    
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    </div> -->
+<!-- Dialog box -->
+

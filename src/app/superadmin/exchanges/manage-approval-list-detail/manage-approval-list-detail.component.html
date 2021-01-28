@@ -1,0 +1,419 @@
+
+           <div class="container-fluid contentpage_wrapper">
+            <div class="pagecontent_wrapper">
+              <div class="manage-approval-list-detail">
+                <form [formGroup]="AssignEmployeeForm">
+                  <div class="flx_div">
+                    <div class="flx_section">
+                      <label class="peak-form-label">Select Employee</label>
+                      <div class="select_div">
+      
+                        <select formControlName="EmployeeId">
+                          <option *ngFor="let employee of AssignExchangeDropdownList.employeeList" [ngValue] ="employee.userID">{{employee.fullName}} </option>-->
+                        </select>
+                        <span style="right: 1px;
+                        left: 227px;"><i class="fa fa-angle-down"></i></span>                       
+                      </div>
+                      <span class="input-error-span" *ngIf="AssignEmployeeForm.get('EmployeeId').errors && AssignEmployeeForm.get('EmployeeId').touched">
+                        <span *ngIf="AssignEmployeeForm.get('EmployeeId').errors.required">Select employee</span>
+                      </span>
+                    </div>
+                    <div class="flx_section">
+                      <label class="peak-form-label">Task Assigned</label>
+                      <div class="select_div">                    
+                        <select formControlName="TaskId">
+                          <option *ngFor="let task of AssignExchangeDropdownList.taskList" [ngValue] ="task.taskId">{{task.taskName}} </option>-->
+                        </select>
+                        <span style="right: 1px;
+                        left: 227px;"><i class="fa fa-angle-down"></i></span>
+                      </div>
+                      <span class="input-error-span" *ngIf="AssignEmployeeForm.get('TaskId').errors && AssignEmployeeForm.get('TaskId').touched">
+                        <span *ngIf="AssignEmployeeForm.get('TaskId').errors.required">Select task</span>
+                      </span>
+                    </div>
+                    <div class="flx_section">
+                      <label class="peak-form-label">Synergy Client</label>
+                      <div class="select_div small" style="width: 207px;margin-left: 0px;">
+                        <select (change)="synergyisrequired()"  formControlName="Issynergy">
+                          <option value="1">Yes</option>
+                          <option value="0">No</option>
+                        </select>
+                        <span style="right: 1px;
+                        left: 227px;"><i class="fa fa-angle-down"></i></span>
+                      </div>
+                    </div>
+
+                    <div class="flx_section">
+                      <label class="peak-form-label">Select Synergy Client</label>
+                      <ng-container *ngIf="issynergy ; else relPropertyClosedate">
+                        <div id="multiselect_custom">
+                          <mat-form-field appearance="fill">
+                            <mat-select formControlName="SynergyId">
+                                  <input type="text"  (keyup)="onSearchUsers($event)" tabindex="2" class="peak-box-g" (keydown)="$event.stopPropagation()">
+                                  <mat-option *ngFor="let client of AssignsynExchangeDropdownList" value="{{client.userId}}">
+                                      {{client.fullName}} 
+                                  </mat-option>
+                              </mat-select>
+                          </mat-form-field>
+
+
+
+                          <button type="button" class="btn select-btn" data-toggle="modal" data-target="#bank_profile">
+                              <img src="../../../../assets/images/superadmin/escrow-icon.png">
+                          </button>
+                         
+
+                      </div>
+                    
+                    </ng-container>
+                    <ng-template #relPropertyClosedate>
+                      <div class="select_div">
+                        <select  formControlName="SynergyId">
+                          <option disabled [ngValue] ="0">Select Synergy</option>
+                        </select>
+           
+                        <span style="right: 1px;
+                        left: 227px;"><i class="fa fa-angle-down"></i></span>
+                      </div>
+                    </ng-template>
+                      
+                     
+                    </div>
+                   
+                  </div>
+                  <label class="peak-form-label">Notes to Employee</label>
+                  <textarea formControlName="Notes" class="txt_div">
+                  </textarea>
+                  <h4>Attach Documents</h4>
+
+                   
+
+
+                  <div class="flx_div">
+
+                    <div class="form-group">
+                      <input type="radio"  name="uic"  class="custom_ipt" id="one">
+                      <label for="one" class="custom_lbl ">
+                         Escrow documents are attached
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <input type="radio"  name="uic" class="custom_ipt" id="two">
+                      <label for="two" class="custom_lbl">
+                         Escrow documents requested, but not yet received
+                      </label>
+                    </div>
+                      <div class="form-group">
+                      <input type="radio"  name="uic" class="custom_ipt" id="three">
+                      <label for="three" class="custom_lbl">
+                         Please request escrow documents
+                      </label>
+                    </div>
+                   
+                    <!-- <div class="form-group">
+                     
+                    </div>
+                    <div class="form-group">
+                     
+                    </div> -->
+                  </div>
+                  <div class="col-lg-12 row p-0 m-auto">
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 mb-3 p-0">
+                      
+                      <div class="input_file">
+                        <img src="../../../assets/images/superadmin/file_icon.png">
+                        <div class="fus">
+                          <label>
+                              <input type="file"
+                                  (change)="onSelectMultipleFile($event)"
+                                  accept=".xls,.xlsx,.docx,.pdf,.doc" multiple>
+                          </label>
+                        </div>
+                        <div class="float-end-sec" *ngIf="fileName">
+                          <p>{{fileName}}</p>
+                      </div>
+                      <span>Drag and Drop your files here or 
+                          <!-- <input readonly="true"
+                              type="text" id="file" (focus)="trigger()"
+                              value="Browse your computer"> -->
+                          </span>
+                          </div>
+                          <!-- (focus)="trigger()"<img (click)="removeFile()" src="../../../../assets/images/superadmin/input-delete.png" /> -->
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 p-0">
+                          <div class="table-responsive">
+                            <table class="table attachment_tabel">
+                              <thead>
+                                <tr>
+                                  <th>Date</th>
+                                  <th>Document Name</th>
+                                  <!-- <th>Attachments</th>
+                                  <th>Actions</th> -->
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let item of filesSelected">
+                                  <td>{{item.date | date}}</td>
+                                  <td>{{item.name}}</td>
+                                  <!-- <td><img
+                                          src="../../../../assets/images/superadmin/attachment-icon.png" />
+                                  </td> -->
+                              </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+               
+                 
+                  </form>
+                  <div class="btn_flex">
+                    <button (click)="assignemployee()" class="btn_Confirm">ASSIGN</button>
+                    <button class="btn_Cancel">CANCEL</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" #closebutton  id="bank_profile" role="dialog" data-backdrop="static" 
+          data-keyboard="false"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog del-modal modal-dialog-centered document-temp-popup" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="header_flx">
+                        <h3>Add Contact</h3>
+                        <button type="button" id="close-modal" (click)="close()" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="col-lg-12 dt-popup">
+                        <div class="col-12 col-lg-6 dtp-left">
+                          <div class="flx_section">
+                              <label class="peak-form-label">Contact Type<span>*</span></label>
+                              <div class="select_div w-250" style="margin-left: 0px">
+                                <select id="typeid" [(ngModel)]="Contacts.userTypeId" name="userTypeId" #userTypeId="ngModel" >                                                         
+                                  <option value="4">Client</option>
+                                  <option value="5">Broker/Agent</option>
+                                  <option value="6">Synergy Broker/Executive</option>
+                                  <option value="7">Synergy Agent</option>
+                                  <option value="8">Escrow Officer</option>
+                                </select>
+                                <span><i class="fa fa-angle-down"></i></span>
+                              </div>
+                            </div>
+                            <ng-container
+                                  *ngIf="Contacts.userTypeId==7;">
+                                  <div class="flx_section">
+                                    <label class="peak-form-label">Synergy Mapping</label>
+                                    <div class="select_div small">
+                                      <select (change)="consynergyisrequired()" [(ngModel)]="Contacts.issynergyrequire" name="issynergyrequire" #issynergyrequire="ngModel">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                      </select>
+                                      <span style="right: 1px;
+                                      left: 227px;"><i class="fa fa-angle-down"></i></span>
+                                    </div>
+                                  </div>
+              
+                                  <div class="flx_section">
+                                    <label class="peak-form-label">Select Synergy Client</label>
+                                    <ng-container *ngIf="issynergy ; else relPropertyClosedate">
+                                      <div id="multiselect_custom">
+                                        <mat-form-field appearance="fill">
+                                          <mat-select [(ngModel)]="Contacts.synergyId">
+              
+                                                <input type="text"  (keyup)="onSearchUsers($event)" tabindex="2" class="peak-box-g" (keydown)="$event.stopPropagation()">
+                                                <mat-option *ngFor="let client of AssignconExchangeDropdownList" value="{{client.userID}}">
+                                                    {{client.fullName}} 
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+              
+              
+              
+                                        <button type="button" class="btn select-btn" data-toggle="modal" data-target="#bank_profile">
+                                            <img src="../../../../assets/images/superadmin/escrow-icon.png">
+                                        </button>
+                                       
+              
+                                    </div>
+                                  
+                                  </ng-container>
+                                  <ng-template #relPropertyClosedate>
+                                    <div class="select_div">
+                                      <select  formControlName="SynergyId">
+                                        <option disabled [ngValue] ="0">Select Synergy</option>
+                                      </select>
+                         
+                                      <span style="right: 1px;
+                                      left: 227px;"><i class="fa fa-angle-down"></i></span>
+                                    </div>
+                                  </ng-template>
+                                    
+                                   
+                                  </div>
+                                  </ng-container>
+                                <div class="flx_section">
+                                    <label class="peak-form-label">First Name<span>*</span></label>
+                                    <input class="ipt" type="text" [(ngModel)]="Contacts.firstName" #firstName="ngModel" name="firstName" placeholder="First Name" tabindex="14">
+                                    
+                                  </div>                                            
+                                <div class="flx_section">
+                                    <label class="peak-form-label">Last Name<span>*</span></label>
+                                    <input class="ipt" type="text" [(ngModel)]="Contacts.lastName" #lastName="ngModel" name ="lastName" placeholder="Last Name" tabindex="15">
+                                    </div>   
+                                    <div class="btn_flex">
+                                      <button class="btn_Confirm" (click)="addContact()" >CREATE</button>
+                                      <button class="btn_Cancel" data-dismiss="modal" (click)="close()">CANCEL</button>
+                                  </div>                         
+                              </div>
+                              <div class="col-12 col-lg-6 dtp-right">
+                                  <div class="flx_section">
+                                      <label class="peak-form-label">Company Name</label>
+                                      <input class="ipt" type="text" [(ngModel)]="Contacts.companyname" #companyname="ngModel" name="companyname" placeholder="company name" tabindex="16">
+                                      </div> 
+                                <div class="flx_section">
+                                    <label class="peak-form-label">Phone Number<span>*</span></label>
+                                    <input class="ipt" type="text" [(ngModel)]="Contacts.mobileNumber" mask= '(000) 000-0000' #mobileNumber="ngModel" name="mobileNumber" placeholder="PhoneNumber" mask= '(000) 000-0000' tabindex="17">
+                                    </div> 
+                                <div class="flx_section">
+                                    <label class="peak-form-label">Email Address<span>*</span></label>
+                                    <input class="ipt" type="email" [(ngModel)]="Contacts.emailAddress" #emailAddress="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="emailAddress"  placeholder="Email Address" tabindex="18">
+                                    </div> 
+                                <div class="flx_section">
+                                    <label class="peak-form-label">Fax</label>
+                                    <input class="ipt" type="text" [(ngModel)]="Contacts.faxNumber" mask= '(000) 000-0000' #faxNumber="ngModel" name="faxNumber" placeholder="Fax" tabindex="19">
+                                    </div> 
+                                    <div class="flx_section">
+                                        <label class="peak-form-label">Address<span>*</span></label>
+                                        <textarea placeholder="Address" [(ngModel)]="Contacts.mailingAddress" #mailingAddress="ngModel"  name="mailingAddress" tabindex="20"></textarea>
+                                        </div> 
+                                        <div class="flx_section">
+                                          <label class="peak-form-label">City<span class="c-red">*</span></label>
+                                          <div id="multiselect_custom">
+                                                  <input type="text" placeholder="Enter city" tabindex="21" [(ngModel)]="Contacts.citys" name="citys" class="peak-box-g"
+                                                  #citys="ngModel" >
+                                          </div>
+                                        </div>
+                                        <div class="flx_section">
+                                          <label class="peak-form-label">State<span class="c-red">*</span></label>
+                                                  <div id="multiselect_custom">
+                                                      <mat-form-field appearance="fill">
+                                                          <mat-select  tabindex="22" [(ngModel)]="Contacts.states" name="states"
+                                                              #states="ngModel"
+                                                              required [ngModelOptions]="{standalone: true}">
+                                                              <mat-option *ngFor="let stateslist of Statedata" value="{{stateslist.stateId}}">
+                                                                  {{stateslist.stateName}}
+                                                              </mat-option>
+                                                          </mat-select>
+                                                      </mat-form-field>                                          
+                                                  </div>
+                                        </div>
+                                        <div class="flx_section">
+                                          <label class="peak-form-label">Zip
+                                              <span class="c-red">*</span>
+                                          </label>
+                                          <input type="text" mask="000000" tabindex="23" placeholder="Enter Zip code"   [(ngModel)]="Contacts.zips" name="zips" class="peak-box-g"
+                                          #zips="ngModel"
+                                          >
+                                        
+                                        </div>
+                                        <ng-container
+                              *ngIf="Contacts.userTypeId==6;">
+                            
+                              <div class="flx_div">
+                                <div class="flx_section" >
+                                  <label class="peak-form-label">Revenue Month</label>
+                                  <label class="switch">
+                                    <input type="checkbox" [(ngModel)]="Contacts.revenueMonth" [ngModelOptions]="{standalone: true}"/>
+                                    <span class="slider round"></span>
+                                  </label>
+                                </div>
+                                <div class="flx_section" >
+                                  <label class="peak-form-label">Revenue Year</label>
+                                  <label class="switch">
+                                    <input type="checkbox" [(ngModel)]="Contacts.revenueYear" [ngModelOptions]="{standalone: true}"/>
+                                    <span class="slider round"></span>
+                                  </label>
+                                </div>
+                                <div class="flx_section" >
+                                  <label class="peak-form-label">Files Month</label>
+                                  <label class="switch">
+                                    <input type="checkbox" [(ngModel)]="Contacts.filesMonth"  [ngModelOptions]="{standalone: true}"/>
+                                    <span class="slider round"></span>
+                                  </label>
+                                </div>
+                                <div class="flx_section" >
+                                  <label class="peak-form-label">Files Year</label>
+                                  <label class="switch">
+                                    <input type="checkbox" [(ngModel)]="Contacts.filesYear" [ngModelOptions]="{standalone: true}"/>
+                                    <span class="slider round"></span>
+                                  </label>
+                                </div>
+                                <div class="flx_section" >
+                                  <label class="peak-form-label">Add Exchange</label>
+                                  <label class="switch">
+                                    <input type="checkbox" [(ngModel)]="Contacts.synergyExchange" [ngModelOptions]="{standalone: true}"/>
+                                    <span class="slider round"></span>
+                                  </label>
+                                </div>
+                                <div class="flx_section" >
+                                  <label class="peak-form-label">Accounts</label>
+                                  <label class="switch">
+                                    <input type="checkbox" [(ngModel)]="Contacts.synergyAccounts" [ngModelOptions]="{standalone: true}" />
+                                    <span class="slider round"></span>
+                                  </label>
+                                </div>
+                                <div class="flx_section" >
+                                  <label class="peak-form-label">Monthly Account</label>
+                                  <label class="switch">
+                                    <input type="checkbox" [(ngModel)]="Contacts.monthlyAccount"  [ngModelOptions]="{standalone: true}"/>
+                                    <span class="slider round"></span>
+                                  </label>
+                                </div>
+                              </div>
+                              </ng-container> 
+                                        <div  class="flx_section   padding-15" *ngFor="let item of ContactsCF,index as i">
+                                                                                                             
+                                                 
+                                          <label class="peak-form-label">{{item.labelName}}</label>
+                                         
+                                        <div *ngIf="item.valueType=='Text'" class="flexWt-100">
+                                            
+                                            <ng-container >
+                                                <input type="item.valueType" placeholder="{{item.toolTip}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}">
+                                            </ng-container>
+                                                                                                                                               
+                                        </div>
+                                    
+                                    
+                                        <div *ngIf="item.valueType=='Interger '"  class="flexWt-100">
+                                            <ng-container >
+                                                <input type="number" placeholder="{{item.toolTip}}" [(ngModel)]="item.value">
+                                            </ng-container>
+                                                                                                                                             
+                                        </div>
+                                  
+                                    
+                                        <div *ngIf="item.valueType=='Date '"  [config]="datePickerConfig">
+                                            <ng-container>
+                                                <dp-date-picker theme="dp-material" placeholder="{{item.toolTip}}" [(ngModel)]="item.value">
+                                                </dp-date-picker>
+                                                
+                                            </ng-container>
+                                                                                                                                           
+                                        </div>
+          
+                          </div>
+                                      </div>
+                                      
+             
+                              
+                                          
+                                         
+                                      
+                                  
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+         

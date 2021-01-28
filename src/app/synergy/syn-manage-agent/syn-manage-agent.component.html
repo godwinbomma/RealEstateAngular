@@ -1,0 +1,88 @@
+<div class="page-wrapper chiller-theme employee-wrapper">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <app-header >
+        </app-header>
+      
+        <div class="container-fluid contentpage_wrapper">
+          <div class="pagecontent_wrapper">
+            <div class="top_form">
+               
+                
+            </div>
+              <div class="manage-contacts flt_left">
+                <div class="mel-left-auto">       
+                  <input type="text" placeholder="Search Contact..." [(ngModel)]="searchText" (input)="onSearch(searchText)"/> 
+                  <button routerLink="/synergy/syn-contacts-detail" class="syn-add-contact-btn-g">Add Contacts</button>
+                <div class="table-responsive apx-responsive table-responsive-realest">
+                  <table class="table peak-table">
+                    <thead>
+                      <tr>
+                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                          S.No
+                          <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                          <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                        </th>
+                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                          First Name
+                          <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                          <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                        </th>
+                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                          Last Name
+                          <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                          <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                        </th>
+                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                          Phone Number
+                          <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                          <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                        </th>
+                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                          Email Address
+                          <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                          <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                        </th>
+                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                        Status
+                          <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                          <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                        </th>
+  
+                     
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let contact of contactListArray | orderBy: order:reverse| paginate: { itemsPerPage: 5, currentPage: p };let i = index ">
+  
+                        <td>{{i+1}}</td>
+                        <td [routerLink]="['/synergy/syn-manage-agent-exchange',contact.userId]" class="me-routing">{{contact.firstName}}</td>
+                        <td>{{contact.lastName}}</td>
+                        <td>{{contact.mobileNumber}}</td>
+                        <td>{{contact.emailAddress}}</td>
+                        <td>{{contact.status}}</td>
+                      
+                        
+                      </tr>
+                    </tbody>
+                  </table>             
+                </div>
+              </div>
+              <div class="apxtable_pagination_wrapper">
+                <div class="apxtable_pagelist">
+                  
+                </div>
+                <div class="apxtable_pagination">
+                 
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+              </div>
+              </div>
+          </div>
+        </div>
+    </main>
+  </div>

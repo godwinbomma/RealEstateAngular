@@ -1,0 +1,107 @@
+<div class="container-fluid contentpage_wrapper">
+    <div class="pagecontent_wrapper">
+        <div class="white_wrapper">
+            <h2 class="page-head-g">Revenue Over Time</h2>
+            <div class="chat-top-sec">
+
+                <div class=" chat-top-lft">
+                    <div class="chat-left-inner">
+                        <div class="dat-area peak-form">
+                            <dp-date-picker placeholder="From Date" theme="dp-material" [config]="datePickerConfig"
+                                required="true">
+                            </dp-date-picker>
+                        </div>
+                        <div class="dat-area peak-form">
+                            <dp-date-picker placeholder="To Date" theme="dp-material" [config]="datePickerConfig"
+                                required="true">
+                            </dp-date-picker>
+                        </div>
+                        <button class="filter-btn-g">Filter</button>
+                    </div>
+                </div>
+
+                <div class="chat-top-right">
+                    <div class="chat-right-inner">
+
+                        <li><span class="cl-iden c-bl"></span>Fees</li>
+                        <li><span class="cl-iden c-p"></span>Interest</li>
+                        <li><span class="cl-iden c-g"></span>Total Gross Revenue</li>
+                    </div>
+
+                </div>
+            </div>
+            <div class="chart-tb-area">
+                <img src="./../../../assets/images/superadmin/chart.png">
+            </div>
+        </div>
+
+        <div class="chart-table-sec">
+            <div class="table-responsive">
+                <table id="cht-tb" class="peak-table report-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Jan</th>
+                            <th>Feb</th>
+                            <th>Mar</th>
+                            <th>Apr</th>
+                            <th>Jun</th>
+                            <th>Jul</th>
+                            <th>Aug</th>
+                            <th>Sep</th>
+                            <th>Oct</th>
+                            <th>Nov</th>
+                            <th>Dec</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td><span class="cl-iden c-bl"></span>Fees</td>
+                            <td>$10,000,000.00</td>
+                            <td>$12,000,000.00</td>
+                            <td>$24,000,000.00</td>
+                            <td>$19,000,000.00</td>
+                            <td>$13,000,000.00</td>
+                            <td>$12,000,000.00</td>
+                            <td>$12,000,000.00</td>
+                            <td>$19,000,000.00</td>
+                            <td>$13,000,000.00</td>
+                            <td>$12,000,000.00</td>
+                            <td>$12,000,000.00</td>
+                        </tr>
+                        <tr>
+                            <td><span class="cl-iden c-p"></span>Interest</td>
+                            <td>$10,000,000.00</td>
+                            <td>$12,000,000.00</td>
+                            <td>$24,000,000.00</td>
+                            <td>$19,000,000.00</td>
+                            <td>$13,000,000.00</td>
+                            <td>$12,000,000.00</td>
+                            <td>$12,000,000.00</td>
+                            <td>$19,000,000.00</td>
+                            <td>$13,000,000.00</td>
+                            <td>$12,000,000.00</td>
+                            <td>$12,000,000.00</td>
+                        </tr>
+                        <tr class="b-tr">
+                            <td><span class="cl-iden c-g"></span>Total Gross Revenue</td>
+                            <td>$10,000,000.00</td>
+                            <td>$12,000,000.00</td>
+                            <td>$24,000,000.00</td>
+                            <td>$19,000,000.00</td>
+                            <td>$13,000,000.00</td>
+                            <td>$12,000,000.00</td>
+                            <td>$12,000,000.00</td>
+                            <td>$19,000,000.00</td>
+                            <td>$13,000,000.00</td>
+                            <td>$12,000,000.00</td>
+                            <td>$12,000,000.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,9 @@
+{
+    "/api/V1": {
+        "target": "https://realestate-api.colanonline.net/",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true  
+  }
+  }
+  

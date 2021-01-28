@@ -1,0 +1,50 @@
+<div class="page-wrapper chiller-theme">
+  <a id="show-sidebar" class="btn btn-sm btn-dark">
+      <i class="fas fa-bars"></i>
+  </a>
+  <app-sidebar></app-sidebar>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+    
+      <app-header headerMainTitle="Manage Roles">
+      </app-header>
+      <div class="container-fluid contentpage_wrapper" (ngSubmit)="saveRole()">
+        <div class="flx_section">
+            <label class="peak-form-label">Contact Type<span>*</span></label>
+            <div class="select_div w-250">
+              <select style="width:196px;" id="typeid"  [(ngModel)]="roles.userTypeId" (change)="getDefaultRoles(roles.userTypeId)"  tabindex="1">
+                 
+                  <option value="5">Broker/Executive</option>
+                  <option value="6">Agent</option>
+              </select>
+              <span><i class="fa fa-angle-down"></i></span>
+            </div>
+          </div>
+          <div *ngFor="let row of privilages;let i=index"> 
+          
+                <div class="closeout-insider d-flex" >
+                    <label for={{i}}>{{row.moduleName}}</label>
+                    <div class="peak_exhange_form ci-toggle">
+                        <label class="switch" >
+                            <input type="checkbox" id={{i}}  [(ngModel)]="row.isView"  
+                            [ngModelOptions]="{standalonbe:true}"
+                                 />
+                            <div class="slider round"></div>
+                        </label>
+                    </div>
+            
+             
+              </div>
+          </div>
+        
+
+<button class="btn btn-success" (click)="saveRole()">
+    Add
+</button>&nbsp;
+<button class="btn btn-info" (click)="updateRole()">
+    Update
+</button>
+
+      </div>
+  </main>
+</div>

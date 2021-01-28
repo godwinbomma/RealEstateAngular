@@ -1,0 +1,113 @@
+<div class="page-wrapper chiller-theme">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <app-header headerMainTitle="Manage Synergy Clients">
+        </app-header>
+
+        <div class="container-fluid contentpage_wrapper">
+            <div class="pagecontent_wrapper">
+                <div class="head-btn-bk">
+                    <input type="text" class="head-input-bx emp-id-bx" value="" placeholder="Emp ID">
+                    <input type="text" class="head-input-bx" value="" placeholder="Phone Number">
+                    <input type="text" class="head-input-bx" value="mai_william@gmail.com" placeholder="Email">
+                    <button class="filter-btn-g">Filter</button>
+                    <button class="set-cmn-btn">SET PERMISSION</button>
+                    <button class="set-cmn-btn">add Client</button>
+                </div>
+                <div class="apxtable_grid_table manage-employee-tb">
+                    <div class="table-responsive apx-responsive table-responsive-realest">
+                        <table class="table peak-table mb-0" id="manage-emp-table">
+                            <thead>
+                                <tr>
+                                    <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Emp Id
+                                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                    </th>
+                                    <th [class.active]="order === 'userid'" (click)="setOrder('userid')">First Name
+                                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                    </th>
+                                    <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Last Name
+                                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                    </th>
+                                    <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Phone Number
+                                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                    </th>
+                                    <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Email Address
+                                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span></th>
+
+                                    <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Status
+                                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                    </th>
+                                    <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Permission
+                                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let leadlist of leadData | orderBy: order:reverse| paginate: { itemsPerPage: 13, currentPage: p } ">
+
+                                    <td>{{leadlist.leadid}}</td>
+                                    <td>{{leadlist.leadowner}}</td>
+                                    <td>{{leadlist.leademail}}</td>
+                                    <td>{{leadlist.leadphone}}</td>
+                                    <td>{{leadlist.leadunits}}</td>
+                                    <td>
+                                        <div class=" apx-actions ">
+                                            <label class="switch">
+                                      <input type="checkbox" checked>
+                                      <span class="slider round"></span>
+                                    </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class=" apx-actions ">
+                                            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                      <path d="M11.6042 5.97518C12.1812 6.21923 12.7149 6.53981 13.1989 6.93071V4.16753C13.1989 1.8697 11.3292 0 9.03134 0H8.96722C6.67146 0 4.80176 1.8697 4.80176 4.16753V6.93071C5.28573 6.53983 5.81934 6.21926 6.39638 5.97518C6.5515 5.909 6.71076 5.84902 6.87001 5.79524V4.16753C6.87001 3.00931 7.81107 2.06825 8.96929 2.06825H9.03341C10.1916 2.06825 11.1327 3.00931 11.1327 4.16753V5.79731C11.2898 5.84902 11.4491 5.909 11.6042 5.97518Z" fill="#015289"/>
+                                      <path d="M3.13867 12.1386C3.13867 15.3754 5.76328 18 9.0001 18C12.2369 18 14.8615 15.3774 14.8615 12.1386C14.8615 10.5481 14.2266 9.10445 13.1987 8.04756C12.6196 7.45399 11.9164 6.98241 11.1304 6.67426C10.4706 6.41573 9.75087 6.27509 9.00012 6.27509C8.24934 6.27509 7.52959 6.41573 6.86982 6.67426C6.08388 6.98036 5.38068 7.45192 4.80157 8.04756C3.77156 9.10445 3.13867 10.5481 3.13867 12.1386ZM7.49025 10.9555C7.51094 10.1551 8.16244 9.50362 8.96285 9.48499C9.81288 9.46431 10.5099 10.1489 10.5099 10.9948C10.5099 11.0838 10.5016 11.1706 10.4872 11.2533C10.4127 11.6815 10.1583 12.0496 9.80252 12.273C9.65567 12.3661 9.58124 12.5398 9.61849 12.7073L10.0673 14.8356C10.0942 14.9638 9.997 15.0859 9.86461 15.0859H8.13557C8.0032 15.0859 7.90597 14.9659 7.93288 14.8356L8.38167 12.7073C8.41683 12.5377 8.34444 12.364 8.19762 12.2709C7.84188 12.0476 7.58748 11.6815 7.513 11.2513C7.49646 11.1562 7.48821 11.0569 7.49025 10.9555Z" fill="#015289"/>
+                                      </svg></a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="apxtable_pagination_wrapper mt-0">
+                
+                    <div class="apxtable_pagination">
+                        <!-- <ul>
+                  <li class="prev">Prev</li>
+                  <li class="active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li>...</li>
+                  <li><a href="#">16</a></li>
+                  <li><a href="#">17</a></li>
+                  <li><a href="#">18</a></li>
+                  <li class="next">Next</li>
+              </ul> -->
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>

@@ -1,0 +1,210 @@
+<div class="page-wrapper chiller-theme">
+  <a id="show-sidebar" class="btn btn-sm btn-dark">
+      <i class="fas fa-bars"></i>
+  </a>
+  <app-sidebar></app-sidebar>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+    
+      <app-header headerMainTitle="Manage Contact">
+      </app-header>
+      <div class="container-fluid contentpage_wrapper">
+        <div class="pagecontent_wrapper">
+          <div class="top_form">
+           
+              
+          </div>
+            <div class="manage-contacts flt_left">
+              <div class="mel-left-auto">       
+                <input type="text" placeholder="Search Contact..." [(ngModel)]="searchText" (input)="onSearch(searchText)"/> 
+      
+                <button data-toggle="modal" data-target="#bank_profile-col" class="btn Customize"><img
+                  src="../../../../assets/images/superadmin/customize-btn-icon.png" /> Customize
+              Column</button>            
+              <select id="typeid" [(ngModel)]="Datetype.TypeId" [ngModelOptions]="{standalone: true}" (change)="Getdateval(Datetype.TypeId)">
+                            
+                <option value="1">Today</option>
+                <option value="2">Yesterday</option>
+                <option value="3">This Month</option>
+                <option value="4">Last Month</option>
+                <option value="5">This Year</option>
+                <option value="6">Last Year</option>
+                <option value="7">Custom Range</option>
+              </select>
+            
+          
+         
+            
+              <button class="add_cont" [routerLink]="['/superadmin/add-contact']">Add Contact</button>
+              </div>
+              <div class="flex_column_cutomrange">
+                <ng-container
+                *ngIf="Datetype.TypeId==7;">
+                <div class="form-group">
+                  <label class="peak-form-label">From Date
+                    <span class="c-red">*</span>
+                </label>
+                <dp-date-picker placeholder="select date" [(ngModel)]="Datetype.Fromdate" name="ClosingDate" theme="dp-material" [config]="datePickerConfig"
+                    required="true" >
+                </dp-date-picker>
+                </div>
+                <div class="form-group">
+                   <label class="peak-form-label">To Date
+                <span class="c-red">*</span>
+            </label>
+            <dp-date-picker  placeholder="select date" [(ngModel)]="Datetype.Todate" name="ClosingDate" theme="dp-material" [config]="datePickerConfig"
+                required="true"  
+                >
+            </dp-date-picker>
+                </div>
+                 
+             
+            <button class="add_cont" (click)="Getdateval(7)">Search</button>
+               </ng-container>
+              </div>
+              <div class="table-responsive apx-responsive table-responsive-realest">
+                <ng-container *ngIf="isEdit; else value">
+                  <table class="table peak-table">
+                      <thead>
+                          <tr> 
+                              <th *ngFor="let head of columnheaderlist ">{{head}}</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          
+                          <tr *ngFor="let item of columnheadervaluelist| orderBy: order:reverse| paginate: { itemsPerPage: 5, currentPage: p }">
+                              <td *ngFor="let list of columnheaderlist">
+                                  <span *ngIf = "list != 'exchangeNumber'">{{item[changethetextcase(list)]}}</span>
+                                  <a *ngIf = "list == 'exchangeNumber'" [routerLink]="['/exchange/view',item.exchangeId,item.propertyId]"> {{item[changethetextcase(list)]}}</a>
+                              </td>
+                             
+                          </tr>
+                      </tbody>
+                  </table>
+                  
+              </ng-container>
+              <ng-template #value>
+                <table class="table peak-table">
+                  <thead>
+                    <tr>
+                      <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                        S.No
+                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                      </th>
+                      <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                        First Name
+                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                      </th>
+                      <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                        Last Name
+                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                      </th>
+                      <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                        Phone Number
+                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                      </th>
+                      <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                        Email Address
+                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                      </th>
+                      <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                       Synergy Mapped
+                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                      </th>
+                      <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                        Status
+                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                      </th>
+                     
+                      <th [class.active]="order === 'userid'" (click)="setOrder('userid')">
+                        Actions
+                        <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                        <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let contact of contactListArray | orderBy: order:reverse| paginate: { itemsPerPage: 5, currentPage: p };let i = index ">
+
+                      <td>{{i+1}}</td>
+                      <td>{{contact.firstName}}</td>
+                      <td>{{contact.lastName}}</td>
+                      <td>{{contact.mobileNumber}}</td>
+                      <td>{{contact.emailAddress}}</td> 
+                      <td>{{contact.synergyName}}</td>
+                      <td>{{contact.status}}</td>                    
+                      <td>
+                        <!--<div class="apx-actions">
+                          <span class="pencil">
+                            <a [routerLink]="['/superadmin/Edit-contact',contact.contactId]">
+                              <i class="fas fa-pencil-alt"></i>
+                            </a>
+                          </span>
+                        </div>-->
+                        <svg [routerLink]="['/superadmin/Edit-contact',contact.userId]" class="edit_icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip1)">
+                         ="
+                        <path d="M17.5205 2.9221L15.066 0.465497C14.4475 -0.153467 13.3717 -0.154656 12.7508 0.466686L1.755 11.571C1.70625 11.6202 1.67108 11.6806 1.65191 11.7469L0.0155795 17.4791C-0.0251888 17.6218 0.0147741 17.7758 0.119859 17.8809C0.197752 17.9589 0.302031 18.0009 0.40911 18.0009C0.446657 18.0009 0.484625 17.9957 0.521366 17.9853L6.24859 16.3475C6.3149 16.3284 6.37523 16.2932 6.42436 16.2444L17.5205 5.23799C17.8297 4.92852 17.9999 4.51747 17.9999 4.08006C17.9999 3.64266 17.8297 3.23156 17.5205 2.9221ZM10.9682 3.4425L12.474 4.94835L4.612 12.8104L4.04776 11.6816C3.97823 11.5429 3.83682 11.4554 3.68181 11.4554H3.02668L10.9682 3.4425ZM1.00476 16.9961L1.53762 15.1308L2.87005 16.4632L1.00476 16.9961ZM5.72724 15.647L3.76994 16.2061L1.79469 14.2309L2.35383 12.2736H3.42887L4.13398 13.6838C4.17352 13.763 4.23783 13.8273 4.31695 13.8668L5.7272 14.5719V15.647H5.72724ZM6.54544 14.9742V14.3191C6.54544 14.164 6.45796 14.0226 6.31931 13.9531L5.19046 13.3889L13.0525 5.52686L14.5583 7.03271L6.54544 14.9742ZM16.9432 4.66911L15.1394 6.45682L11.544 2.86143L13.3305 1.05884C13.6398 0.749609 14.1783 0.749609 14.4875 1.05884L16.942 3.51337C17.0966 3.66797 17.1817 3.87331 17.1817 4.09184C17.1817 4.31037 17.0966 4.5157 16.9432 4.66911Z" fill="#4A4E4C" />
+                        </g>
+                        <defs>
+                        <clipPath id="clip1">
+                        <rect width="18" height="18" fill="white" />
+                        </clipPath>
+                        </defs>
+                        </svg>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ng-template>
+              </div>
+            </div>
+            <div class="apxtable_pagination_wrapper">
+              <div class="apxtable_pagelist">
+                
+              </div>
+              <div class="apxtable_pagination">
+               
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+            </div>
+        </div>
+      </div>
+  </main>
+</div>
+<div class="modal fade" id="bank_profile-col" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog del-modal modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+        <div class="modal-body">
+            <div class="bpc-header">
+                <h3>Column Customization</h3>
+                <div class="bpc-end">
+                   
+                    <button class="btn apply-btn" (click)="selectedcustomItems()">APPLY</button>
+                </div>
+            </div>
+
+             <div class="total-columns">
+                <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems" 
+                [settings]="dropdownSettings" 
+               (onSelect)="onItemSelect($event)" 
+               (onDeSelect)="OnItemDeSelect($event)"
+               (onSelectAll)="onSelectAll($event)"
+              (onDeSelectAll)="onDeSelectAll($event)"
+            ></angular2-multiselect>
+            
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</div>

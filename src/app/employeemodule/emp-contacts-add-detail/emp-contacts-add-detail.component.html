@@ -1,0 +1,106 @@
+<div class="page-wrapper chiller-theme employee-wrapper">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+      <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+      <app-header >
+      </app-header>
+      <div class="container-fluid contentpage_wrapper">
+        <div class="pagecontent_wrapper">
+          <div class="white_wrapper-g">
+            <h2 class="head-cnt-ag">basic details</h2>
+            
+            <div class="emp-cont-add-dt-bx">
+              <div class="row">
+                <div class="col-md-6 col-lg-3 col-xs-12 col-sm-12 cont-det-g">
+                  <label class="peak-form-label">contact type<span>*</span></label>
+                  <p>{{Contacts.contactType}}</p>
+                </div>
+                <div class="col-md-6 col-lg-3 col-xs-12 col-sm-12 cont-det-g">
+                  <label class="peak-form-label">first name<span>*</span></label>
+                  <p>{{Contacts.firstName}}</p>
+                </div>
+                <div class="col-md-6 col-lg-3 col-xs-12 col-sm-12 cont-det-g">
+                  <label class="peak-form-label">last name<span>*</span></label>
+                  <p>{{Contacts.lastName}}</p>
+                </div>
+                <div class="col-md-6 col-lg-3 col-xs-12 col-sm-12 cont-det-g">
+                  <label class="peak-form-label">phone number(home)<span>*</span></label>
+                  <p>{{Contacts.mobileNumber}}</p>
+                </div>
+                <div class="col-md-6 col-lg-3 col-xs-12 col-sm-12 cont-det-g">
+                  <label class="peak-form-label">fax<span>*</span></label>
+                  <p>{{Contacts.faxNumber}}</p>
+                </div>
+                <div class="col-md-6 col-lg-3 col-xs-12 col-sm-12 cont-det-g">
+                  <label class="peak-form-label">email address<span>*</span></label>
+                  <p>{{Contacts.emailAddress}}</p>
+                </div>
+                <div class="col-md-6 col-lg-3 col-xs-12 col-sm-12 cont-det-g">
+                  <label class="peak-form-label">address<span>*</span></label>
+                  <p>{{Contacts.mailingAddress}}</p>
+                </div>
+                <div class="col-md-6 col-lg-3 col-xs-12 col-sm-12 cont-det-g">
+                  <label class="peak-form-label">notes<span>*</span></label>
+                  <p>{{Contacts.notes}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="white_wrapper-g">
+            <h2 class="head-cnt-ag">linked exchanges</h2>
+            <div class="apxtable_grid_table manage-employee-tb">
+              <div class="table-responsive apx-responsive table-responsive-realest">
+                <table class="table peak-table" id="approval-list-table">
+                  <thead>
+                    <tr>
+                      <th [class.active]="order === 'userid'" (click)="setorder('userid')">
+                        exchange #
+                        <span [hidden]="reverse" class="table-sort-g"><img src="../../../assets/images/sort.png"></span>
+                        <span [hidden]="!reverse" class="table-sort-g"><img src="../../../assets/images/sort.png"></span>
+                      </th>
+                      <th [class.active]="order === 'userid'" (click)="setorder('userid')">
+                        date
+                        <span [hidden]="reverse" class="table-sort-g"><img src="../../../assets/images/sort.png"></span>
+                        <span [hidden]="!reverse" class="table-sort-g"><img src="../../../assets/images/sort.png"></span>
+                      </th>
+                      <th [class.active]="order === 'userid'" (click)="setorder('userid')">
+                        customer name
+                        <span [hidden]="reverse" class="table-sort-g"><img src="../../../assets/images/sort.png"></span>
+                        <span [hidden]="!reverse" class="table-sort-g"><img src="../../../assets/images/sort.png"></span>
+                      </th>
+                      <th [class.active]="order === 'userid'" (click)="setorder('userid')">
+                        relinquished address
+                        <span [hidden]="reverse" class="table-sort-g"><img src="../../../assets/images/sort.png"></span>
+                        <span [hidden]="!reverse" class="table-sort-g"><img src="../../../assets/images/sort.png"></span>
+                      </th>
+                      <th [class.active]="order === 'userid'" (click)="setorder('userid')">
+                        replacement address
+                        <span [hidden]="reverse" class="table-sort-g"><img src="../../../assets/images/sort.png"></span>
+                        <span [hidden]="!reverse" class="table-sort-g"><img src="../../../assets/images/sort.png"></span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let Contact of Contacts.exchangeList  | orderBy: order:reverse| paginate: { itemsPerPage: 13, currentPage: p };let i = index;">
+                      <td><a href="#" class="exchange-num-g">{{Contact.ExchangeNumber}}</a></td>
+                      <td>{{Contact.CreatedOn}}</td>
+                      <td>{{Contact.OfficerName}}</td>
+                      <td>{{Contact.PropertyAddress}}</td>
+                      <td>{{Contact.PropertyAddress}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div >
+                <button routerLink="/employee/emp-contact"  class="btn Customize"> Back</button>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  

@@ -1,0 +1,342 @@
+<div class="container-fluid contentpage_wrapper">
+  <div class="pagecontent_wrapper">
+      <div class="white_wrapper">
+          <div class="mel-top">
+              <h2 class="peak-form-head">Exchanges List</h2>
+              <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Open My Modal</button> -->
+              <ng-template  #mymodal let-modal>
+                     
+                      <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">User Detail</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                      <div class="modal-body" id="customizableAlert">
+                        
+                          <form (ngSubmit)=ContactForm.form.valid&&addContact() #ContactForm="ngForm">
+                              <div class="manage-contacts-detail">
+                                  <h4>Add Contact</h4>
+                                  <div class="flx_div">
+                                    <div class="flx_section">
+                                      <label class="peak-form-label">Contact Type</label>
+                                      <div class="select_div w-250">
+                                        <select id="typeid" style="border: none" disabled  [(ngModel)]="Contacts.userTypeId" name="userTypeId" #userTypeId="ngModel" [ngClass]="{ 'is-invalid': ContactForm.submitted && userTypeId.invalid }" required>
+                                          
+                                          <option value="3">Synergy Client</option>
+                                          <option value="4">Client</option>
+                                          <option value="5">Escrow Officer</option>
+                                          <option value="6">Broker/Agent</option>
+                                        </select>
+                                        <span><i class="fa fa-angle-down"></i></span>
+                                      </div>
+                                    </div>
+                                    <div class="flx_section">
+                                      <label class="peak-form-label">First Name</label>
+                                      <input class="ipt" type="text" style="border: none" disabled  [(ngModel)]="Contacts.firstName" #firstName="ngModel" name="firstName" placeholder="First Name" [ngClass]="{ 'is-invalid': ContactForm.submitted && firstName.invalid }" required>
+                                      <div *ngIf="ContactForm.submitted && firstName.invalid" class="invalid-feedback">
+                                        <div *ngIf="firstName.errors.required">First Name is required</div>
+                                    </div>                                            
+                                    </div>
+                                    <div class="flx_section">
+                                      <label class="peak-form-label">Last Name</label>
+                                      <input class="ipt" type="text" style="border: none" disabled [(ngModel)]="Contacts.lastName" #lastName="ngModel" name ="lastName" [ngClass]="{ 'is-invalid': ContactForm.submitted && lastName.invalid }" required placeholder="Last Name">
+                                      <div *ngIf="ContactForm.submitted && lastName.invalid" class="invalid-feedback">
+                                        <div *ngIf="lastName.errors.required">Last Name is required</div>
+                                      </div>                            
+                                    </div>
+                                    <div class="flx_section">
+                                      <label class="peak-form-label">Company Name</label>
+                                      <input class="ipt" type="text" style="border: none" disabled [(ngModel)]="Contacts.companyName" #companyName="ngModel" name ="companyName" [ngClass]="{ 'is-invalid': ContactForm.submitted && companyName.invalid }" required placeholder="Last Name">
+                                      <div *ngIf="ContactForm.submitted && companyName.invalid" class="invalid-feedback">
+                                        <div *ngIf="companyName.errors.required">Company Name is required</div>
+                                      </div>                            
+                                    </div>
+                                    <div class="flx_section">
+                                      <label class="peak-form-label">Phone Number</label>
+                                      <input class="ipt" type="text" style="border: none" disabled [readonly]="state=='Edit'" [(ngModel)]="Contacts.mobileNumber" #mobileNumber="ngModel" name="mobileNumber" [ngClass]="{ 'is-invalid': ContactForm.submitted && mobileNumber.invalid }" required placeholder="PhoneNumber">
+                                      <div *ngIf="ContactForm.submitted && mobileNumber.invalid" class="invalid-feedback">
+                                        <div *ngIf="mobileNumber.errors.required">Phone Number is required</div>
+                                      </div> 
+                                    </div>
+                  
+                                    <div class="flx_section">
+                                      <label class="peak-form-label">Fax</label>
+                                      <input class="ipt" type="text" style="border: none" disabled [(ngModel)]="Contacts.faxNumber" #faxNumber="ngModel" name="faxNumber" placeholder="Fax">
+                                    </div>
+                                    <div class="flx_section">
+                                      <label class="peak-form-label">Email Address</label>
+                                      <input class="ipt" type="email" style="border: none" disabled  [readonly]="state=='Edit'" [(ngModel)]="Contacts.emailAddress" #emailAddress="ngModel" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="emailAddress" [ngClass]="{ 'is-invalid': ContactForm.submitted && emailAddress.invalid }" required  placeholder="Email Address">
+                                      <div *ngIf="ContactForm.submitted && emailAddress.invalid" class="invalid-feedback">
+                                        <div *ngIf="emailAddress.errors.required">Email Address is required</div>
+                                      </div> 
+                                      <div  *ngIf="emailAddress.errors && emailAddress.errors.pattern" class="invalid-feedback">
+                                        Email is invalid
+                                    </div>
+                                    </div>
+                                    <ng-container
+                                    *ngIf="state=='Edit'; else value">
+                                    <div class="flx_section">
+                                      <label class="peak-form-label">Password</label>
+                                      <input class="ipt"   [(ngModel)]="Contacts.password" style="border: none" disabled #password="ngModel"  name="password" [ngClass]="{ 'is-invalid': ContactForm.submitted && password.invalid }" required >
+                                     
+                                    </div>
+                                </ng-container>
+                                <ng-template #value>
+                                  <div class="flx_section">
+                                    <label  class="peak-form-label">Authentication Method</label>
+                                    <div class="select_div w-250">
+                                      <select [(ngModel)]="Contacts.TwofactorConfig " style="border: none" disabled  #TwofactorConfig ="ngModel"  name="TwofactorConfig " [ngClass]="{ 'is-invalid': ContactForm.submitted && TwofactorConfig.invalid }" required >
+                                                  
+                                        <option value="0">No Authentication</option>
+                                        <option value="1">Both</option>
+                                        <option value="2">Mobile</option>
+                                        <option value="3">Email</option>
+                                      </select>
+                                      <span><i class="fa fa-angle-down"></i></span>
+                                    </div>
+                                    
+                                    <div *ngIf="ContactForm.submitted && TwofactorConfig.invalid" class="invalid-feedback">
+                                      <div *ngIf="TwofactorConfig.errors.required">Authentication is required</div>
+                                    </div> 
+                                  </div>
+                                  
+                  
+                                </ng-template>
+                  
+                                    
+                                      <div class="flex_notes">
+                                        <div class="flx_section">
+                                          <label class="peak-form-label">Address</label>
+                                          <textarea placeholder="Address" style="border: none" disabled [(ngModel)]="Contacts.mailingAddress" #mailingAddress="ngModel"  name="mailingAddress" [ngClass]="{ 'is-invalid': ContactForm.submitted && mailingAddress.invalid }" required></textarea>
+                                          <div *ngIf="ContactForm.submitted && mailingAddress.invalid" class="invalid-feedback">
+                                            <div *ngIf="mailingAddress.errors.required">Address is required</div>
+                                          </div> 
+                                        </div>
+                                        <div class="flx_section">
+                                          <label class="peak-form-label">Notes</label>
+                                          <textarea placeholder="Enter Contact Note" style="border: none" disabled [(ngModel)]="Contacts.notes" #notes="ngModel" name="notes"></textarea>
+                                        </div>
+                                      </div>
+                                    
+                                  </div>
+                                  <div class="flex_added">
+                       
+                                        
+                                          <div  class="integreatedBlock   padding-15" *ngFor="let item of ContactsCF,index as i">
+                                            <div class="row no-margin-row nmr-mb">
+                                                <div class="relinquished-details-list">                                                                      
+                                                 
+                                                          <label class="peak-form-label">{{item.labelName}}</label>
+                                                         
+                                                        <div *ngIf="item.valueType=='Text'" class="flexWt-100">
+                                                            
+                                                            <ng-container >
+                                                                <input type="item.valueType" style="border: none" disabled placeholder="{{item.toolTip}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}">
+                                                            </ng-container>
+                                                                                                                                                               
+                                                        </div>
+                                                    
+                                                    
+                                                        <div *ngIf="item.valueType=='Interger '"  class="flexWt-100">
+                                                            <ng-container >
+                                                                <input type="number" style="border: none" disabled placeholder="{{item.toolTip}}" [(ngModel)]="item.value">
+                                                            </ng-container>
+                                                                                                                                                             
+                                                        </div>
+                                                  
+                                                    
+                                                        <div *ngIf="item.valueType=='Date '" style="pointer-events:none;"  [config]="datePickerConfig">
+                                                            <ng-container>
+                                                                <dp-date-picker theme="dp-material" placeholder="{{item.toolTip}}" [(ngModel)]="item.value">
+                                                                </dp-date-picker>
+                                                                
+                                                            </ng-container>
+                                                                                                                                                           
+                                                        </div>
+                  
+                                                </div>
+                                                
+                                            </div>
+                                         
+                                      </div>
+                                  </div>
+<!--                                     
+                                  <div class="btn_flex">
+                                      <button class="btn_Confirm" style="width: 160px">{{label}}</button>
+                                      <button class="btn_Cancel" [routerLink]="['/superadmin/manage-contact']">CANCEL</button>
+                                  </div> -->
+                              </div>
+                          </form>
+                             
+                      </div>
+
+                    </ng-template>
+              <div class="mel-left-auto">
+                  <input type="text" placeholder="Search..." [(ngModel)]="searchText" (input)="onSearch(searchText)"/>
+                  <button data-toggle="modal" data-target="#bank_profile-col" class="btn Customize"><img
+                          src="../../../../assets/images/superadmin/customize-btn-icon.png" /> Customize
+                      Column</button>
+                    
+              </div>
+              <select id="typeid" [(ngModel)]="Datetype.TypeId" [ngModelOptions]="{standalone: true}" (change)="Getdateval(Datetype.TypeId)">
+                          
+                <option value="1">Today</option>
+                <option value="2">Yesterday</option>
+                <option value="3">This Month</option>
+                <option value="4">Last Month</option>
+                <option value="5">This Year</option>
+                <option value="6">Last Year</option>
+                <option value="7">Custom Range</option>
+              </select>
+              <div class="flex_column_cutomrange">
+                <ng-container
+                *ngIf="Datetype.TypeId==7;">
+                <div class="form-group">
+                  <label class="peak-form-label">From Date
+                    <span class="c-red">*</span>
+                </label>
+                <dp-date-picker placeholder="select date" [(ngModel)]="Datetype.Fromdate" name="ClosingDate" theme="dp-material" [config]="datePickerConfig"
+                    required="true" >
+                </dp-date-picker>
+                </div>
+                <div class="form-group">
+                  <label class="peak-form-label">To Date
+                    <span class="c-red">*</span>
+                </label>
+                <dp-date-picker  placeholder="select date" [(ngModel)]="Datetype.Todate" name="ClosingDate" theme="dp-material" [config]="datePickerConfig"
+                    required="true"  
+                    >
+                </dp-date-picker>
+                </div>
+            
+            <button class="add_cont" (click)="Getdateval(7)">Search</button>
+                </ng-container>
+              </div>
+             
+         
+            
+          </div>
+          <div class="apxtable_grid_table">
+              <div class="table-responsive apx-responsive table-responsive-realest">
+                  <ng-container *ngIf="isEdit; else value">
+                      <table class="table">
+                          <thead>
+                              <tr> 
+                                  <th *ngFor="let head of columnheaderlist ">{{head}}</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              
+                              <tr *ngFor="let item of columnheadervaluelist| orderBy: order:reverse| paginate: { itemsPerPage: 5, currentPage: p }">
+                                  <td *ngFor="let list of columnheaderlist">
+                                      <span *ngIf = "list != 'exchangeNumber'">{{item[changethetextcase(list)]}}</span>
+                                      <a *ngIf = "list == 'exchangeNumber'" [routerLink]="['/exchange/view',item.exchangeId,item.propertyId]"> {{item[changethetextcase(list)]}}</a>
+                                  </td>
+                                 
+                              </tr>
+                          </tbody>
+                      </table>
+                      
+                  </ng-container>
+                  <ng-template #value>
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Exch No
+                                      <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                      <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                  </th>
+                                  <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Client
+                                      <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                      <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                  </th>
+                                  <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Open Date
+                                      <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                      <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                  </th>
+                                  <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Close Date
+                                      <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                      <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                  </th>
+                                  <th [class.active]="order === 'userid'" (click)="setOrder('userid')">45-Days Deadline
+                                      <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                      <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span></th>
+  
+                                  <th [class.active]="order === 'userid'" (click)="setOrder('userid')">180-Days Deadline
+                                      <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                      <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                  </th>
+                                  <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Notes
+                                      <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                      <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                  </th>
+                               
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr
+                                  *ngFor="let leadlist of ExchangeList | orderBy: order:reverse| paginate: { itemsPerPage: 5, currentPage: p }">
+                                 
+                                  <td  [routerLink]="['/exchange/view',leadlist.exchangeId,leadlist.propertyId]" class="me-routing">{{leadlist.exchangeNumber}}</td>
+                                  <td>{{leadlist.customerName }}</td>
+                                  <td>{{leadlist.openDate | date}}</td>
+                                  <td>{{leadlist.closeDate | date}}</td>
+                                  <td>{{leadlist.dateOf45 | date}}</td>
+                                  <td>{{leadlist.dateOf180 | date}}</td>
+                                  <td>{{leadlist.notes}}</td>
+                               
+                              </tr>
+                      </tbody> 
+                      </table> 
+                  </ng-template>
+                                  
+              </div>
+
+          </div>
+
+      </div>
+      <div class="apxtable_pagination_wrapper">
+          <div class="apxtable_pagelist">
+            
+          </div>
+          <div class="apxtable_pagination">
+          
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  
+          </div>
+      </div>
+  </div>
+</div>
+<div class="modal fade" id="bank_profile-col" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog del-modal modal-dialog-centered" role="document">
+      <div class="modal-content">
+
+          <div class="modal-body">
+              <div class="bpc-header">
+                  <h3>Column Customization</h3>
+                  <div class="bpc-end">
+                     
+                      <button class="btn apply-btn" (click)="selectedcustomItems()">APPLY</button>
+                  </div>
+              </div>
+
+               <div class="total-columns">
+                  <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems" 
+                  [settings]="dropdownSettings" 
+                 (onSelect)="onItemSelect($event)" 
+                 (onDeSelect)="OnItemDeSelect($event)"
+                 (onSelectAll)="onSelectAll($event)"
+                (onDeSelectAll)="onDeSelectAll($event)"
+              ></angular2-multiselect>
+              
+              </div>
+
+          </div>
+
+      </div>
+  </div>
+</div>
+
+
+        

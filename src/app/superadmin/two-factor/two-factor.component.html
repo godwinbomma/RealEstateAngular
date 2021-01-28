@@ -1,0 +1,30 @@
+<div class="authguard_wrapper">
+    <div class="authdescribe_wrap cus-login-left-g bg-twofact">
+      <h2>Going Above and Beyond To Find Your Next Home</h2> 
+    </div>
+    <div class="authforms_wrap">
+      <div class="authforms_guards">
+        <img src="../../../../assets/images/peak-logo.png" alt="logo" />
+        <h3>two factor authentication</h3>
+        <span>The code will be send to your email</span>
+        <form name="login">
+          <div class="two_factory">
+            <!-- <input type="text" placeholder="0"  maxlength="1" #temp1/>
+            <input type="text" placeholder="0"  maxlength="1" #temp2/>
+            <input type="text" placeholder="0"  maxlength="1" #temp3/>
+            <input type="text" placeholder="0"  maxlength="1" #temp4/>
+            <input type="text" placeholder="0"  maxlength="1" #temp5/>  -->
+             <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="{length:6}"></ng-otp-input>
+          </div>
+          <div class="apex_auth_submitprocess">
+            <!-- <button class="btn-apex-primary" (click)="auth_otpvalue(temp1.value+temp2.value+temp3.value+temp4.value+temp5.value+temp6.value)"> Verify</button> -->
+            <button class="btn-apex-primary" (click)="getOtpVerify()"> Verify</button>
+          </div>
+          <div class="back_login"><span (click)="auth_otpresencvalue()">Resend<a>Code</a></span></div>
+          <!-- <div class="counter_time">
+            <p *ngIf="otpExpire">OTP will expire in {{countDown | async | formatTime}}</p>
+          </div> -->
+        </form>
+      </div>
+    </div>
+  </div>

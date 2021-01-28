@@ -1,0 +1,49 @@
+.current_balance_text{
+    display:flex;
+}
+
+.reliquis_update_btn {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+    width: 172px;
+    height: 45px;
+    border-radius: 50px;
+    background: #0CBEFF;
+    margin: 0px 4px;
+}
+.reliquis_cancel_btn {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+    width: 172px;
+    height: 45px;
+    border-radius: 50px;
+    background: #F05922;
+    margin: 0px 4px;
+}
+.relinquished-details-drop {
+    width: 125px;
+    margin-bottom: 0;
+}
+ .mat-form-field-wrapper {
+    padding-bottom: 10px!important;
+}
+
+.profile_detail_card .flx_section{width: 250px; margin-right: 10px;}
+.profile_detail_card .peak-form-label{    color: #000;font-weight: 700;font-size: 16px;}
+.profile_detail_card .flx_section p{color: #000000;}
+/* .profile_card_popup .modal-content{ border: 8px solid #015289 !important;} */
+::ng-deep .modal-content{ border: 8px solid #015289 !important;}
+.modal-body{border-top:8px solid #015289 !important;}
+.modal-header #modal-basic-title{width: 100%;text-align: center;}
+.flx_section.Customfield {
+    width: 100%!important;
+}
+.Customfield  .flex_added {
+    justify-content: space-between;
+}

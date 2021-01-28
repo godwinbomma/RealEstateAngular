@@ -1,0 +1,161 @@
+<div class="page-wrapper chiller-theme employee-wrapper">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <app-header >
+        </app-header>
+
+        <div class="container-fluid contentpage_wrapper">
+            <div class="pagecontent_wrapper">
+                <div class="white_wrapper">
+                    <div class="mel-top">
+                        <h2 class="peak-form-head">Assigned Tasks</h2>
+                        <div class="mel-left-auto">                    
+                        </div>
+                    </div>
+                    <div class="apxtable_grid_table">
+                        <div class="table-responsive apx-responsive table-responsive-realest">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">EXCHANGE #
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Status
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">ASSIGNED DATE
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">CUSTOMER NAME
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">Tasks
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+                                      
+
+                                        <th [class.active]="order === 'userid'" (click)="setOrder('userid')">NOTES
+                                            <span [hidden]="reverse"><img src="../../../assets/images/sort.png"></span>
+                                            <span [hidden]="!reverse"><img src="../../../assets/images/sort.png"></span>
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let leadlist of AssignList | orderBy: order:reverse| paginate: { itemsPerPage: 13, currentPage: p } ">
+                                        
+                                        <td *ngIf='leadlist.status==="Approved"; else leadWithoutLink'  [routerLink]="['/employee/emp-exchange-general',leadlist.exchangeId,leadlist.propertyId,leadlist.status]" class="me-routing">{{leadlist.exchangeNumber}}</td>
+                                        <ng-template #leadWithoutLink>
+                                            <td>{{leadlist.exchangeNumber}}</td>
+                                        </ng-template>
+                                        <td>{{leadlist.status}}</td>
+                                        <td>{{leadlist.openDate| date}}</td>
+                                        <td>{{leadlist.customerName}}</td>
+                                        <td>{{leadlist.task}}</td>
+                                        <td>{{leadlist.notes}}</td>
+                                        
+                                    </tr>
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="apxtable_pagination_wrapper">
+                   
+                    <div class="apxtable_pagination">
+                        <!-- <ul>
+                      <li class="prev">Prev</li>
+                      <li class="active"><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li>...</li>
+                      <li><a href="#">16</a></li>
+                      <li><a href="#">17</a></li>
+                      <li><a href="#">18</a></li>
+                      <li class="next">Next</li>
+                  </ul> -->
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                    </div>
+                </div>
+                <div class="emo-footer">
+                    <p class="mail-sec"> help@peakexchange.com </p>
+                    <p class="ph-sec">+1-541-754-3010</p>
+                    <span>Copyright © 2020 Peak 1031 Exchange</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal fade" id="bank_profile-col" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog del-modal modal-dialog-centered" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <div class="bpc-header">
+                            <h3>Column Customization</h3>
+                            <div class="bpc-end">
+                                <span>Reset to default</span>
+                                <button class="btn apply-btn">APPLY</button>
+                            </div>
+                        </div>
+
+                        <div class="total-columns">
+                            <div class="columns-part">
+                                <p>Available Columns</p>
+                                <ul>
+                                    <li>Exchange Number</li>
+                                    <li>Customer Name</li>
+                                    <li>Open Date</li>
+                                    <li>Close Date</li>
+                                    <li>180-Day Deadline</li>
+                                    <li>Broker/Agent Name</li>
+                                    <li>Identified</li>
+                                    <li>Relinquished Debt</li>
+                                    <li>Current Account Balance</li>
+                                </ul>
+                            </div>
+                            <div class="mid-arrow-cp">
+                                <span>
+                                    <img src="../../../../assets/images/superadmin/single-left.png">
+                                    <img src="../../../../assets/images/superadmin/single-right.png">
+                                  </span>
+                                <span>
+                                    <img src="../../../../assets/images/superadmin/multiple-left.png">
+                                    <img src="../../../../assets/images/superadmin/multiple-right.png">
+                                  </span>
+                            </div>
+                            <div class="columns-part">
+                                <p>Selected Columns</p>
+                                <ul>
+                                    <li>Exchange Number</li>
+                                    <li>Open Date</li>
+                                    <li>Close Date</li>
+                                    <li>45-Day Deadline</li>
+                                    <li>180-Day Deadline</li>
+                                    <li>Notes</li>
+                                    <li>Task</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

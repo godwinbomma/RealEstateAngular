@@ -1,0 +1,55 @@
+<div class="page-wrapper chiller-theme employee-wrapper cust-wrap">
+    <a id="show-sidebar" class="btn btn-sm btn-dark">
+        <i class="fas fa-bars"></i>
+    </a>
+    <app-sidebar></app-sidebar>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+        <app-header >
+        </app-header>
+       <div class="container-fluid contentpage_wrapper">
+            <div class="pagecontent_wrapper">
+
+                <div class="syn-intakge-form-g">
+
+                    <div class="emp-dashboard-section">
+                        <div class="emp-dashboard-chart cus-dashboard-head-g">
+                            <div class="emp-charts">
+                                <div class="chart-inner">
+                                    <p>Number of Open Exchanges</p>
+                                    <span>{{DashBoardCount.openExchnages}}</span>
+                                </div>
+                            </div>
+                            <div class="emp-charts antique-pink">
+                                <div class="chart-inner">
+                                    <p>Number of Completed Exchanges
+                                    </p>
+                                    <span>{{DashBoardCount.closedExchnages}}</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="white_wrapper">
+                        <div class="cus-dash-inner-g">
+                            <img src="../../../assets/images/customer/dashboard-bg.png" class="img-fluid">
+                            <h2>There are no open exchanges yet.</h2>
+
+                            <button class="open-new-exc-btn">Open a New Exchange</button>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="emo-footer">
+                    <p class="mail-sec"> help@peakexchange.com </p>
+                    <p class="ph-sec"><b>|</b>+1-541-754-3010</p>
+                    <span>Copyright © 2020 Peak 1031 Exchange</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

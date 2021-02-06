@@ -1065,5 +1065,15 @@ this.toastr.error("No transaction for this Exchange")
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         });
       }
+      
+   getstatus()
+   {
+    setTimeout(()=>{                           //<<<---using ()=> syntax
+     this.getExchangeById();
+     this.getReplacement();
+     this.getDropdownList();
+     this.getContactdropdownList();
+ }, 8000);
+   }
 }
 

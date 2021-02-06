@@ -563,6 +563,15 @@
                                                                                             src="../../../assets/images/superadmin/download-icon.png"
                                                                                             alt="no-img" /></a>
                                                                                 </td>
+                                                                                <ng-container
+                                                                                *ngIf=item.docuType>
+                                                                                <td>  <button class="btn btn-docsign docsn" (click)="getstatus()">  <a [download]="item.documentName"
+                                                                                    [href]=item.docusignclientsignURL
+                                                                                    
+                                                                                    target="_blank">Click to sign</a>
+                                                                                    </button>
+                                                                                </td>
+                                                                                </ng-container>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>

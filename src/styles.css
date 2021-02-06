@@ -1350,7 +1350,7 @@ body dp-date-picker.dp-material .dp-picker-input {
             margin-bottom: 10px;
         }
         .msg-body-sec-g input.msg-sec-ip-g, .msg-body-sec-g button {
-            border-radius: 50px !important;
+           
             margin-bottom: 10px !important;
             width: 100% !important;
             margin: 10px 0px !important;
@@ -1631,7 +1631,7 @@ select#typeid {
             flex-direction: column;
         }
     }
-    .msg-body-sec-g input.msg-sec-ip-g{padding: 20px 10px;color: #ffffff;}
+    .msg-body-sec-g input.msg-sec-ip-g{padding: 20px 10px;color: #161414;}
         .msg-body-sec-g input.msg-sec-ip-g::placeholder{color:#b6bac0;} 
 
 .select_div span{pointer-events: none;}

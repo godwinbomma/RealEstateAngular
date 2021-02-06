@@ -93,11 +93,20 @@
                         <div *ngIf="lastName.errors.required">Last Name is required</div>
                       </div>                            
                     </div>
+                   
                     <div class="flx_section">
                       <label class="peak-form-label">Company Name</label>
-                      <input class="ipt" type="text" [(ngModel)]="Contacts.companyName" #companyName="ngModel" name ="companyName" placeholder="Last Name">
-                                             
-                    </div>
+                      <ng-container
+                      *ngIf="Contacts.userTypeId==4; else Company">
+                      <input class="ipt" type="text" [(ngModel)]="Contacts.companyName" #companyName="ngModel" name ="companyName" placeholder="Company Name">                                               
+                      </ng-container>  
+                      <ng-template #Company>
+                        <input class="ipt" type="text" [(ngModel)]="Contacts.companyName" #companyName="ngModel" name ="companyName" placeholder="Company Name">
+                        <div *ngIf="ContactForm.submitted && companyName.invalid" class="invalid-feedback">
+                      <div *ngIf="companyName.errors.required">Company Name is required</div>
+                        </div>
+                    </ng-template>  
+                    </div>  
                     <div class="flx_section">
                       <label class="peak-form-label">Phone Number<span>*</span></label>
                       <input class="ipt" type="text" [readonly]="state=='Edit'" [(ngModel)]="Contacts.mobileNumber" #mobileNumber="ngModel" name="mobileNumber" [ngClass]="{ 'is-invalid': ContactForm.submitted && mobileNumber.invalid }" required placeholder="PhoneNumber" mask= '(000) 000-0000'>

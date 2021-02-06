@@ -282,6 +282,7 @@ export class ManageExchangesComponent implements OnInit {
 
 }
 
+
 getUserData(cId:any,modal:any){
 
   this._getContactdetails_byId(cId)
@@ -643,8 +644,10 @@ getUserData(cId:any,modal:any){
     {
       if(this.is200propertysatisfy==true)
       {
+        var euroCurrency 
+        euroCurrency = '$' + self.exchange.money200PerRuleLimit.toLocaleString("en-US");
 //this.toastr.error("Amount doesnot satisfy 200% rule")
-this.open('The total aggregate value you have identified exceeds 200% of your relinquished property sales price. Please adjust your identification form.Note: Your value limit is: '+self.exchange.money200PerRuleLimit);
+this.open('The total aggregate value you have identified exceeds 200% of your relinquished property sales price. Please adjust your identification form.Note: Your value limit is: '+euroCurrency);
       }
       else if(this.is3propertysatisfy==true){
 

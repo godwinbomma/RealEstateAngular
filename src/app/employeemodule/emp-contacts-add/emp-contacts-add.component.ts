@@ -91,6 +91,8 @@ ngAfterContentInit(): void {
 
   addContact() {
   //  debugger;
+  if(this.Contacts.userTypeId==4 && this.Contacts.companyName==undefined)
+  {
     if(this.label=='UPDATE CONTACT')
     {
       let userDetails = JSON.parse(sessionStorage.getItem("userDetails")) || null;
@@ -188,7 +190,11 @@ ngAfterContentInit(): void {
         })
      
     }
-      
+  }
+    else
+    {
+      this.toastr.error('Company Name is required ');
+    }
   }
   getcontactcustomfield() {
     //debugger;

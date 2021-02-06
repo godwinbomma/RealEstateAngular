@@ -225,6 +225,8 @@ this.Exchanges.contactid=(this.UserRes.userId).toString();
 
           addContact() {
             debugger;
+            if(this.Contacts.userTypeId==4 && this.Contacts.companyName==undefined)
+            {
             if(this.Contacts.firstName==undefined||this.Contacts.lastName==undefined||this.Contacts.mobileNumber==undefined||this.Contacts.emailAddress==undefined||this.Contacts.mailingAddress==undefined)
             {
                 this.toastr.error("Please enter all required fields");
@@ -289,7 +291,11 @@ this.Exchanges.contactid=(this.UserRes.userId).toString();
                       })
                   }
 
-
+                }
+                else
+                {
+                  this.toastr.error('Company Name is required ');
+                }
 
 
           }

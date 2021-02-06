@@ -63,6 +63,11 @@ export class CusLoginComponent implements OnInit {
           {
             if(data.userData.userTypeId==4)
             {
+              sessionStorage.setItem("userDetails", JSON.stringify(data['userData']));
+              sessionStorage.setItem("token", JSON.stringify(data['token']));
+  
+              let token = JSON.parse(sessionStorage.getItem("token")) || null;
+              this.tokenStorage._save_token(token);
             this.toastr.success(data.response);
             this.route.navigate(['/customer/cus-dashboard-inchange']);        
             sessionStorage.setItem("userDetails", JSON.stringify(data['userData'])); 

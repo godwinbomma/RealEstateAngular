@@ -189,6 +189,7 @@
                                     <ng-container *ngIf="exchangeedit; else interestPayable1">
                                         <input type="text" [(ngModel)]="exchange.propertyAddress" >
                   </ng-container>
+
                   <ng-template #interestPayable1>
                       <span><span class="ftBold">{{exchange.propertyAddress}}</span> </span>
                   </ng-template>
@@ -953,7 +954,7 @@
                                                                                         d="M7.84 9.242C7.84 9.998 7.574 10.6327 7.042 11.146C6.51 11.65 5.80533 11.958 4.928 12.07V13.624H3.752V12.098C2.44533 12.014 1.38133 11.608 0.56 10.88L1.078 9.802C1.51667 10.1567 1.95533 10.4227 2.394 10.6C2.83267 10.7773 3.30867 10.8847 3.822 10.922V7.66C3.178 7.492 2.64133 7.31467 2.212 7.128C1.792 6.94133 1.43733 6.666 1.148 6.302C0.868 5.92867 0.728 5.44333 0.728 4.846C0.728 4.342 0.854 3.88467 1.106 3.474C1.36733 3.054 1.72667 2.71333 2.184 2.452C2.64133 2.18133 3.164 2.01333 3.752 1.948V0.407999H4.928V1.948C5.47867 2.01333 5.992 2.14867 6.468 2.354C6.95333 2.55933 7.364 2.82067 7.7 3.138L7.182 4.216C6.49133 3.6 5.72133 3.24067 4.872 3.138V6.582C5.488 6.73133 5.99667 6.89933 6.398 7.086C6.80867 7.26333 7.14933 7.52467 7.42 7.87C7.7 8.21533 7.84 8.67267 7.84 9.242ZM2.184 4.776C2.184 5.18667 2.324 5.50867 2.604 5.742C2.89333 5.966 3.29933 6.15267 3.822 6.302V3.124C3.30867 3.19867 2.90733 3.38067 2.618 3.67C2.32867 3.95933 2.184 4.328 2.184 4.776ZM4.872 10.88C5.35733 10.796 5.73067 10.6187 5.992 10.348C6.25333 10.068 6.384 9.71333 6.384 9.284C6.384 8.93867 6.25333 8.66333 5.992 8.458C5.74 8.25267 5.36667 8.07533 4.872 7.926V10.88Z"
                                                                                         fill="#242E3E" />
                                                                                 </svg></span>
-                                                                            <input type="text" prefix="$" separatorLimit="100000000000000000" [showMaskTyped]="true" mask="separator" thousandSeparator="," tabindex="8" min="0" max="9999999999999999" maxlength="30" 
+                                                                            <input type="text"  separatorLimit="100000000000000000" [showMaskTyped]="true" mask="separator" thousandSeparator="," tabindex="8" min="0" max="9999999999999999" maxlength="30" 
                                                                                 oninput="this.value=this.value.slice(0,this.maxLength||1/0);this.value=(this.value   < 1) ? (1/0) : this.value;"
                                                                                 placeholder="Enter Value"
                                                                                 class="peak-box-g"
@@ -989,7 +990,7 @@
                                                                         <label class="valu-lbl-g">200% Rule Value
                                                                             Limit</label>
                                                                         <p class="valu-lbl-g" style="color: white;">
-                                                                            {{exchange.money200PerRuleLimit}}</p>
+                                                                            {{exchange.money200PerRuleLimit | currency}}</p>
                                                                     </div>
                                                                 </div>
                                                                 <div
@@ -1741,7 +1742,7 @@
     
         <div class="modal-body">
             <img src="../../../assets/images/superadmin/dialog_pic.png">
-            <h2>The total aggregate value you have identified exceeds 200% of your relinquished property sales price. Please adjust your identification form. Note: Your value limit is: [amount]</h2>
+            <h2>The total aggregate value you have identified exceeds 200% of your relinquished property sales price. Please adjust your identification form. Note: Your value limit is testeedgsdv:  {{exchange.money200PerRuleLimit | currency}}</h2>
             <div class="btn_flex">
                 <button class="btn_Confirm" data-dismiss="modal">Ok</button>
                 

@@ -31,6 +31,7 @@ export class CusOpenExchangeComponent implements OnInit {
   getExchangeList() {
     debugger;
     this.ExchangeService._getExchangeslist(this.userDetails['userId']).subscribe((data: any)=> {
+      debugger;
       this.ExchangeList = data.userData;
       console.log(data);
       }, error => {
